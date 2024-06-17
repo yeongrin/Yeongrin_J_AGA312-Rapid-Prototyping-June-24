@@ -6,17 +6,38 @@ public class RotationCamera : MonoBehaviour
 {
     public float rotationSpeed;
 
-    // Start is called before the first frame update
+    public GameObject Target;
+    public float offsetX = 0.0f;            
+    public float offsetY = 10.0f;           
+    public float offsetZ = -10.0f;          
+
+    public float CameraSpeed = 10.0f;      
+    Vector3 TargetPos;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
+
+    void FixtedUpdate()
+    {
+        TargetPos = new Vector3(
+           Target.transform.position.x + offsetX,
+           Target.transform.position.y + offsetY,
+           Target.transform.position.z + offsetZ
+           );
+
+       
+        transform.position = Vector3.Lerp(transform.position, TargetPos, Time.deltaTime * CameraSpeed);
+    
+    }
+
 }

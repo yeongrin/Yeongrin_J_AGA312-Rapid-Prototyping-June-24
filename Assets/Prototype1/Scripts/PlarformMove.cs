@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+public enum PlatformType
+{   
+    None,
+    Move1,
+}
+
 public class PlarformMove : MonoBehaviour
 {
+    public PlatformType type;
+
     public float startPos;
     public float tweenTime;
     public Ease tweenEase ;
     public float changeTime;
-    float time = 0f;
+    public float time = 0f;
+    public float time2 = 0f;
 
     public float delayTime;
 
@@ -26,21 +35,77 @@ public class PlarformMove : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        if(time > changeTime)
+        time2 += Time.deltaTime;
+
+        switch (type)
         {
-            time = 0;
-            //changeTime = Random.Range(4, 10);
-            MoveFlatform();
+            case PlatformType.None:
+                {
+
+                    if (time > 2)
+                    {
+                        time = 0;
+                        //changeTime = Random.Range(4, 10);
+                        MoveFlatform1();
+                    }
+                }
+                break;
+
+            case PlatformType.Move1:
+                {
+
+                    if (time2 > changeTime)
+                    {
+                        time2 = 0;
+                        //changeTime = Random.Range(4, 10);
+                        MoveFlatform2();
+                    }
+                }
+                break;
         }
+
     }
 
-    void MoveFlatform()
+    void MoveFlatform1()
     {
-        int rnd = Random.Range(0, 10);
-        if(rnd < 5)
-        {
+        
         transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
 
+    }
+
+    void MoveFlatform2()
+    {
+        //int rnd = Random.Range(0, 5);
+        if (time2 > 5)
+        {
+            transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
+            time2 = 0;
+
+            if (time2 > changeTime)
+            {
+                time2 = 0;
+                
+                    transform.DOMoveY(startPos - 10, tweenTime).SetEase(tweenEase);
+                
+            }
         }
     }
+
+   /* void MoveFlatform2()
+    {
+        //int rnd = Random.Range(0, 5);
+        if (rnd < 3)
+        {
+            transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
+
+            if (time > changeTime)
+            {
+                time = 0;
+                if (rnd >= 3)
+                {
+                    transform.DOMoveY(startPos - 10, tweenTime).SetEase(tweenEase);
+                }
+            }
+        }
+    }*/
 }

@@ -6,11 +6,13 @@ TagManager:
   tags:
   - PowerUp
   - Enemy
+  - Enemy2
+  - PowerUp2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - groundLayer
   - Water
   - UI
   - 
