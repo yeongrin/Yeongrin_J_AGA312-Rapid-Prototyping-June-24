@@ -8,9 +8,14 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static Action GM;
-    public int score;
+    public static int score;
     public TMP_Text score_Text;
     public GameObject canvas;
+
+    [Header("State")]
+    public TMP_Text damage_Text; //Player Attack=Power2
+    public TMP_Text armor_Text; //Player Defense=Power
+    public TMP_Text health_Text;
 
     [Header("Platform")]
     public GameObject platform1;
@@ -18,37 +23,47 @@ public class GameManager : MonoBehaviour
     public GameObject platform3;
     public GameObject platform4;
 
-    private void Awake()
+    PlayerController PM;//Set the text
+    
+
+   private void Awake()
     {
-        GM = () => { GetScore(); SetText(); };
+        GM = () => { SetText(); };
+
+        PM = GameObject.Find("Player").GetComponent<PlayerController>();
+        
     }
 
     void Start()
     {
         score = 0;
         SetText();
-        GetScore();
+        
     }
 
     void Update()
     {
-        
-        
-    }
 
-    void GetScore()
-    {
-        score += 1;
-
-        if(score == 2)
+        if (score == 5)
         {
             platform1.SetActive(true);
             platform2.SetActive(true);
         }
+            if (score == 20)
+        {
+            platform3.SetActive(true);
+            platform4.SetActive(true);
+        }
+
     }
 
-    void SetText()
+
+    public void SetText()
     {
         score_Text.text = "Score : " + score.ToString();
+
+        damage_Text.text = "Power:" + PM.playerDamage.ToString();
+        armor_Text.text = "Armor:" + PM.playerArmor.ToString();
+        health_Text.text = "Health:" + PM.playerHealth.ToString();
     }
 }

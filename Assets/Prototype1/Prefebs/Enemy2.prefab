@@ -8,6 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2686823456117210115, guid: 6899c4c26f2bd9d478277a78de035076,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060126216280288614, guid: 6899c4c26f2bd9d478277a78de035076,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7601996825116280571, guid: 6899c4c26f2bd9d478277a78de035076,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -16,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 8150907297763328344, guid: 6899c4c26f2bd9d478277a78de035076,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Variant
+      value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 8150907297763328344, guid: 6899c4c26f2bd9d478277a78de035076,
         type: 3}
