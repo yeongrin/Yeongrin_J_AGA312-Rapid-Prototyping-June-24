@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public int playerDamage;
     public int playerArmor;
     public int playerHealth;
-    private float powerUpStrength = 8f;
+    private float powerUpStrength = 10f;
 
     [Header ("Respawn")]
     public float threshold;
@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        GameManager.GM();
+
         //Moving vertical
         float forwardInput = Input.GetAxis("Vertical");
         playerRB.AddForce(focalPoint.transform.forward * forwardInput * speed);
@@ -58,9 +60,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if (transform.position.y < threshold)
-            {
-                transform.position = new Vector3(respawn.position.x, respawn.position.y, respawn.position.z);
-            }
+        {
+            playerHealth -= 1;
+            GameManager.GM();
+            transform.position = new Vector3(respawn.position.x, respawn.position.y, respawn.position.z);
+        }
        
     }
 
@@ -72,6 +76,7 @@ public class PlayerController : MonoBehaviour
             hasPowerUp = true;
 
             playerArmor += 1;
+            playerHealth += 1;
             GameManager.GM();
 
             powerUpIndicator.gameObject.SetActive(true);
@@ -91,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
             damageIndicator2.gameObject.SetActive(true);
             Destroy(other.gameObject);
-
+            StartCoroutine(PowerUpCountDown2());
 
         }
         
@@ -107,12 +112,26 @@ public class PlayerController : MonoBehaviour
         GameManager.GM();
     }
 
+    IEnumerator PowerUpCountDown2()
+    {
+        yield return new WaitForSeconds(10);
+        hasAttckUp = false;
+        damageIndicator2.gameObject.SetActive(false);
+        playerArmor -= 1;
+
+        GameManager.GM();
+    }
+
     //All attacks and defenses only work when the count is 1 or higher.
     void OnCollisionEnter(Collision collision)
     {
         //Players are not damaged even if they are attacked by enemies.
         if (collision.gameObject.CompareTag("Enemy") && hasPowerUp)
         {
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awatFromPlayer = collision.gameObject.transform.position - transform.position;
+
+            enemyRigidbody.AddForce(awatFromPlayer * powerUpStrength, ForceMode.Impulse);
             GameManager.GM();
             
         }
@@ -123,7 +142,7 @@ public class PlayerController : MonoBehaviour
             GameManager.score += 1;
         }
 
-        else
+        /*else
         {
             //Players are attacked by enemies if they do not power up.
             if (collision.gameObject.CompareTag("Enemy") && hasPowerUp == false)
@@ -131,7 +150,7 @@ public class PlayerController : MonoBehaviour
                 playerHealth -= 1;
                 GameManager.GM();
             }
-        }
+        }*/
 
         if (collision.gameObject.CompareTag("Enemy2") && hasPowerUp)
         {
@@ -139,8 +158,14 @@ public class PlayerController : MonoBehaviour
             Vector3 awatFromPlayer = collision.gameObject.transform.position - transform.position;
 
             enemyRigidbody.AddForce(awatFromPlayer * powerUpStrength, ForceMode.Impulse);
-            Destroy(collision.gameObject);
-            //GameManager.GM();
+            GameManager.score += 2;
+            GameManager.GM();
+        }
+        //Players are attacked by enemies if they do not power up.
+        if (collision.gameObject.CompareTag("Enemy2") && hasPowerUp == false)
+        {
+            playerHealth -= 1;
+            GameManager.GM();
         }
     }
 

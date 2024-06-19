@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.UI;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayGround : GameBehaviour

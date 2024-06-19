@@ -6,9 +6,9 @@ using DG.Tweening;
 public enum PlatformType
 {   
     None,
-    Move1,
     Move2,
-    Move3
+    Move3,
+    Move4
 }
 
 public class PlatformMove : MonoBehaviour
@@ -58,18 +58,6 @@ public class PlatformMove : MonoBehaviour
                 }
                 break;
 
-            case PlatformType.Move1:
-                {
-
-                    if (time2 > changeTime)
-                    {
-                        time2 = 0;
-                        //changeTime = Random.Range(4, 10);
-                        MoveFlatform2();
-                    }
-                }
-                break;
-
             case PlatformType.Move2:
                 {
 
@@ -77,20 +65,34 @@ public class PlatformMove : MonoBehaviour
                     {
                         time2 = 0;
                         //changeTime = Random.Range(4, 10);
-                        MoveFlatform3();
+                        StartCoroutine(MoveFlatform2());
                     }
                 }
                 break;
 
             case PlatformType.Move3:
+                {
+
+                    if (time2 > changeTime)
+                    {
+                        time2 = 0;
+                        //changeTime = Random.Range(4, 10);
+                        StartCoroutine(MoveFlatform3());
+                        
+                    }
+                }
+                break;
+
+            case PlatformType.Move4:
                 if (time2 > changeTime)
                 {
                     time2 = 0;
                     //changeTime = Random.Range(4, 10);
-                    MoveFlatform4();
+                    StartCoroutine(MoveFlatform2());
                 }
                 break;
         }
+        
     }
 
     public void MoveFlatform1()
@@ -100,57 +102,55 @@ public class PlatformMove : MonoBehaviour
 
     }
 
-    public void MoveFlatform2()
+    IEnumerator MoveFlatform2()
     {
-        //int rnd = Random.Range(0, 5);
-        if (time2 > changeTime)
-        {
-            transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
+       
+            transform.DOMoveY(startPos - 10, tweenTime).SetEase(tweenEase);
             time2 = 0;
+            Debug.Log("4984857");
 
-            if (time2 > changeTime)
+            yield return new WaitForSeconds(10f);
             {
                 time2 = 0;
-                transform.DOMoveY(startPos - 10, tweenTime).SetEase(tweenEase);
+                transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
                 
             }
-        }
+        
+        yield return new WaitForSeconds(5f);
     }
 
-    public void MoveFlatform3()
+    IEnumerator MoveFlatform3()
     {
-        if (time3 > changeTime)
-        {
+      
             transform.DOMoveX(startPos2 + 10, tweenTime).SetEase(tweenEase);
             time3 = 0;
 
-            if (time3 > resetTime)
+            yield return new WaitForSeconds(8f);
             {
                 time3 = 0;
                 transform.DOMoveX(startPos2 - 10, tweenTime).SetEase(tweenEase);
                 Debug.Log("moving....");
 
             }
-        }
-
-        //코루틴을 사용해서 값을 4초나 5초 간격으로 되돌리고 해야 할 것 같음.
+        
+        yield return new WaitForSeconds(5f);
     }
 
-    public void MoveFlatform4()
+    IEnumerator MoveFlatform4()
     {
-        if (time3 > changeTime)
-        {
+      
             transform.DOMoveX(startPos2 - 10, tweenTime).SetEase(tweenEase);
             time3 = 0;
 
-            if (time3 > changeTime)
+            yield return new WaitForSeconds(8f);
             {
                 time3 = 0;
                 transform.DOMoveX(startPos2 + 10, tweenTime).SetEase(tweenEase);
                 Debug.Log("moving....");
 
             }
-        }
+        
+        yield return new WaitForSeconds(5f);
     }
 
     /* void MoveFlatform2()

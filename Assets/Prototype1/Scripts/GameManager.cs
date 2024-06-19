@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static int score;
     public TMP_Text score_Text;
     public GameObject canvas;
+    public GameObject gameOverPanel;
 
     [Header("State")]
     public TMP_Text damage_Text; //Player Attack=Power2
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject platform2;
     public GameObject platform3;
     public GameObject platform4;
+    public GameObject platform5;
+    public GameObject platform6;
 
     PlayerController PM;//Set the text
     
@@ -44,15 +47,28 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (score == 5)
+        if (score >= 5)
         {
             platform1.SetActive(true);
             platform2.SetActive(true);
+
+            if (score >= 15)
+            {
+                platform3.SetActive(true);
+                platform4.SetActive(true);
+
+                if (score >= 30)
+                {
+                    platform5.SetActive(true);
+                    platform6.SetActive(true);
+                }
+            }
+
         }
-            if (score == 20)
+
+        if(PM.playerHealth <= 0)
         {
-            platform3.SetActive(true);
-            platform4.SetActive(true);
+            gameOverPanel.SetActive(true);
         }
 
     }
