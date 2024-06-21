@@ -15,8 +15,14 @@ public class PlatformMove : MonoBehaviour
 {
     public PlatformType type;
 
+    [Header ("StartPos")]
     public float startPos;
     public float startPos2;
+
+    [Header("EndPos")]
+    public float moving = 0f;
+
+    [Header("Time")]
     public float tweenTime;
     public Ease tweenEase ;
     public float changeTime;
@@ -98,21 +104,21 @@ public class PlatformMove : MonoBehaviour
     public void MoveFlatform1()
     {
         
-        transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
+        transform.DOMoveY(startPos + moving, tweenTime).SetEase(tweenEase);
 
     }
 
     IEnumerator MoveFlatform2()
     {
        
-            transform.DOMoveY(startPos - 10, tweenTime).SetEase(tweenEase);
+            transform.DOMoveY(startPos - moving, tweenTime).SetEase(tweenEase);
             time2 = 0;
-            Debug.Log("4984857");
+            
 
             yield return new WaitForSeconds(10f);
             {
                 time2 = 0;
-                transform.DOMoveY(startPos + 10, tweenTime).SetEase(tweenEase);
+                transform.DOMoveY(startPos + moving, tweenTime).SetEase(tweenEase);
                 
             }
         
@@ -122,14 +128,14 @@ public class PlatformMove : MonoBehaviour
     IEnumerator MoveFlatform3()
     {
       
-            transform.DOMoveX(startPos2 + 10, tweenTime).SetEase(tweenEase);
+            transform.DOMoveX(startPos2 + moving, tweenTime).SetEase(tweenEase);
             time3 = 0;
 
             yield return new WaitForSeconds(8f);
             {
                 time3 = 0;
-                transform.DOMoveX(startPos2 - 10, tweenTime).SetEase(tweenEase);
-                Debug.Log("moving....");
+                transform.DOMoveX(startPos2 - moving, tweenTime).SetEase(tweenEase);
+               
 
             }
         
@@ -139,13 +145,13 @@ public class PlatformMove : MonoBehaviour
     IEnumerator MoveFlatform4()
     {
       
-            transform.DOMoveX(startPos2 - 10, tweenTime).SetEase(tweenEase);
+            transform.DOMoveX(startPos2 - moving, tweenTime).SetEase(tweenEase);
             time3 = 0;
 
             yield return new WaitForSeconds(8f);
             {
                 time3 = 0;
-                transform.DOMoveX(startPos2 + 10, tweenTime).SetEase(tweenEase);
+                transform.DOMoveX(startPos2 + moving, tweenTime).SetEase(tweenEase);
                 Debug.Log("moving....");
 
             }
