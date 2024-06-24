@@ -19,23 +19,30 @@ public class PlatformMove : MonoBehaviour
     public float startPos;
     public float startPos2;
 
-    [Header("EndPos")]
-    public float moving = 0f;
+    [Header("StartPos")]
+    public float endPos;
+    public float endPos2;
+
+    [Header("timebool")]
+    public int moving;
 
     [Header("Time")]
     public float tweenTime;
     public Ease tweenEase ;
     public float changeTime;
-    public float resetTime;
+
     public float time = 0f;
     public float time2 = 0f;
     public float time3 = 0f;
+    public float time4 = 0f;
+
+    public float end3 = 0f;
 
     public float delayTime;
 
     private void Awake()
     {
-        changeTime = 5f;
+        //changeTime = 5f;
         
     }
     void Start()
@@ -46,16 +53,14 @@ public class PlatformMove : MonoBehaviour
 
     void Update()
     {
-        time += Time.deltaTime;
-        time2 += Time.deltaTime;
-        time3 += Time.deltaTime;
-
+       
         switch (type)
         {
-            case PlatformType.None:
-                {
+            case PlatformType.None: //Move up
+                { 
+                    time += Time.deltaTime;
 
-                    if (time > 2)
+                    if (time > changeTime)
                     {
                         time = 0;
                         //changeTime = Random.Range(4, 10);
@@ -64,35 +69,36 @@ public class PlatformMove : MonoBehaviour
                 }
                 break;
 
-            case PlatformType.Move2:
+            case PlatformType.Move2: //Move up and down
                 {
+                    time2 += Time.deltaTime;
 
                     if (time2 > changeTime)
                     {
-                        time2 = 0;
-                        //changeTime = Random.Range(4, 10);
+
                         StartCoroutine(MoveFlatform2());
+
                     }
+                    break;
                 }
-                break;
-
-            case PlatformType.Move3:
+            case PlatformType.Move3://Move horizontal
                 {
+                    time3 += Time.deltaTime;
 
-                    if (time2 > changeTime)
+                    if (time3 > changeTime)
                     {
-                        time2 = 0;
                         //changeTime = Random.Range(4, 10);
                         StartCoroutine(MoveFlatform3());
-                        
+
                     }
+                
                 }
                 break;
 
-            case PlatformType.Move4:
-                if (time2 > changeTime)
+            case PlatformType.Move4: //Move down and up
+                if (time4 > changeTime)
                 {
-                    time2 = 0;
+                    time4 = 0;
                     //changeTime = Random.Range(4, 10);
                     StartCoroutine(MoveFlatform2());
                 }
@@ -109,54 +115,57 @@ public class PlatformMove : MonoBehaviour
     }
 
     IEnumerator MoveFlatform2()
-    {
-       
-            transform.DOMoveY(startPos - moving, tweenTime).SetEase(tweenEase);
-            time2 = 0;
-            
+    { //changeTime = Random.Range(4, 10);
 
-            yield return new WaitForSeconds(10f);
-            {
-                time2 = 0;
-                transform.DOMoveY(startPos + moving, tweenTime).SetEase(tweenEase);
-                
-            }
-        
+       transform.DOMoveY(startPos + moving, tweenTime).SetEase(tweenEase);
+       time2 = 0;
+       endPos = startPos + moving;
+
         yield return new WaitForSeconds(5f);
+        {
+            transform.DOMoveY(endPos - moving, tweenTime).SetEase(tweenEase);
+            time2 = 0;
+            startPos = transform.position.y;
+        }
+
+        //yield return new WaitForSeconds(5f);
+
     }
 
     IEnumerator MoveFlatform3()
     {
-      
-            transform.DOMoveX(startPos2 + moving, tweenTime).SetEase(tweenEase);
+
+        transform.DOMoveX(startPos2 + moving, tweenTime).SetEase(tweenEase);
+        time3 = 0;
+        endPos2 = startPos2 + moving;
+
+        yield return new WaitForSeconds(7f);
+        {
+            transform.DOMoveX(endPos2 - moving, tweenTime).SetEase(tweenEase);
             time3 = 0;
+            startPos2 = transform.position.x - moving;
 
-            yield return new WaitForSeconds(8f);
-            {
-                time3 = 0;
-                transform.DOMoveX(startPos2 - moving, tweenTime).SetEase(tweenEase);
-               
+        }
 
-            }
-        
-        yield return new WaitForSeconds(5f);
+        //yield return new WaitForSeconds(5f);
     }
 
     IEnumerator MoveFlatform4()
     {
-      
-            transform.DOMoveX(startPos2 - moving, tweenTime).SetEase(tweenEase);
-            time3 = 0;
 
-            yield return new WaitForSeconds(8f);
-            {
-                time3 = 0;
-                transform.DOMoveX(startPos2 + moving, tweenTime).SetEase(tweenEase);
-                Debug.Log("moving....");
+        transform.DOMoveX(startPos - moving, tweenTime).SetEase(tweenEase);
+        time4 = 0;
+        endPos = startPos + moving;
 
-            }
-        
         yield return new WaitForSeconds(5f);
+        {
+            transform.DOMoveX(startPos + moving, tweenTime).SetEase(tweenEase);
+            time4 = 0;
+
+
+        }
+
+        //yield return new WaitForSeconds(5f);
     }
 
     /* void MoveFlatform2()

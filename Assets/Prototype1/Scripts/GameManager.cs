@@ -8,10 +8,7 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static Action GM;
-    public static int score;
-    public TMP_Text score_Text;
-    public GameObject canvas;
-    public GameObject gameOverPanel;
+    PlayerController PM;//Set the text
 
     [Header("State")]
     public TMP_Text damage_Text; //Player Attack=Power2
@@ -22,11 +19,14 @@ public class GameManager : MonoBehaviour
     public GameObject platform1;
     public GameObject platform2;
     public GameObject platform3;
-    public GameObject platform4;
-    public GameObject platform5;
-    public GameObject platform6;
+    public GameObject obstacle;
 
-    PlayerController PM;//Set the text
+    [Header("GameOver")]
+    public static int score;
+    public TMP_Text score_Text;
+    public GameObject canvas;
+    public GameObject gameOverPanel;
+    public GameObject gameEndingPanel;
     
 
    private void Awake()
@@ -50,17 +50,32 @@ public class GameManager : MonoBehaviour
         if (score >= 5)
         {
             platform1.SetActive(true);
-            platform2.SetActive(true);
+    
 
-            if (score >= 15)
+            if (score >= 10)
             {
-                platform3.SetActive(true);
-                platform4.SetActive(true);
+                platform2.SetActive(true);
 
-                if (score >= 30)
+
+                if (score >= 20)
                 {
-                    platform5.SetActive(true);
-                    platform6.SetActive(true);
+                    platform3.SetActive(true);
+
+                   
+                        if (score >= 25)
+                        {
+
+                            Destroy(obstacle.gameObject);
+
+                        if (score >= 50)
+                        {
+                            gameEndingPanel.SetActive(true);
+                        }
+
+
+                        }
+
+                    
                 }
             }
 

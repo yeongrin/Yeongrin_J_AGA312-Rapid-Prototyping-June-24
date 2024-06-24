@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Moving")]
     private Rigidbody playerRB;
-    public CharacterController controller;
     public float speed;
     public float jump;
 
@@ -25,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public int playerDamage;//PowerUp 1 can plus 
     public int playerArmor;//Power Up 1 can plus
     public int playerHealth;//Power up 2 can plus
+
     private float powerUpStrength = 6f;
 
     [Header ("Respawn")]
@@ -35,10 +35,10 @@ public class PlayerController : MonoBehaviour
     {
         playerDamage = 0;
         playerArmor = 0;
-        playerHealth = 8;
 
         playerRB = GetComponent<Rigidbody>();
         //focalPoint = GameObject.Find("Focal Point");
+       
     }
 
     void Update()
@@ -98,10 +98,34 @@ public class PlayerController : MonoBehaviour
         }
 
         //Player's Damage Up. If you have this, player can recover their health.
+
         if (other.CompareTag("PowerUp2"))
         {
-           
+
             playerHealth += 1;
+            GameManager.GM();
+
+            Destroy(other.gameObject);
+
+        }
+
+        if (other.CompareTag("PowerUp3"))
+        {
+            hasPowerUp = true;
+            powerUpIndicator.gameObject.SetActive(true);
+            StartCoroutine(PowerUpCountDown3());
+            playerArmor += 1;
+            playerDamage += 1;
+            GameManager.GM();
+
+            Destroy(other.gameObject);
+
+        }
+
+        if (other.CompareTag("Trophy"))
+        {
+
+            GameManager.score += 20;
             GameManager.GM();
 
             Destroy(other.gameObject);
@@ -112,12 +136,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PowerUpCountDown()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(12);
         hasPowerUp = false;
         //hasAttckUp = true;
         powerUpIndicator.gameObject.SetActive(false);
-        playerArmor -= 1;
-        playerDamage -= 1;
+        playerArmor -= playerArmor;
+        playerDamage -= playerDamage;
 
         GameManager.GM();
     }
@@ -131,6 +155,18 @@ public class PlayerController : MonoBehaviour
 
         GameManager.GM();
     }*/
+
+    IEnumerator PowerUpCountDown3()
+    {
+        yield return new WaitForSeconds(20);
+        hasPowerUp = false;
+        //hasAttckUp = true;
+        powerUpIndicator.gameObject.SetActive(false);
+        playerArmor -= playerArmor;
+        playerDamage -= playerDamage;
+
+        GameManager.GM();
+    }
 
     //All attacks and defenses only work when the count is 1 or higher.
     void OnCollisionEnter(Collision collision)
@@ -162,18 +198,59 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy2") && hasPowerUp)
         {
+            powerUpStrength = 8f;
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awatFromPlayer = collision.gameObject.transform.position - transform.position;
 
             enemyRigidbody.AddForce(awatFromPlayer * powerUpStrength, ForceMode.Impulse);
-            GameManager.score += 2;
-            GameManager.GM();
+            Enemy.enemyHealth -= 1;
+
+            if (Enemy.enemyHealth == 0)
+            {
+                GameManager.score += 2;
+                GameManager.GM();
+
+            }
         }
         //Players are attacked by enemies and bounced off if they do not power up.
-        if (collision.gameObject.CompareTag("Enemy2") && hasPowerUp == false)
+        else
         {
-            playerHealth -= 1;
-            GameManager.GM();
+            if(collision.gameObject.CompareTag("Enemy2") && hasPowerUp == false)
+            {
+                powerUpStrength = 5f;
+                Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+                Vector3 awatFromPlayer = collision.gameObject.transform.position - transform.position;
+
+                enemyRigidbody.AddForce(awatFromPlayer * powerUpStrength, ForceMode.Impulse);
+                playerHealth -= 2;
+                GameManager.GM();
+            }
+        }
+
+        if (collision.gameObject.CompareTag("BossEnemy") && hasPowerUp)
+        {
+            Enemy.bossHealth -= 1;
+
+            if (Enemy.bossHealth == 0)
+            {
+                GameManager.score += 25;
+                GameManager.GM();
+
+            }
+        }
+        //Players are attacked by enemies and bounced off if they do not power up.
+        else
+        {
+            if (collision.gameObject.CompareTag("BossEnemy") && hasPowerUp == false)
+            {
+                powerUpStrength = 2f;
+                Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+                Vector3 awatFromPlayer = collision.gameObject.transform.position - transform.position;
+
+                enemyRigidbody.AddForce(awatFromPlayer * powerUpStrength, ForceMode.Impulse);
+                playerHealth -= 3;
+                GameManager.GM();
+            }
         }
     }
 

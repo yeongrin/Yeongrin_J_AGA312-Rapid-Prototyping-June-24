@@ -9,6 +9,9 @@ TagManager:
   - Enemy2
   - PowerUp2
   - Ground
+  - BossEnemy
+  - Trophy
+  - PowerUp3
   layers:
   - Default
   - TransparentFX

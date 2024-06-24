@@ -22,6 +22,11 @@ public class Title : MonoBehaviour
         StartCoroutine(Fade());
     }
 
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
     IEnumerator Fade()
     {
         Panel.gameObject.SetActive(true);
@@ -41,6 +46,11 @@ public class Title : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void ReLoad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Option()

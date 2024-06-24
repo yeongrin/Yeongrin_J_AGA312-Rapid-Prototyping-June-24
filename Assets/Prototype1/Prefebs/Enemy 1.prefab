@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4060126216280288614}
   - component: {fileID: 2998943064156941895}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_GameObject: {fileID: 8150907297763328344}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1.5
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -149,4 +149,4 @@ MonoBehaviour:
   speed: 6
   threshold: 0
   spawnRange: 10
-  space: 0
+  space: 1

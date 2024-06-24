@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnWave : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    public enum LevelState { F_level, S_level, T_level, FO_level, FI_level };
 
     [System.Serializable]
     public class Wave
@@ -34,9 +35,16 @@ public class SpawnWave : MonoBehaviour
     [Header("Potion")]
     public GameObject powerPrefab;
     public GameObject healthPrefab;
+    public int healthCount = 0;
+
+    [Header("Level")]
+    public LevelState levelstate;
 
     void Start()
     {
+
+        healthCount = 0;
+
         if (spawnPoints.Length == 0)
         {
             Debug.Log("35");
@@ -47,33 +55,274 @@ public class SpawnWave : MonoBehaviour
 
     void Update()
     {
-        if (state == SpawnState.WAITING)
+
+        /* if (state == SpawnState.WAITING)
+         {
+             // Check if enemies are still alive
+             if (!EnemyIsAlive())
+             {
+                 //Begin a new round
+                 WaveCompleted();
+                 //return; Looping first wave
+             }
+             else
+             {
+                 return;
+             }
+         }
+
+         if (waveCountdown <= 0)
+         {
+             if (state != SpawnState.SPAWNING)
+             {
+                 StartCoroutine(SpawnWaveCount(waves[nextWave]));
+                 //Start spawing waves;
+             }
+         }
+         else
+         {
+             waveCountdown -= Time.deltaTime;
+         }*/
+
+        switch (levelstate)
         {
-            // Check if enemies are still alive
-            if (!EnemyIsAlive())
-            {
-                //Begin a new round
-                WaveCompleted();
-                //return; Looping first wave
-            }
-            else
-            {
-                return;
-            }
+            case LevelState.F_level:
+                {
+                    if(GameManager.score < 5)
+                    {
+                        if (state == SpawnState.WAITING)
+                        {
+                            // Check if enemies are still alive
+                            if (!EnemyIsAlive())
+                            {
+                                //Begin a new round
+                                WaveCompleted();
+                                //return; Looping first wave
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+
+                        if (waveCountdown <= 0)
+                        {
+                            if (state != SpawnState.SPAWNING)
+                            {
+                                StartCoroutine(SpawnWaveCount(waves[nextWave]));
+                                //Start spawing waves;
+                            }
+                        }
+                        else
+                        {
+                            waveCountdown -= Time.deltaTime;
+                        }
+                    }
+
+                    if (GameManager.score >= 5)
+                    {
+                        StopCoroutine(SpawnWaveCount(waves[nextWave]));
+
+
+                        if (healthCount >= 1)
+                        {
+                            StopCoroutine(SpawnHealth(2));
+                        }
+                        else
+                        {
+                            if (healthCount <= 2)
+                            {
+                                StartCoroutine(SpawnHealth(2));
+                            }
+                        }
+
+                    }
+                }
+                break;
+
+            case LevelState.S_level:
+                {
+                    if (GameManager.score < 5) //카운트가 5 이하일때 s_level 가동 x
+                    {
+                        StopCoroutine(SpawnWaveCount(waves[nextWave]));
+
+                    }
+                    else //카운트가 5 이상이면 s_level 가동
+                    {
+                        if (GameManager.score >= 5)
+                        {
+                           
+                            //카운트가 15 이하이면 s_level 가동 시작
+                            if (GameManager.score < 10)
+                            {
+                                if (state == SpawnState.WAITING)
+                                {
+                                    // Check if enemies are still alive
+                                    if (!EnemyIsAlive())
+                                    {
+                                        //Begin a new round
+                                        WaveCompleted();
+                                        //return; Looping first wave
+                                    }
+                                    else
+                                    {
+                                        return;
+                                    }
+                                }
+
+                                if (waveCountdown <= 0)
+                                {
+                                    if (state != SpawnState.SPAWNING)
+                                    {
+                                        StartCoroutine(SpawnWaveCount(waves[nextWave]));
+                                        //Start spawing waves;
+                                    }
+                                }
+                                else
+                                {
+                                    waveCountdown -= Time.deltaTime;
+                                }
+                            }
+
+                            else //카운트가 15 이상이면 s_level 가동 종료
+                            {
+                                if (GameManager.score >= 10)
+                                {
+                                    StopCoroutine(SpawnWaveCount(waves[nextWave]));
+                                }
+
+                                if (healthCount >= 2)
+                                {
+                                    StopCoroutine(SpawnHealth(3));
+                                }
+                                else
+                                {
+                                    if (healthCount <= 3)
+                                    {
+                                        StartCoroutine(SpawnHealth(3));
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case LevelState.T_level:
+                {
+                    if (GameManager.score < 20)
+                    {
+                        if (state == SpawnState.WAITING)
+                        {
+                            // Check if enemies are still alive
+                            if (!EnemyIsAlive())
+                            {
+                                //Begin a new round
+                                WaveCompleted();
+                                //return; Looping first wave
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+
+                        if (waveCountdown <= 0)
+                        {
+                            if (state != SpawnState.SPAWNING)
+                            {
+                                StartCoroutine(SpawnWaveCount(waves[nextWave]));
+                                //Start spawing waves;
+                            }
+                        }
+                        else
+                        {
+                            waveCountdown -= Time.deltaTime;
+                        }
+                    }
+
+                    if (GameManager.score >= 20)
+                    {
+                        StopCoroutine(SpawnWaveCount(waves[nextWave]));
+
+
+                        if (healthCount >= 1)
+                        {
+                            StopCoroutine(SpawnHealth(2));
+                        }
+                        else
+                        {
+                            if (healthCount <= 2)
+                            {
+                                StartCoroutine(SpawnHealth(2));
+                            }
+                        }
+
+                    }
+                }
+                break;
+
+            case LevelState.FO_level:
+                {
+                    if (GameManager.score < 25)
+                    {
+                        if (state == SpawnState.WAITING)
+                        {
+                            // Check if enemies are still alive
+                            if (!EnemyIsAlive())
+                            {
+                                //Begin a new round
+                                WaveCompleted();
+                                //return; Looping first wave
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+
+                        if (waveCountdown <= 0)
+                        {
+                            if (state != SpawnState.SPAWNING)
+                            {
+                                StartCoroutine(SpawnWaveCount(waves[nextWave]));
+                                //Start spawing waves;
+                            }
+                        }
+                        else
+                        {
+                            waveCountdown -= Time.deltaTime;
+                        }
+                    }
+
+                    if (GameManager.score >= 25)
+                    {
+                        StopCoroutine(SpawnWaveCount(waves[nextWave]));
+
+
+                        if (healthCount >= 5)
+                        {
+                            StopCoroutine(SpawnHealth(1));
+                        }
+                        else
+                        {
+                            if (healthCount <= 6)
+                            {
+                                StartCoroutine(SpawnHealth(1));
+                            }
+                        }
+
+                    }
+                }
+                break;
+            case LevelState.FI_level:
+                {
+
+                }
+                break;
         }
 
-        if (waveCountdown <= 0)
-        {
-            if (state != SpawnState.SPAWNING)
-            {
-                StartCoroutine(SpawnWaveCount(waves[nextWave]));
-                //Start spawing waves;
-            }
-        }
-        else
-        {
-            waveCountdown -= Time.deltaTime;
-        }
     }
 
     void WaveCompleted()
@@ -87,8 +336,7 @@ public class SpawnWave : MonoBehaviour
         {
             nextWave = 0;
             Debug.Log("All Waves complete! Looping..");
-            StopAllCoroutines();
-            Instantiate(healthPrefab, H_spawnPoints.position, H_spawnPoints.rotation);
+            
         }
         else
         {
@@ -108,11 +356,23 @@ public class SpawnWave : MonoBehaviour
             {
                 return false;
             }
+            
+        }
+         
+        return true;
+    }
+
+    IEnumerator SpawnHealth(int _health)
+    {
+        
+        for (int i = 0; i < _health; i++)
+        {
+            Instantiate(healthPrefab, H_spawnPoints.transform.position, H_spawnPoints.transform.rotation);
+            healthCount += 1;
 
         }
-
-
-        return true;
+        
+        yield break;
     }
 
     IEnumerator SpawnWaveCount(Wave _wave)
