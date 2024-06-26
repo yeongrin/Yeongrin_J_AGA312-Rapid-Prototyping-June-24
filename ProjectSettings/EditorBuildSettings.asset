@@ -9,9 +9,21 @@ EditorBuildSettings:
     path: Assets/Universal/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Prototype1/Scenes/Main.unity
-    guid: efacfe1a88110aa4d93ddae988281830
+    path: Assets/Universal/Title.unity
+    guid: 9840bd18f1e7991459a148c5ad736b05
   - enabled: 1
     path: Assets/Prototype1/Scenes/Prototype 1.unity
     guid: a4b96ad7a65484fd4a83cb97540eee50
+  - enabled: 1
+    path: Assets/Prototype2/Scenes/Prototype 2.unity
+    guid: 30fc1980fbc4500428ba333b5897642d
+  - enabled: 1
+    path: Assets/Prototype3/Scenes/Prototype 3.unity
+    guid: a2f360689fb957d44b05db97638f678b
+  - enabled: 1
+    path: Assets/Prototype4/Scenes/Prototype 4.unity
+    guid: 7fdc3a9a2ae4ed542b652f37c9765889
+  - enabled: 1
+    path: Assets/Prototype1/Scenes/Main.unity
+    guid: efacfe1a88110aa4d93ddae988281830
   m_configObjects: {}
