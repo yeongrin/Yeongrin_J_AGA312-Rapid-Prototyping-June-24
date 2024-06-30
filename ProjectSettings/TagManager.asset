@@ -12,6 +12,8 @@ TagManager:
   - BossEnemy
   - Trophy
   - PowerUp3
+  - Platform
+  - Another
   layers:
   - Default
   - TransparentFX
@@ -48,4 +50,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 4050919703
+    locked: 0
+  - name: Platform
+    uniqueID: 647746781
+    locked: 0
+  - name: Item
+    uniqueID: 269925205
+    locked: 0
+  - name: Another
+    uniqueID: 3585226353
+    locked: 0
+  - name: Player
+    uniqueID: 4137601601
+    locked: 0
+  - name: Puzzle
+    uniqueID: 2037906525
     locked: 0
