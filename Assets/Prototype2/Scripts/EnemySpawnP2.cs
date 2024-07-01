@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomSpawn : MonoBehaviour
+public class EnemySpawnP2 : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
@@ -88,44 +88,44 @@ public class RandomSpawn : MonoBehaviour
         }
 
     }
-        bool EnemyIsAlive()
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0f)
         {
-            searchCountdown -= Time.deltaTime;
-            if (searchCountdown <= 0f)
+            searchCountdown = 1f;
+
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
             {
-                searchCountdown = 1f;
-
-                if (GameObject.FindGameObjectWithTag("PowerUp") == null)
-                {
-                    return false;
-                }
-
+                return false;
             }
 
-
-            return true;
         }
 
-        IEnumerator SpawnWave(Wave _wave)
+
+        return true;
+    }
+
+    IEnumerator SpawnWave(Wave _wave)
+    {
+        Debug.Log("Spawning Wave:" + _wave.name);
+        state = SpawnState.SPAWNING;
+
+        for (int i = 0; i < _wave.count; i++)
         {
-            Debug.Log("Spawning Wave:" + _wave.name);
-            state = SpawnState.SPAWNING;
-
-            for (int i = 0; i < _wave.count; i++)
-            {
-                SpawnEnemy(_wave.enemy);
-                yield return new WaitForSeconds(1f / _wave.rate);
-            }
-
-            state = SpawnState.WAITING;
-            yield break;
+            SpawnEnemy(_wave.enemy);
+            yield return new WaitForSeconds(1f / _wave.rate);
         }
 
-        void SpawnEnemy(Transform _enemy)
-        {
-            //Debug.Log("Spawning Enemy:" + _enemy.name);
-            Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(_enemy, _sp.transform.position, _sp.transform.rotation);
-        }
-    
+        state = SpawnState.WAITING;
+        yield break;
+    }
+
+    void SpawnEnemy(Transform _enemy)
+    {
+        //Debug.Log("Spawning Enemy:" + _enemy.name);
+        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(_enemy, _sp.transform.position, _sp.transform.rotation);
+    }
+
 }

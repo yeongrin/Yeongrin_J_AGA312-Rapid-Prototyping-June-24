@@ -9,8 +9,12 @@ public class PlayerController2 : MonoBehaviour
     public int jumpHeight;
     private bool isMoving;
     private bool jump;
-  
+
+    [Header("ItemPickUp")]
+    public GameObject playerEquipPoint;
     public bool dropDown = false;
+    public bool isPicking = false;
+    public GameObject itemMark;
     private double Timer = 0;
 
     Vector2 movement = new Vector2();
@@ -20,7 +24,6 @@ public class PlayerController2 : MonoBehaviour
 
     void Awake()
     {
-
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -28,6 +31,8 @@ public class PlayerController2 : MonoBehaviour
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        itemMark.SetActive(false);
+        
     }
 
     void FixedUpdate()
@@ -37,9 +42,14 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
-            Jump();
-        
-      
+         Jump();
+
+        //Dropping
+        if(Input.GetKeyDown(KeyCode.X) && isPicking)
+        {
+            Drop();
+            Debug.Log("drop");
+        }
     }
 
     void Move()
@@ -90,32 +100,44 @@ public class PlayerController2 : MonoBehaviour
       
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    public void PickUp(GameObject item)
     {
-        //Pick Up
-        if (Input.GetKeyDown(KeyCode.X) && col.gameObject.CompareTag("PowerUp"))
+        SetEquip(item, true); 
+        isPicking = true;
+        Debug.Log("pickup");
+      
+        if (isPicking == true)
         {
-            dropDown = false;
-
-            if (!dropDown)
-            {
-                Destroy(col.gameObject);
-                dropDown = true;
-
-                if (dropDown == true)
-                {
-                    if (Input.GetKeyDown(KeyCode.X))
-                    {
-                        Debug.Log("lop");
-                    }
-                   
-                }
-
-            }
-           
+            itemMark.SetActive(true);
         }
+      
+    }
 
-        //Drop down
-  
+    void Drop()
+    {
+        GameObject item = playerEquipPoint.GetComponentInChildren<Rigidbody2D>().gameObject;
+        SetEquip(item, false);
+
+        playerEquipPoint.transform.DetachChildren();
+        isPicking = false;
+
+        if (isPicking == false)
+        { 
+            itemMark.SetActive(false);
+        }
+       
+    }
+
+    void SetEquip(GameObject item, bool isEquip)
+    {
+        Collider2D[] itemColliders = item.GetComponents<Collider2D>();
+        Rigidbody2D itemRigidbody = item.GetComponent<Rigidbody2D>();
+
+        foreach(Collider2D itemCollider in itemColliders)
+        {
+            itemCollider.enabled = !isEquip;
+        }
+        itemRigidbody.isKinematic = isEquip;
+     
     }
 }

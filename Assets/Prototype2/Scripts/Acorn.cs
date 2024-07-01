@@ -18,9 +18,24 @@ public class Acorn : MonoBehaviour
     public ItemType itemType;
     public float timer;
 
+    GameObject player;
+    GameObject playerEquipPoint;
+    PlayerController2 playerLogic;
+
+    Vector3 forceDirection;
+    bool isPlayerEnter;
+
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerEquipPoint = GameObject.FindGameObjectWithTag("EquipPoint");
+
+        playerLogic = player.GetComponent<PlayerController2>();
+    }
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); 
         ani = GetComponent<Animator>();
         timer = 0f;
     }
@@ -34,6 +49,14 @@ public class Acorn : MonoBehaviour
             case ItemType.Acorn:
                 {
                     score = 1;
+                    if(Input.GetKeyDown(KeyCode.X)&&isPlayerEnter)
+                    {
+                        transform.SetParent(playerEquipPoint.transform);
+                        transform.localPosition = Vector3.zero;
+                        transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                        isPlayerEnter = false;
+                    }
                 }
                 break;
             case ItemType.Cherry:
@@ -55,6 +78,11 @@ public class Acorn : MonoBehaviour
         {
             Destroy(this.gameObject);
             //score += 1;
+        }
+        if(other.gameObject.CompareTag("Player"))
+        {
+            isPlayerEnter = true;
+            
         }
     }
 }
