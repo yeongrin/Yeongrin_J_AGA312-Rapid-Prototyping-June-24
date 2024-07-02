@@ -9,6 +9,7 @@ public class PlayerController2 : MonoBehaviour
     public int jumpHeight;
     private bool isMoving;
     private bool jump;
+    public int health;
 
     [Header("ItemPickUp")]
     public GameObject playerEquipPoint;
@@ -32,7 +33,8 @@ public class PlayerController2 : MonoBehaviour
         rgb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         itemMark.SetActive(false);
-        
+        health = 5;
+
     }
 
     void FixedUpdate()
@@ -42,10 +44,10 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
-         Jump();
+        Jump();
 
         //Dropping
-        if(Input.GetKeyDown(KeyCode.X) && isPicking)
+        if (Input.GetKeyDown(KeyCode.X) && isPicking)
         {
             Drop();
             Debug.Log("drop");
@@ -97,20 +99,49 @@ public class PlayerController2 : MonoBehaviour
 
         if (!jump)
             return;
-      
+
     }
 
     public void PickUp(GameObject item)
     {
-        SetEquip(item, true); 
+        SetEquip(item, true);
         isPicking = true;
         Debug.Log("pickup");
-      
+
         if (isPicking == true)
         {
             itemMark.SetActive(true);
         }
-      
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+            Damage(); 
+        }
+    }
+
+    void Damage()
+    {
+        health -= 1;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+            StartCoroutine(NuckBack());
+        }
+    }
+
+    IEnumerator NuckBack()
+    {
+        CancelInvoke("Damage");
+        Debug.Log("256657");
+        yield return new WaitForSeconds(5);
+
     }
 
     void Drop()

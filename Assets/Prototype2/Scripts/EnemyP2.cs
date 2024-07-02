@@ -6,7 +6,7 @@ public enum EnemyType
 {
     Caterpillar,
     Owl,
-    Spider
+    Bee
 }
 
 public class EnemyP2 : MonoBehaviour
@@ -15,16 +15,31 @@ public class EnemyP2 : MonoBehaviour
     public int enemyAttackDamage;
     public int enemySpeed;
     public int normalSpeed = 1;
+
+    [Header("Moving")]
+    public float firstTransformX;
+    public float firstTransformY;
     public float currentTransformX;
     public float currentTransformY;
+    Animator ani;
+
+    private Rigidbody2D body;
+    private SpriteRenderer render;
 
     //EnemySpawnP2 _ES2;
 
     void Start()
     {
         //_ES2 = _ES2.GetComponent<EnemySpawnP2>();
+        firstTransformX = transform.position.x;
+        firstTransformY = transform.position.y;
+
         currentTransformX = transform.position.x;
         currentTransformY = transform.position.y;
+
+        ani = GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
+        render = GetComponent<SpriteRenderer>();
 
     }
 
@@ -37,26 +52,29 @@ public class EnemyP2 : MonoBehaviour
                     enemyAttackDamage = 1;
                     enemySpeed = normalSpeed * 3;
                     
-                    if (currentTransformX <= 0)
+                    if (firstTransformX < 0)
                     {
+                        Flip();
+                        ani.SetTrigger("isMoving");
                         currentTransformX += Time.deltaTime * enemySpeed;
 
-                        if (currentTransformX >= 11)
+                        if (firstTransformX >= 11)
                         {
                             Destroy(this.gameObject);
                         }
                     }
-                    if(currentTransformX > 0)
+                    if(firstTransformX > 0)
                     {
+                        ani.SetTrigger("isMoving");
                         currentTransformX -= Time.deltaTime * enemySpeed;
 
-                        if (currentTransformX <= -11)
+                        if (firstTransformX <= -11)
                         {
                             Destroy(this.gameObject);
                         }
                     }
 
-                    transform.position = new Vector3(currentTransformX, currentTransformY, 0);
+                    transform.position = new Vector3(currentTransformX, firstTransformY, 0);
 
                 }
                 break;
@@ -68,7 +86,7 @@ public class EnemyP2 : MonoBehaviour
                 }
                 break;
 
-            case EnemyType.Spider:
+            case EnemyType.Bee:
                 {
                     enemyAttackDamage = 3;
                     enemySpeed = normalSpeed * 4;
@@ -76,6 +94,11 @@ public class EnemyP2 : MonoBehaviour
                 break;
         }
 
+    }
+
+    void Flip()
+    {
+        render.flipX = firstTransformX < 0f;
     }
 
     void OnCollisionEnter2D(Collision2D collider)
