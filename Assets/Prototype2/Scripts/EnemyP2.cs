@@ -90,10 +90,18 @@ public class EnemyP2 : MonoBehaviour
                 {
                     enemyAttackDamage = 3;
                     enemySpeed = normalSpeed * 4;
+
+                    currentTransformY -= Time.deltaTime * enemySpeed;
+                    transform.position = new Vector3(firstTransformX, currentTransformY, 0);
                 }
                 break;
         }
 
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 
     void Flip()

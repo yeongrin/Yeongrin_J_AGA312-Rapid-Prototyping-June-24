@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum ItemType
 { 
@@ -10,13 +11,14 @@ public enum ItemType
 
 public class Acorn : MonoBehaviour
 {
+    //public static Action arcorn;
+    public ItemType itemType;
+    
+    public float timer;
     public int score;
     public bool isFalling;
     Rigidbody2D rb;
     Animator ani;
-
-    public ItemType itemType;
-    public float timer;
 
     GameObject player;
     GameObject playerEquipPoint;
@@ -31,6 +33,8 @@ public class Acorn : MonoBehaviour
         playerEquipPoint = GameObject.FindGameObjectWithTag("EquipPoint");
 
         playerLogic = player.GetComponent<PlayerController2>();
+
+        //arcorn = () => { DropDown(); };
     }
 
     void Start()
@@ -55,6 +59,7 @@ public class Acorn : MonoBehaviour
                         transform.localPosition = Vector3.zero;
                         transform.rotation = new Quaternion(0, 0, 0, 0);
 
+                        playerLogic.PickUp(gameObject);
                         isPlayerEnter = false;
                     }
                 }
@@ -63,10 +68,25 @@ public class Acorn : MonoBehaviour
                 {
                     timer += Time.deltaTime;
                     score = 3;
-                    if(timer >= 10)
+
+                    if (Input.GetKeyDown(KeyCode.X) && isPlayerEnter)
                     {
-                        Destroy(this.gameObject);
+                        //transform.SetParent(playerEquipPoint.transform);
+                        //transform.localPosition = Vector3.zero;
+                        //transform.rotation = new Quaternion(0, 0, 0, 0);
+
+                        if (playerLogic.health < 5)
+                        {
+                            playerLogic.health += 1;
+
+                        }
+                        else
+                        {
+                            Destroy(this.gameObject);
+                        }
+                        //isPlayerEnter = false;
                     }
+                    
                 }
                 break;
         }
@@ -76,13 +96,27 @@ public class Acorn : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Another"))
         {
+            GameManager2.score += 1;
+            GameManager2._GM2();
             Destroy(this.gameObject);
-            //score += 1;
         }
         if(other.gameObject.CompareTag("Player"))
         {
             isPlayerEnter = true;
             
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.gameObject == player)
+        {
+            isPlayerEnter = false;
+        }
+    }
+
+    void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -50,7 +50,6 @@ public class PlayerController2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && isPicking)
         {
             Drop();
-            Debug.Log("drop");
         }
     }
 
@@ -106,8 +105,7 @@ public class PlayerController2 : MonoBehaviour
     {
         SetEquip(item, true);
         isPicking = true;
-        Debug.Log("pickup");
-
+        
         if (isPicking == true)
         {
             itemMark.SetActive(true);
@@ -115,30 +113,9 @@ public class PlayerController2 : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == ("Enemy"))
-        {
-            Damage(); 
-        }
-    }
-
-    void Damage()
-    {
-        health -= 1;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == ("Enemy"))
-        {
-            StartCoroutine(NuckBack());
-        }
-    }
-
     IEnumerator NuckBack()
     {
-        CancelInvoke("Damage");
+        //CancelInvoke("Damage");
         Debug.Log("256657");
         yield return new WaitForSeconds(5);
 
@@ -148,8 +125,10 @@ public class PlayerController2 : MonoBehaviour
     {
         GameObject item = playerEquipPoint.GetComponentInChildren<Rigidbody2D>().gameObject;
         SetEquip(item, false);
-
         playerEquipPoint.transform.DetachChildren();
+
+        Rigidbody2D itemRigidbody = item.GetComponent<Rigidbody2D>();
+        itemRigidbody.gravityScale = 1.5f;
         isPicking = false;
 
         if (isPicking == false)
@@ -164,11 +143,38 @@ public class PlayerController2 : MonoBehaviour
         Collider2D[] itemColliders = item.GetComponents<Collider2D>();
         Rigidbody2D itemRigidbody = item.GetComponent<Rigidbody2D>();
 
-        foreach(Collider2D itemCollider in itemColliders)
+        foreach (Collider2D itemCollider in itemColliders)
         {
             itemCollider.enabled = !isEquip;
         }
         itemRigidbody.isKinematic = isEquip;
      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+            health -= 1; 
+        }
+
+        if (collision.gameObject.tag == ("Enemy2"))
+        {
+            health -= 3;
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == ("Enemy"))
+        {
+            StartCoroutine(NuckBack());
+        }
+
+        if (collision.gameObject.tag == ("Enemy2"))
+        {
+            StartCoroutine(NuckBack());
+        }
     }
 }

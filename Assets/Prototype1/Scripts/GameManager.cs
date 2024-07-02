@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        SetText();
 
         if (score >= 5)
         {
