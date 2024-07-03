@@ -20,9 +20,15 @@ public class PlayGround : GameBehaviour
     private int score = 0;
     public int scoreBonus = 100;
 
+    [Header("Timer")]
+    public Timer timer;
+    public TMP_Text timerText;
+
     void Start()
     {
         //ExecuteAfterSeconds(2, () => { player.transform.localScale = Vector3.one * 2; });
+
+        timer.StartTimer(0, TimerDirection.CountUp);
 
         print("Game Started");
 
@@ -31,7 +37,30 @@ public class PlayGround : GameBehaviour
 
     void Update()
     {
- 
+        timerText.text = timer.GetTime().ToString("F2");
+
+        //Start time at 10
+        timer.StartTimer(0, 10, true, TimerDirection.CountDown);
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            if (timer.timerDirection == TimerDirection.CountUp)
+            {
+                timer.ChangeTimerDirection(TimerDirection.CountDown);
+
+            }
+            else
+                timer.ChangeTimerDirection(TimerDirection.CountUp);
+        }
+
+        if (timer.TimeExpired())
+            Debug.Log("TimeExpired");
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            timer.ToggleTimerPause();
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             MovePlayer(Direction.North);

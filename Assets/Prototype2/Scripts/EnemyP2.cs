@@ -24,11 +24,7 @@ public class EnemyP2 : MonoBehaviour
     public float currentTransformY;
     Animator ani;
 
-    [Header("SnailMoving")]
-    public GameObject pointA;
-    public GameObject pointB;
-    public Transform currentPoint;
-
+   
     private Rigidbody2D body;
     private SpriteRenderer render;
 
@@ -42,8 +38,6 @@ public class EnemyP2 : MonoBehaviour
 
         currentTransformX = transform.position.x;
         currentTransformY = transform.position.y;
-
-        currentPoint = pointA.transform;
 
         ani = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -89,29 +83,7 @@ public class EnemyP2 : MonoBehaviour
 
             case EnemyType.Snail:
                 {
-                    enemyAttackDamage = 1;
-                    enemySpeed = normalSpeed * 2;
-
-                    Vector2 point = currentPoint.position - transform.position;
-                    if (currentPoint == pointB.transform)
-                    {
-                        body.velocity = new Vector2(enemySpeed, 0);
-                    }
-                    else
-                    {
-                        body.velocity = new Vector2(-enemySpeed, 0);
-                    }
-                    if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
-                    {
-                        SnailFlip();
-                        currentPoint = pointA.transform;
-                    }
-                    if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
-                    {
-                        SnailFlip();
-                        currentPoint = pointB.transform;
-                    }
-
+                   
                 }
                 break;
 
@@ -134,7 +106,6 @@ public class EnemyP2 : MonoBehaviour
                 break;
         }
 
-
     }
 
     void OnBecameInvisible()
@@ -147,13 +118,7 @@ public class EnemyP2 : MonoBehaviour
         render.flipX = firstTransformX < 0f;
     }
 
-    private void SnailFlip()
-    {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
-    }
-
+   
     void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1067,7 +1067,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &154146762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5165,8 +5165,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1666992630, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
@@ -7142,8 +7142,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1286674133, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.45490196}
@@ -8230,9 +8230,9 @@ GameObject:
   - component: {fileID: 1436575518}
   - component: {fileID: 1436575517}
   - component: {fileID: 1436575516}
-  - component: {fileID: 1436575515}
   - component: {fileID: 1436575514}
   - component: {fileID: 1436575519}
+  - component: {fileID: 1436575520}
   m_Layer: 0
   m_Name: Snail (1)
   m_TagString: Enemy
@@ -8267,29 +8267,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1436575515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436575513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318ace5ff6676cc45b5d33976d465cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 3
-  enemyAttackDamage: 0
-  enemySpeed: 0
-  normalSpeed: 1
-  firstTransformX: 0
-  firstTransformY: 0
-  currentTransformX: 0
-  currentTransformY: 0
-  pointA: {fileID: 133423297}
-  pointB: {fileID: 1467449718}
-  currentPoint: {fileID: 0}
 --- !u!61 &1436575516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8423,6 +8400,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1436575520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436575513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be36ceecfce83f94ebab1fac8a590cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {fileID: 133423297}
+  pointB: {fileID: 1467449718}
+  currentPoint: {fileID: 0}
+  enemyAttackDamage: 0
+  enemySpeed: 0
+  normalSpeed: 1
 --- !u!1 &1452619913
 GameObject:
   m_ObjectHideFlags: 0
@@ -9578,8 +9573,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1611807163, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
@@ -10692,8 +10687,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1666992630, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.21960784}
@@ -10776,8 +10771,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1611807163, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.57254905}
@@ -10860,8 +10855,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -244047593
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 1286674133, guid: 8c7b7885ca0bc924c980931029ca589e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.3137255}
@@ -11503,9 +11498,9 @@ GameObject:
   - component: {fileID: 1887265022}
   - component: {fileID: 1887265021}
   - component: {fileID: 1887265020}
-  - component: {fileID: 1887265019}
   - component: {fileID: 1887265018}
   - component: {fileID: 1887265017}
+  - component: {fileID: 1887265023}
   m_Layer: 0
   m_Name: Snail (2)
   m_TagString: Enemy
@@ -11561,29 +11556,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1887265019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887265016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318ace5ff6676cc45b5d33976d465cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 3
-  enemyAttackDamage: 0
-  enemySpeed: 0
-  normalSpeed: 1
-  firstTransformX: 0
-  firstTransformY: 0
-  currentTransformX: 0
-  currentTransformY: 0
-  pointA: {fileID: 19035751}
-  pointB: {fileID: 1454656823}
-  currentPoint: {fileID: 0}
 --- !u!61 &1887265020
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11696,6 +11668,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887265023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887265016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be36ceecfce83f94ebab1fac8a590cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {fileID: 19035751}
+  pointB: {fileID: 1454656823}
+  currentPoint: {fileID: 0}
+  enemyAttackDamage: 0
+  enemySpeed: 0
+  normalSpeed: 1
 --- !u!1 &1891624411
 GameObject:
   m_ObjectHideFlags: 0
@@ -12502,9 +12492,9 @@ GameObject:
   - component: {fileID: 1974873554}
   - component: {fileID: 1974873553}
   - component: {fileID: 1974873552}
-  - component: {fileID: 1974873551}
   - component: {fileID: 1974873550}
   - component: {fileID: 1974873555}
+  - component: {fileID: 1974873556}
   m_Layer: 0
   m_Name: Snail
   m_TagString: Enemy
@@ -12539,29 +12529,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1974873551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974873549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 318ace5ff6676cc45b5d33976d465cc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyType: 3
-  enemyAttackDamage: 0
-  enemySpeed: 0
-  normalSpeed: 1
-  firstTransformX: 0
-  firstTransformY: 0
-  currentTransformX: 0
-  currentTransformY: 0
-  pointA: {fileID: 1963671556}
-  pointB: {fileID: 1217360441}
-  currentPoint: {fileID: 0}
 --- !u!61 &1974873552
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12695,6 +12662,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1974873556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974873549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be36ceecfce83f94ebab1fac8a590cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointA: {fileID: 1963671556}
+  pointB: {fileID: 1217360441}
+  currentPoint: {fileID: 0}
+  enemyAttackDamage: 0
+  enemySpeed: 0
+  normalSpeed: 1
 --- !u!1 &1978677438
 GameObject:
   m_ObjectHideFlags: 0
