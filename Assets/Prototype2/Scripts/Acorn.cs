@@ -53,7 +53,7 @@ public class Acorn : MonoBehaviour
             case ItemType.Acorn:
                 {
                     score = 1;
-                    if(Input.GetKeyDown(KeyCode.X)&&isPlayerEnter)
+                    if(Input.GetKeyDown(KeyCode.Space) && isPlayerEnter)
                     {
                         transform.SetParent(playerEquipPoint.transform);
                         transform.localPosition = Vector3.zero;

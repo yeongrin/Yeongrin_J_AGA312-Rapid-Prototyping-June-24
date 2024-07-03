@@ -60,7 +60,7 @@ public class EnemyP2 : MonoBehaviour
                         ani.SetTrigger("isMoving");
                         currentTransformX += Time.deltaTime * enemySpeed;
 
-                        if (firstTransformX >= 11)
+                        if (currentTransformX >= 11)
                         {
                             Destroy(this.gameObject);
                         }
@@ -70,7 +70,7 @@ public class EnemyP2 : MonoBehaviour
                         ani.SetTrigger("isMoving");
                         currentTransformX -= Time.deltaTime * enemySpeed;
 
-                        if (firstTransformX <= -11)
+                        if (currentTransformX <= -11)
                         {
                             Destroy(this.gameObject);
                         }
@@ -106,11 +106,11 @@ public class EnemyP2 : MonoBehaviour
                 break;
         }
 
-    }
+        if(currentTransformY <= -7 )
+        {
+            Destroy(this.gameObject);
+        }
 
-    void OnBecameInvisible()
-    {
-        Destroy(this.gameObject);
     }
 
     void Flip()
@@ -126,4 +126,5 @@ public class EnemyP2 : MonoBehaviour
             Debug.Log("hit");
         }
     }
+  
 }

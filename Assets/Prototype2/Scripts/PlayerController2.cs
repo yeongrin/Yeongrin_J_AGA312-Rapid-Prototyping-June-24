@@ -47,7 +47,7 @@ public class PlayerController2 : MonoBehaviour
         Jump();
 
         //Dropping
-        if (Input.GetKeyDown(KeyCode.X) && isPicking)
+        if (Input.GetKeyDown(KeyCode.Space) && isPicking)
         {
             Drop();
         }
@@ -85,7 +85,7 @@ public class PlayerController2 : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             jump = true;
             animator.SetTrigger("doJumping");
