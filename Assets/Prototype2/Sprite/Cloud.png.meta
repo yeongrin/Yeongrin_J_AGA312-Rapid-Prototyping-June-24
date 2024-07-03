@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a12ca6070054e9242b62cab369e3a75b
+guid: 8c7b7885ca0bc924c980931029ca589e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dots_0
+      name: Cloud_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1677
-        width: 2700
-        height: 244
+        x: 11
+        y: 683
+        width: 1140
+        height: 389
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,71 +124,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccfdb97abf6fe714d8781cc7abf3b6d6
-      internalID: 73263428
+      spriteID: a26c7098e6f99e848945ed1c1a01f2df
+      internalID: 1286674133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dots_1
+      name: Cloud_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 1435
-        width: 2662
-        height: 222
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e8ba00ca883a4249834d12c460e89f6
-      internalID: -1361922038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dots_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3208
-        height: 1306
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 359bc6f6ca4642644bf4c4f53e29e30b
-      internalID: 1101289484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dots_3
-      rect:
-        serializedVersion: 2
-        x: 2046
-        y: 1436
-        width: 705
+        x: 12
+        y: 422
+        width: 603
         height: 217
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e975f6d3a697464aaf54bdfe642bb87
-      internalID: -257065278
+      spriteID: 3b3885d724a3c194bac327e07f112c54
+      internalID: -1611807163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud_2
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 21
+        width: 1464
+        height: 365
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09f347f16550ed74d9f664f82dd9fb0c
+      internalID: -1449264155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 228
+        width: 341
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2333b53a1b57e594db579a52c2c5ad60
+      internalID: 1666992630
       vertices: []
       indices: 
       edges: []
@@ -196,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dc31a34aae89bc440874240b0390bbb5
+    spriteID: 68700186eacce0649afce93a25a32bbd
     internalID: 0
     vertices: []
     indices: 
@@ -204,10 +204,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dots_0: 73263428
-      Dots_1: -1361922038
-      Dots_2: 1101289484
-      Dots_3: -257065278
+      Cloud_0: 1286674133
+      Cloud_1: -1611807163
+      Cloud_2: -1449264155
+      Cloud_3: 1666992630
+      Cloud_4: 2147167964
+      Cloud_5: -1809233384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

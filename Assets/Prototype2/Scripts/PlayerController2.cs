@@ -155,12 +155,12 @@ public class PlayerController2 : MonoBehaviour
     {
         if (collision.gameObject.tag == ("Enemy"))
         {
-            health -= 1; 
+           
         }
 
         if (collision.gameObject.tag == ("Enemy2"))
         {
-            health -= 3;
+           
         }
 
     }
@@ -168,12 +168,14 @@ public class PlayerController2 : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == ("Enemy"))
-        {
+        { 
+            health -= 1; 
             StartCoroutine(NuckBack());
         }
 
         if (collision.gameObject.tag == ("Enemy2"))
         {
+            health -= 2;
             StartCoroutine(NuckBack());
         }
     }

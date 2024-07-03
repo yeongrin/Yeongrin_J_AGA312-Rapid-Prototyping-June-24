@@ -20,9 +20,15 @@ public class GameManager2 : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject gameEndingPanel;
 
+    GameObject player;
+    PlayerController2 _PC2;
+
     void Awake()
     {
         _GM2 = () => { SetText(); };
+        player = GameObject.FindGameObjectWithTag("Player");
+        _PC2 = player.GetComponent<PlayerController2>();
+
     }
 
     void Start()
@@ -42,11 +48,22 @@ public class GameManager2 : MonoBehaviour
         {
             gameEndingPanel.SetActive(true);
         }
+
+        if(timer == 0)
+        {
+            gameOverPanel.SetActive(true);
+        }
+
+        if(_PC2.health == 0)
+        {
+            gameOverPanel.SetActive(true);
+        }
     }
 
-    void SetText()
+    public void SetText()
     {
         score_Text.text = "PickUp : " + score.ToString();
+        health_Text.text = "Lives : " + _PC2.health.ToString();
         timerText.text = ((int)Math.Ceiling(timer)).ToString();
     }
 }

@@ -6,7 +6,8 @@ public enum EnemyType
 {
     Caterpillar,
     Owl,
-    Bee
+    Bee,
+    Snail
 }
 
 public class EnemyP2 : MonoBehaviour
@@ -16,12 +17,17 @@ public class EnemyP2 : MonoBehaviour
     public int enemySpeed;
     public int normalSpeed = 1;
 
-    [Header("Moving")]
+    [Header("CaterlillarMoving")]
     public float firstTransformX;
     public float firstTransformY;
     public float currentTransformX;
     public float currentTransformY;
     Animator ani;
+
+    [Header("SnailMoving")]
+    public GameObject pointA;
+    public GameObject pointB;
+    public Transform currentPoint;
 
     private Rigidbody2D body;
     private SpriteRenderer render;
@@ -36,6 +42,8 @@ public class EnemyP2 : MonoBehaviour
 
         currentTransformX = transform.position.x;
         currentTransformY = transform.position.y;
+
+        currentPoint = pointA.transform;
 
         ani = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
@@ -79,6 +87,35 @@ public class EnemyP2 : MonoBehaviour
                 }
                 break;
 
+            case EnemyType.Snail:
+                {
+                    enemyAttackDamage = 1;
+                    enemySpeed = normalSpeed * 2;
+
+                    Vector2 point = currentPoint.position - transform.position;
+                    if (currentPoint == pointB.transform)
+                    {
+                        body.velocity = new Vector2(enemySpeed, 0);
+                    }
+                    else
+                    {
+                        body.velocity = new Vector2(-enemySpeed, 0);
+                    }
+                    if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
+                    {
+                        SnailFlip();
+                        currentPoint = pointA.transform;
+                    }
+                    if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
+                    {
+                        SnailFlip();
+                        currentPoint = pointB.transform;
+                    }
+
+                }
+                break;
+
+
             case EnemyType.Owl:
                 {
                     enemyAttackDamage = 2;
@@ -88,7 +125,7 @@ public class EnemyP2 : MonoBehaviour
 
             case EnemyType.Bee:
                 {
-                    enemyAttackDamage = 3;
+                    enemyAttackDamage = 2;
                     enemySpeed = normalSpeed * 4;
 
                     currentTransformY -= Time.deltaTime * enemySpeed;
@@ -96,6 +133,7 @@ public class EnemyP2 : MonoBehaviour
                 }
                 break;
         }
+
 
     }
 
@@ -107,6 +145,13 @@ public class EnemyP2 : MonoBehaviour
     void Flip()
     {
         render.flipX = firstTransformX < 0f;
+    }
+
+    private void SnailFlip()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
     void OnCollisionEnter2D(Collision2D collider)

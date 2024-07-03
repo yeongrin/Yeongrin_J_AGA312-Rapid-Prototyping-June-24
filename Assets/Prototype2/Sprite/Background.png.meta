@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a12ca6070054e9242b62cab369e3a75b
+guid: 31c9e34768a47394c8749cb820d0e49f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,76 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dots_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1677
-        width: 2700
-        height: 244
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccfdb97abf6fe714d8781cc7abf3b6d6
-      internalID: 73263428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dots_1
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 1435
-        width: 2662
-        height: 222
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5e8ba00ca883a4249834d12c460e89f6
-      internalID: -1361922038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dots_2
+      name: Background_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3208
-        height: 1306
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 359bc6f6ca4642644bf4c4f53e29e30b
-      internalID: 1101289484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dots_3
-      rect:
-        serializedVersion: 2
-        x: 2046
-        y: 1436
-        width: 705
-        height: 217
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e975f6d3a697464aaf54bdfe642bb87
-      internalID: -257065278
+      spriteID: e7c9d95c15e27ab46b043427af2a73b4
+      internalID: -1211703133
       vertices: []
       indices: 
       edges: []
@@ -196,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dc31a34aae89bc440874240b0390bbb5
+    spriteID: e13c7a7678339b8409f8c8c910af8ff8
     internalID: 0
     vertices: []
     indices: 
@@ -204,10 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dots_0: 73263428
-      Dots_1: -1361922038
-      Dots_2: 1101289484
-      Dots_3: -257065278
+      Background_0: -1211703133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
