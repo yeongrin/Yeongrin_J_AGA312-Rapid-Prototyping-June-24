@@ -59,11 +59,11 @@ TagManager:
   - name: Platform
     uniqueID: 647746781
     locked: 0
-  - name: Enemy
-    uniqueID: 4180849995
-    locked: 0
   - name: Item
     uniqueID: 269925205
+    locked: 0
+  - name: Enemy
+    uniqueID: 4180849995
     locked: 0
   - name: Another
     uniqueID: 3585226353

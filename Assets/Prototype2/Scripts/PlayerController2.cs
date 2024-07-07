@@ -15,7 +15,7 @@ public class PlayerController2 : MonoBehaviour
     public GameObject playerEquipPoint;
     public bool dropDown = false;
     public bool isPicking = false;
-    public GameObject itemMark;
+    //public GameObject itemMark;
     private double Timer = 0;
 
     Vector2 movement = new Vector2();
@@ -32,7 +32,7 @@ public class PlayerController2 : MonoBehaviour
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        itemMark.SetActive(false);
+        //itemMark.SetActive(false);
         health = 5;
 
     }
@@ -108,7 +108,7 @@ public class PlayerController2 : MonoBehaviour
         
         if (isPicking == true)
         {
-            itemMark.SetActive(true);
+            //itemMark.SetActive(true);
         }
 
     }
@@ -116,8 +116,15 @@ public class PlayerController2 : MonoBehaviour
     IEnumerator NuckBack()
     {
         //CancelInvoke("Damage");
-        Debug.Log("256657");
-        yield return new WaitForSeconds(5);
+
+        for (int i = 1; i < 4; i++)
+        {
+            spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
+       
 
     }
 
@@ -133,7 +140,7 @@ public class PlayerController2 : MonoBehaviour
 
         if (isPicking == false)
         { 
-            itemMark.SetActive(false);
+           // itemMark.SetActive(false);
         }
        
     }
@@ -155,12 +162,12 @@ public class PlayerController2 : MonoBehaviour
     {
         if (collision.gameObject.tag == ("Enemy"))
         {
-           
+           StartCoroutine(NuckBack());
         }
 
         if (collision.gameObject.tag == ("Enemy2"))
         {
-           
+           StartCoroutine(NuckBack());
         }
 
     }
@@ -170,13 +177,13 @@ public class PlayerController2 : MonoBehaviour
         if (collision.gameObject.tag == ("Enemy"))
         { 
             health -= 1; 
-            StartCoroutine(NuckBack());
+            
         }
 
         if (collision.gameObject.tag == ("Enemy2"))
         {
             health -= 2;
-            StartCoroutine(NuckBack());
+            
         }
     }
 }

@@ -11,8 +11,8 @@ public class SnailMoving : MonoBehaviour
     public Transform currentPoint;
 
     public int enemyAttackDamage;
-    public int enemySpeed;
-    public int normalSpeed = 1;
+    public float enemySpeed;
+    public float normalSpeed;
 
     Animator ani;
     private Rigidbody2D body;

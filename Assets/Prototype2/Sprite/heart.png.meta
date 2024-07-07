@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 78fac79c205b209418ff2550c10e76a6
+guid: d11e4be9dc1deea45ba8b027af23cc72
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: red-304570_1920_0
+      name: heart_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1778
+        x: 27
+        y: 23
+        width: 1946
+        height: 1804
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e76cc6846e6ab1c4fb6f61140d8eee59
-      internalID: -2143505309
+      spriteID: d5cf2ecf993e6de4283bc65e8e6cdfbb
+      internalID: 1903785426
       vertices: []
       indices: 
       edges: []
@@ -133,7 +133,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 198c61e067f77f44e9794d4d7aa877fa
+    spriteID: 6b966e296f5da1c4f851f88e916be5a4
     internalID: 0
     vertices: []
     indices: 
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      red-304570_1920_0: -2143505309
+      heart_0: 1903785426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
