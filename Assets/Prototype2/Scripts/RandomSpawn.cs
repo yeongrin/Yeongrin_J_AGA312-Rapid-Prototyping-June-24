@@ -19,6 +19,9 @@ public class RandomSpawn : MonoBehaviour
     private int nextWave = 0;
 
     public Transform[] spawnPoints;
+    public List<Transform> acornPosition;
+    //need to reference of position of spawning acorn
+    //and write the code of list 
 
     public float timeBetweenWaves;
     public float waveCountdown;
@@ -101,7 +104,6 @@ public class RandomSpawn : MonoBehaviour
             }
 
         }
-
 
         return true;
     }
