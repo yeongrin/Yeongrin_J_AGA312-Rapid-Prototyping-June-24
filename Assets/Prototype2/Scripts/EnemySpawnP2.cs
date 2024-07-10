@@ -100,6 +100,11 @@ public class EnemySpawnP2 : MonoBehaviour
                 return false;
             }
 
+            if (GameObject.FindGameObjectWithTag("Enemy2") == null)
+            {
+                return false;
+            }
+
         }
 
 

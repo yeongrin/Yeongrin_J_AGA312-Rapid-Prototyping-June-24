@@ -8,10 +8,13 @@ using System;
 public class GameManager2 : MonoBehaviour
 {
     public static Action _GM2;
-
-    public TMP_Text health_Text;
     public float timer;
     public float time;
+
+    [Header ("Heart")]
+    public TMP_Text health_Text;
+    public Image[] heartUI;
+    public Sprite heartSpirites;
 
     [Header("GameOver")]
     public static int score;
@@ -33,31 +36,58 @@ public class GameManager2 : MonoBehaviour
 
     void Start()
     {
-        score = 0;
-        timer = time;
+        score = 5;
         SetText();
+        timer = time;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
         SetText();
+        StartCoroutine(TimerAndLives());
 
-        if(score == 10)
+        if (score <= 0)
         {
             gameEndingPanel.SetActive(true);
+                StopCoroutine(TimerAndLives());
         }
-
-        if(timer == 0)
+       
+        if(timer <= 0)
         {
             gameOverPanel.SetActive(true);
+            StopCoroutine(TimerAndLives());
+           
         }
-
-        if(_PC2.health == 0)
+      
+        if(_PC2.health <= 0)
         {
             gameOverPanel.SetActive(true);
+            StopCoroutine(TimerAndLives());
+         
         }
+      
+    }
+
+    IEnumerator TimerAndLives()
+    {
+        timer -= Time.deltaTime;
+        //heartUI.sprite = heartSpirites[_PC2.health];
+
+        for (int i = 0; i < _PC2.health; i++)
+        {
+            if( i < _PC2.health)
+            {
+                heartUI[i].enabled = true;
+            }
+            else
+            {
+                heartUI[i].enabled = false;
+            }
+        }
+        SetText();
+        yield break;
     }
 
     public void SetText()

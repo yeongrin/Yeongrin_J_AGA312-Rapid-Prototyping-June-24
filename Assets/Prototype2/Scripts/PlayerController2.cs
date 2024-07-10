@@ -10,6 +10,13 @@ public class PlayerController2 : MonoBehaviour
     private bool isMoving;
     private bool jump;
     public int health;
+    public int maxHealth = 5;
+
+    //Variables for grounding system.
+    public bool isGround;
+    public Transform grounder;
+    public float radius;
+    public LayerMask ground;
 
     [Header("ItemPickUp")]
     public GameObject playerEquipPoint;
@@ -44,6 +51,8 @@ public class PlayerController2 : MonoBehaviour
 
     void Update()
     {
+        isGround = Physics2D.OverlapCircle(grounder.transform.position, radius, ground);
+
         Jump();
 
         //Dropping
@@ -85,7 +94,7 @@ public class PlayerController2 : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGround)
         {
             jump = true;
             animator.SetTrigger("doJumping");
@@ -185,5 +194,13 @@ public class PlayerController2 : MonoBehaviour
             health -= 2;
             
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        //Color of gizmos is blue.
+        Gizmos.color = Color.blue;
+        //Gizmos is to draw a wire sphere using the grounder.transform's position, and the radius value.
+        Gizmos.DrawWireSphere(grounder.transform.position, radius);
     }
 }

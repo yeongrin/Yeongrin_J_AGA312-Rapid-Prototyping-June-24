@@ -88,23 +88,23 @@ public class RandomSpawn : MonoBehaviour
         }
 
     }
-        bool EnemyIsAlive()
+    bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0f)
         {
-            searchCountdown -= Time.deltaTime;
-            if (searchCountdown <= 0f)
+            searchCountdown = 1f;
+
+            if (GameObject.FindGameObjectWithTag("PowerUp") == null)
             {
-                searchCountdown = 1f;
-
-                if (GameObject.FindGameObjectWithTag("PowerUp") == null)
-                {
-                    return false;
-                }
-
+                return false;
             }
 
-
-            return true;
         }
+
+
+        return true;
+    }
 
         IEnumerator SpawnWave(Wave _wave)
         {

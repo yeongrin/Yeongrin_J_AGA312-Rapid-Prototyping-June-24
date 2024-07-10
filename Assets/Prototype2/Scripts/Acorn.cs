@@ -96,7 +96,7 @@ public class Acorn : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Another"))
         {
-            GameManager2.score += 1;
+            GameManager2.score -= 1;
             GameManager2._GM2();
             Destroy(this.gameObject);
         }

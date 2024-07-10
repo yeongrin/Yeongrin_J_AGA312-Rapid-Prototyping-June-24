@@ -17,6 +17,11 @@ public class LevelSelect : MonoBehaviour
     {
         SceneManager.LoadScene("Prototype2-2");
     }
+    
+    public void Brunch()
+    {
+        SceneManager.LoadScene("Level3");
+    }
 
     public void ReLoad()
     {

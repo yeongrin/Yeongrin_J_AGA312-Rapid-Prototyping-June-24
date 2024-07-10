@@ -102,14 +102,14 @@ public class EnemyP2 : MonoBehaviour
 
                     currentTransformY -= Time.deltaTime * enemySpeed;
                     transform.position = new Vector3(firstTransformX, currentTransformY, 0);
+                    if (currentTransformY <= -7.5)
+                    {
+                        Destroy(this.gameObject);
+                    }
                 }
                 break;
         }
 
-        if(currentTransformY <= -7 )
-        {
-            Destroy(this.gameObject);
-        }
 
     }
 
