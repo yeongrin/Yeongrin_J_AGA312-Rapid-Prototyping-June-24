@@ -42,14 +42,14 @@ public class FiringPoint : MonoBehaviour
         // Ray ray = new Ray(transform.position, transform.forward);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, range))
-        {
-            GameObject laserShoot = GameObject.Instantiate(sparkle, transform.position, transform.rotation) as GameObject;
-            laserShoot.GetComponent<Bullet>().setTarget(hit.point);
-            GameObject.Destroy(laserShoot, 0.5f);
-        }
+        //if (Physics.Raycast(ray, out hit, range))
+        //{
+        //    GameObject laserShoot = GameObject.Instantiate(sparkle, transform.position, transform.rotation) as GameObject;
+        //    laserShoot.GetComponent<Bullet>().setTarget(hit.point);
+        //    GameObject.Destroy(laserShoot, 0.5f);
+        //}
 
-        /*if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             laser.SetPosition(0, transform.position);
             laser.SetPosition(1, hit.point);
@@ -68,7 +68,7 @@ public class FiringPoint : MonoBehaviour
             }
 
         }
-        */
+        
     }
 
     IEnumerator StopLaser()

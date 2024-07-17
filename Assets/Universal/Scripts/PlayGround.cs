@@ -16,6 +16,7 @@ public class PlayGround : GameBehaviour
 
     [Header("UI")]
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public Ease scoreEase;
     private int score = 0;
     public int scoreBonus = 100;
@@ -27,6 +28,10 @@ public class PlayGround : GameBehaviour
     void Start()
     {
         //ExecuteAfterSeconds(2, () => { player.transform.localScale = Vector3.one * 2; });
+
+        player.transform.position = _SAVE.GetLastCheckpoint();
+        player.GetComponent<Renderer>().material.color = _SAVE.GetColor();
+        highScoreText.text = "Highest Score: " + _SAVE.GetHighestScore().ToString();
 
         timer.StartTimer(0, TimerDirection.CountUp);
 
@@ -89,8 +94,10 @@ public class PlayGround : GameBehaviour
         {
             case Direction.North:
                 player.transform.DOMoveZ(player.transform.position.z + moveDistance, moveTweenTime).SetEase(moveEase).OnComplete(() =>
-                { ShakeCamera();
+                { 
+                    ShakeCamera();
                     IncreaseScore();
+                   
         });
                 break;
 
@@ -116,7 +123,7 @@ public class PlayGround : GameBehaviour
                 });
                 break;
         }
-
+        _SAVE.SetLastPosition(player.transform.position);
         ChangeColor();
     }
 
@@ -127,13 +134,16 @@ public class PlayGround : GameBehaviour
 
     void ChangeColor()
     {
-        player.GetComponent < Renderer>().material.DOColor(ColorX.GetRandomColour(), moveTweenTime);
+        Color c = ColorX.GetRandomColour();
+        _SAVE.SetColor(c);
+        player.GetComponent < Renderer>().material.DOColor(c, moveTweenTime);
     }
     
     void IncreaseScore()
     {
         TweenX.TweenNumbers(scoreText, score, score + scoreBonus, 1, scoreEase, "F2");
         score = score + scoreBonus;
+        _SAVE.SetScore(score);
     }
 
     public int health = 1000;

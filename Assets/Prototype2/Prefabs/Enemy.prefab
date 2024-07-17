@@ -101,5 +101,8 @@ MonoBehaviour:
   enemyType: 1
   enemyAttackDamage: 0
   enemySpeed: 1
+  normalSpeed: 1
+  firstTransformX: 0
+  firstTransformY: 0
   currentTransformX: 0
   currentTransformY: 0
