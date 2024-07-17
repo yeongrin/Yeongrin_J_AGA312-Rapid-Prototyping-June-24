@@ -16,6 +16,7 @@ TagManager:
   - Another
   - EquipPoint
   - SpawnManager
+  - Bullet
   layers:
   - Default
   - TransparentFX

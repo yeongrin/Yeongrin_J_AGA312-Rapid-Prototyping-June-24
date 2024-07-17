@@ -23,8 +23,9 @@ public class PlayerController3 : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x + transform.forward * z;
+        
+        //float z = Input.GetAxis("Vertical");
+        Vector3 move = transform.right * x; //+ transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
     }
 }
