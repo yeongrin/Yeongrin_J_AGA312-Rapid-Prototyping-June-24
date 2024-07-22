@@ -9,7 +9,7 @@ public class PlayerController3 : MonoBehaviour
     public float gravity;
     public float jumpHeight;
     public float health;
-    
+
     void Start()
     {
         
@@ -22,10 +22,14 @@ public class PlayerController3 : MonoBehaviour
 
     void Move()
     {
-        float x = Input.GetAxis("Horizontal");
-        
+        //if (Input.GetKey("left"))
+        //{
+
+        //    float x = Input.GetAxis("Horizontal");
+        //    Vector3 move = transform.right * x; //+ transform.forward * z;
+        //    controller.Move(move * speed * Time.deltaTime);
+        //}
+
         //float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x; //+ transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
     }
 }

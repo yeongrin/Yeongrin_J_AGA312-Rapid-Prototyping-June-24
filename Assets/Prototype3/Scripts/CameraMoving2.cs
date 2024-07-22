@@ -18,13 +18,14 @@ public class CameraMoving2 : MonoBehaviour
     private float MouseX;
     private float MouseY;
 
-    // Start is called before the first frame update
+    Vector3 velocity;
+
+  
     void Start()
     {
-
+      
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         TartgetPos = new Vector3
@@ -38,6 +39,7 @@ public class CameraMoving2 : MonoBehaviour
         LookAround();
     }
 
+    float inputX;
     void LookAround()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
@@ -55,5 +57,14 @@ public class CameraMoving2 : MonoBehaviour
 
         mCameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);
 
+        //inputX = Input.GetAxis("Horizontal");
+        //if(inputX != 0)
+        //{
+        //    Rotate();
+        //}
+    }
+    void Rotate()
+    {
+        transform.Rotate(new Vector3(0f, inputX * Time.deltaTime * cameraSpeed, 0f));
     }
 }
