@@ -10,9 +10,11 @@ public class EnemyController : MonoBehaviour
     public Rigidbody body;
     public float speed;
     public float lineOfCircle;
+    Timer timer;
 
     void Start()
     {
+        timer = GameObject.Find("GameManager").GetComponent<Timer>();
         targetPoint = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
     }
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
         if (collider.gameObject.CompareTag("Bullet"))
         {
             GameManager3.enemyScore += 1;
+            timer.currentTime += 5f;
             Destroy(this.gameObject);
         }
 

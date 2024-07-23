@@ -10,11 +10,13 @@ public class Forces : MonoBehaviour
     public Rigidbody body;
     public float speed;
     public float lineOfCircle;
+    Timer timer;
 
     void Start()
     {
         targetPoint = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
         forces = this.gameObject.GetComponent<NavMeshAgent>();
+        timer = GameObject.Find("GameManager").GetComponent<Timer>();
     }
 
     void Update()
@@ -45,6 +47,7 @@ public class Forces : MonoBehaviour
         if(collider.gameObject.CompareTag("Bullet"))
         {
             GameManager3.forceScore -= 1;
+            timer.currentTime -= 5;
             Destroy(this.gameObject);
         }
 

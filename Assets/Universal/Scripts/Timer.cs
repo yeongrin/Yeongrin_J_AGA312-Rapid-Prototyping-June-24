@@ -6,7 +6,7 @@ public class Timer : GameBehaviour<Timer>
 {
     public TimerDirection timerDirection;
     public float startTime = 0;
-    float currentTime;
+    public float currentTime;
     bool isTiming = false;
     float timeLimit = 0;
     bool hasTimeLimit = false;

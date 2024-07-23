@@ -231,7 +231,7 @@ MonoBehaviour:
   agent: {fileID: -8600377280026757203}
   targetPoint: {fileID: 0}
   body: {fileID: 4901013441743087662}
-  speed: 2
+  speed: 4
   lineOfCircle: 150
 --- !u!195 &-8600377280026757203
 NavMeshAgent:
@@ -253,7 +253,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!54 &4901013441743087662
 Rigidbody:

@@ -19,8 +19,6 @@ public class Door : MonoBehaviour
 
     public void DoorTrigger()
     {
-           Debug.Log("jit");
         doorDefense -= 1;
-        
     }
 }
