@@ -12,6 +12,10 @@ public class DialogueManager: MonoBehaviour
     private Queue<string> sentences;
 
     public Animator anim;
+    public GameObject spawn;
+    public GameObject forces;
+    public GameObject timer;
+    public GameObject firing;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +73,10 @@ public class DialogueManager: MonoBehaviour
     public void DialOver()
     {
         anim.SetBool("isOpen", false);
+        spawn.gameObject.GetComponent<EnemySpawnP2>().enabled = true;
+        timer.gameObject.GetComponent<Timer>().enabled = true;
+        forces.gameObject.GetComponent<EnemySpawnP2>().enabled = true;
+        firing.gameObject.GetComponent<FiringPoint>().enabled = true;
         dialPanel.SetActive(false);
     }
 

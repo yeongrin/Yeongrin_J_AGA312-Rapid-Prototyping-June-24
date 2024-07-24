@@ -25,6 +25,8 @@ public class EnemySpawnP2 : MonoBehaviour
 
     private float searchCountdown = 1f;
 
+    public float currentTime;
+
     private SpawnState state = SpawnState.COUNTING;
 
     void Start()
@@ -34,12 +36,22 @@ public class EnemySpawnP2 : MonoBehaviour
             Debug.Log("35");
         }
         waveCountdown = timeBetweenWaves;
+
+        currentTime = 0;
     }
 
 
     void Update()
     {
+        currentTime += Time.deltaTime;
 
+        if(currentTime >= 10)
+        {
+            timeBetweenWaves = 2;
+
+            if (currentTime >= 20)
+                timeBetweenWaves = 0; 
+        }
         if (state == SpawnState.WAITING)
         {
             // Check if enemies are still alive

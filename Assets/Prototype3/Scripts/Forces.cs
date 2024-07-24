@@ -14,9 +14,12 @@ public class Forces : MonoBehaviour
 
     void Start()
     {
-        targetPoint = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
+        targetPoint = GameObject.FindWithTag("Finish").GetComponent<Transform>();
         forces = this.gameObject.GetComponent<NavMeshAgent>();
         timer = GameObject.Find("GameManager").GetComponent<Timer>();
+        forces.speed = Random.Range(10, 20);
+        forces.angularSpeed = Random.Range(150, 180);
+        forces.acceleration = Random.Range(150, 180);
     }
 
     void Update()
@@ -28,7 +31,7 @@ public class Forces : MonoBehaviour
         {
             if (lookDirection < lineOfCircle)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
                 forces.SetDestination(targetPoint.position);
             }
 
@@ -51,7 +54,7 @@ public class Forces : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(collider.gameObject.CompareTag("Another"))
+        if(collider.gameObject.CompareTag("Finish"))
         {
             Destroy(this.gameObject);
         }

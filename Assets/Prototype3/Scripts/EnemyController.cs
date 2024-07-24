@@ -15,8 +15,11 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         timer = GameObject.Find("GameManager").GetComponent<Timer>();
-        targetPoint = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
+        targetPoint = GameObject.FindWithTag("Finish").GetComponent<Transform>();
         agent = this.gameObject.GetComponent<NavMeshAgent>();
+        agent.speed = Random.Range(10, 20);
+        agent.angularSpeed = Random.Range(150, 180);
+        agent.acceleration = Random.Range(150, 180);
     }
 
     void Update()
@@ -28,7 +31,7 @@ public class EnemyController : MonoBehaviour
         {
             if (lookDirection < lineOfCircle)
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, speed * Time.deltaTime);
                 agent.SetDestination(targetPoint.position);
             }
            
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(collider.gameObject.CompareTag("Another"))
+        if(collider.gameObject.CompareTag("Finish"))
         {
             Destroy(this.gameObject);
         }

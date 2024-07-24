@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        speed = Random.Range(5, 10);
         enemyRB = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
     }
@@ -104,7 +105,7 @@ public class Enemy : MonoBehaviour
 
     void RespawnEnemy4()
     {
-        Debug.Log("gkgkgkgk");
+       
     }
 
 }

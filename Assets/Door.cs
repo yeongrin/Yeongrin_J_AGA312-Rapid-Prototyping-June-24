@@ -21,4 +21,5 @@ public class Door : MonoBehaviour
     {
         doorDefense -= 1;
     }
+
 }

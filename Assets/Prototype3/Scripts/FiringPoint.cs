@@ -10,15 +10,13 @@ public class FiringPoint : MonoBehaviour
     public GameObject sparkle;
 
     public float range;
-    RaycastHit hit;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -26,6 +24,7 @@ public class FiringPoint : MonoBehaviour
             //Shoot();
             FireRaycast();
         }
+        Debug.DrawRay(transform.position, transform.forward * 500f, Color.red);
     }
 
     void Shoot()
@@ -40,7 +39,7 @@ public class FiringPoint : MonoBehaviour
     void FireRaycast()
     {
         // Ray ray = new Ray(transform.position, transform.forward);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //if (Physics.Raycast(ray, out hit, range))
         //{
@@ -49,26 +48,45 @@ public class FiringPoint : MonoBehaviour
         //    GameObject.Destroy(laserShoot, 0.5f);
         //}
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 500f))
         {
-            laser.SetPosition(0, transform.position);
-            laser.SetPosition(1, hit.point);
-            StartCoroutine(StopLaser());
+            // If the ray hits something, you can access information about the hit
+            Debug.Log("Ray hit: " + hit.collider.name);
 
-            GameObject particles = Instantiate(sparkle, hit.point, hit.transform.rotation);
-            Destroy(particles, 1);
+            // Example: If you want to do something with the object that was hit
+            GameObject hitObject = hit.collider.gameObject;
+
+            // Do something with hitObject...
+            //GameObject particles = Instantiate(sparkle, hit.point, hit.transform.rotation);
+            //Destroy(particles, 1);
+
+           laser.SetPosition(0, transform.position);
+           laser.SetPosition(1, hit.point);
+           StartCoroutine(StopLaser());
 
             if (hit.collider.CompareTag("Enemy"))
             {
                 Destroy(hit.collider.gameObject);
             }
-            if(hit.collider.CompareTag("Enemy2"))
+            if (hit.collider.CompareTag("Enemy2"))
             {
                 Destroy(hit.collider.gameObject);
             }
-
         }
-        
+        else
+        {
+            // If the ray does not hit anything
+            Debug.Log("Ray did not hit anything.");
+        }
+
+        //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        //{
+        //    laser.SetPosition(0, transform.position);
+        //    laser.SetPosition(1, hit.point);
+        //    StartCoroutine(StopLaser());
+        //}
+
     }
 
     IEnumerator StopLaser()
