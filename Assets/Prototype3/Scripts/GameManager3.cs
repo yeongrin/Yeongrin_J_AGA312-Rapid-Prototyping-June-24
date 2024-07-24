@@ -37,7 +37,7 @@ public class GameManager3 : MonoBehaviour
         enemyScore = 0;
         forceScore = 0;
         SetText();
-        timer.StartTimer(0, TimerDirection.CountDown);
+        timer.StartTimer(60, TimerDirection.CountDown);
 
     }
 

@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(collider.gameObject.CompareTag("Finish"))
+        if(collider.gameObject.CompareTag("Another"))
         {
             Destroy(this.gameObject);
         }
