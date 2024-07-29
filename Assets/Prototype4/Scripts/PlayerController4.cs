@@ -45,13 +45,13 @@ public class PlayerController4 : MonoBehaviour
         if(p_rigid.velocity.y < y_distance)
         {
             RaycastHit2D _hit = Physics2D.Raycast(transform.position, Vector2.down, p_distance, p_layerMask);
-            Debug.Log("2435");
 
-           
-                if(_hit.transform.CompareTag("Ground"))
-                {
-                    p_jumpCount = 0;
-                }
+
+            if (_hit.transform.CompareTag("Ground"))
+            {
+                Debug.Log("2435");
+                p_jumpCount = 0;
+            }
             
         }
     }
