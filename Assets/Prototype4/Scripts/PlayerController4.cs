@@ -12,22 +12,39 @@ public class PlayerController4 : MonoBehaviour
 
     public float bounce;
     public float y_distance;
+    public static float playerHealth = 5;
+    public static float MaxHealth = 5;
     float p_distance = 0f;
+
+    SpriteRenderer spriteRenderer;
+
     [SerializeField] LayerMask p_layerMask = 0;
 
     EquationGenerator2 EG2;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         p_rigid = GetComponent<Rigidbody2D>();
         p_distance = GetComponent<BoxCollider2D>().bounds.extents.y + bounce;
+
+        playerHealth = MaxHealth;
     }
 
     void Update()
     {
         Jump();
         CheckGround();
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            Punishment();
+        }
     }
 
     void Jump()
@@ -76,6 +93,29 @@ public class PlayerController4 : MonoBehaviour
         if (collider.tag == "WrongAnswer")
         {
             EG2.isCorrectAnswer = false;
+            StartCoroutine(NuckBack());
+            Punishment();
         }
+    }
+
+    void Punishment()
+    {
+        playerHealth -= 1;
+     
+    }
+
+    IEnumerator NuckBack()
+    {
+        //CancelInvoke("Damage");
+
+        for (int i = 1; i < 4; i++)
+        {
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+
     }
 }

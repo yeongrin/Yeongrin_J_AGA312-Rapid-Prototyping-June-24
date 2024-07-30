@@ -14,14 +14,19 @@ public class UIManager2 : MonoBehaviour
     public TMP_Text questionText2;
     public TMP_Text operatorSignText;
 
+    [Header("Health")]
+    public Image[] heartImages;
+
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
+        ReduceHeart();
     }
 
     void Update()
     {
         SetText();
+        ReduceHeart();
     }
 
     void SetText()
@@ -32,5 +37,20 @@ public class UIManager2 : MonoBehaviour
         questionText.text = EG2.numberOne.ToString();
         questionText2.text = EG2.numberTwo.ToString();
         operatorSignText.text = EG2.operatorSign.ToString();
+    }
+
+    void ReduceHeart()
+    { 
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            if(i < PlayerController4.playerHealth)
+            {
+                heartImages[i].enabled = true;
+            }
+            else
+            {
+                heartImages[i].enabled = false;
+            }
+        }
     }
 }

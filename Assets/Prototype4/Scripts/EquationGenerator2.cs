@@ -26,6 +26,7 @@ public class EquationGenerator2 : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
 
         SuffleAnswer();
+        //AnswerPlatform._AP();
     }
 
     private void Update()
@@ -46,10 +47,23 @@ public class EquationGenerator2 : MonoBehaviour
 
         if (isCorrectAnswer == true)
         {
-            GenerateRandomEquation();
-            SuffleAnswer();
+            StartCoroutine(GenerateRandomQuestionSuffle());
+            isCorrectAnswer = false;
         }
 
+    }
+
+    IEnumerator GenerateRandomQuestionSuffle()
+    {
+        int loop = 0;
+        while (loop < 1)
+        {
+            AnswerPlatform._AP();
+            GenerateRandomEquation();
+            SuffleAnswer();
+            loop++;
+        }
+        yield return null;
     }
 
     void SuffleAnswer()
