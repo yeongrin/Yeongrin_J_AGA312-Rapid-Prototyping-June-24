@@ -9,7 +9,7 @@ public class EquationGenerator : MonoBehaviour
     public int numberOne;
     public int numberTwo;
     public int correctAnswer;
-    public List<int> dummyAnswers;
+    public static List<int> dummyAnswers;
     private string operatorSign = "";
 
     private void Update()

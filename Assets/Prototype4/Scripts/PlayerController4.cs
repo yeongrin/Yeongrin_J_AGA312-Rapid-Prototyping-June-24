@@ -15,8 +15,11 @@ public class PlayerController4 : MonoBehaviour
     float p_distance = 0f;
     [SerializeField] LayerMask p_layerMask = 0;
 
+    EquationGenerator2 EG2;
+
     void Start()
     {
+        EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         p_rigid = GetComponent<Rigidbody2D>();
         p_distance = GetComponent<BoxCollider2D>().bounds.extents.y + bounce;
     }
@@ -53,6 +56,26 @@ public class PlayerController4 : MonoBehaviour
                 p_jumpCount = 0;
             }
             
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        //IsCorrectAnswer is true if the player conflicts with the right platform.
+
+        if (collider.tag == "CorrectAnswer")
+        {
+            EG2.isCorrectAnswer = true;
+            if (EG2.isCorrectAnswer == true)
+            {
+                Debug.Log("correct!!");
+            }
+
+        }
+
+        if (collider.tag == "WrongAnswer")
+        {
+            EG2.isCorrectAnswer = false;
         }
     }
 }

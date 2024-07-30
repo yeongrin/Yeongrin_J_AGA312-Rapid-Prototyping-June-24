@@ -17,6 +17,9 @@ TagManager:
   - EquipPoint
   - SpawnManager
   - Bullet
+  - WrongAnswer
+  - WrongAnswer2
+  - CorrectAnswer
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class EquationGenerator2 : MonoBehaviour
 {
+
     public enum Difficulty { EASY, MEDIUM, HARD }
     public Difficulty difficulty;
+
+    [Header("Equation")]
     public int numberOne;
     public int numberTwo;
-    public static int correctAnswer;
-    public static List<int> dummyAnswers;
-    private string operatorSign = "";
+    public int correctAnswer;  //If you choose the correct answer, move on to the next question.
+    public List<int> dummyAnswers;
+    public string operatorSign = "";
+
+    [Header("SuffleAnswer")]
+    public bool isCorrectAnswer; //If you collide with the right platform, this bool becomes true.
+    public int[] arrays = new int[3];
+    public GameObject[] platform; //This is the platform having the answers. An object with the right answer has the "CorrectAnswer" tag.
+
+    void Start()
+    {
+        GenerateRandomEquation();
+        GameObject player = GameObject.FindWithTag("Player");
+
+        SuffleAnswer();
+    }
 
     private void Update()
     {
@@ -22,7 +38,53 @@ public class EquationGenerator2 : MonoBehaviour
         //    GenerateDivision();
 
         if (Input.GetKeyDown(KeyCode.R))
+        {
             GenerateRandomEquation();
+            SuffleAnswer();
+        }
+
+
+        if (isCorrectAnswer == true)
+        {
+            GenerateRandomEquation();
+            SuffleAnswer();
+        }
+
+    }
+
+    void SuffleAnswer()
+    {
+        //Makes the correct and incorrect answers randomly output.
+
+        arrays[0] = dummyAnswers[0];
+        arrays[1] = dummyAnswers[1];
+        arrays[2] = correctAnswer;
+        arrays = SuffleArray(arrays);
+
+        for (int i = 0; i < arrays.Length; i++)
+        {
+            Debug.Log(arrays[i]);
+        }
+    }
+
+    public T[] SuffleArray<T>(T[] array)
+    {
+        //Makes the correct and incorrect answers randomly output.
+
+        int random1, random2;
+        T temp;
+
+        for (int i = 0; i < array.Length; ++i)
+        {
+            random1 = Random.Range(0, array.Length);
+            random2 = Random.Range(0, array.Length);
+
+            temp = array[random1];
+            array[random1] = array[random2];
+            array[random2] = temp;
+        }
+
+        return array;
     }
 
     private void GenerateRandomEquation()
@@ -101,6 +163,8 @@ public class EquationGenerator2 : MonoBehaviour
     /// </summary>
     private void GenerateDummyAnswers()
     {
+        //This is the incorrect answers
+
         for (int i = 0; i < dummyAnswers.Count; i++)
         {
             int dummy;
@@ -113,4 +177,7 @@ public class EquationGenerator2 : MonoBehaviour
             Debug.Log("Dummy answer: " + dummyAnswers[i]);
         }
     }
+
+    //https://coderzero.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%86%8C%EC%8A%A4-%EB%B0%B0%EC%97%B4-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%84%9E%EA%B8%B0Shuffle
+
 }
