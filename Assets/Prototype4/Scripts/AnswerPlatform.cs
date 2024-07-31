@@ -6,7 +6,6 @@ using System;
 public class AnswerPlatform : MonoBehaviour
 {
     public static Action _AP;
-
     EquationGenerator2 EG2;
     
     public float speed; //speed of platform
@@ -54,7 +53,18 @@ public class AnswerPlatform : MonoBehaviour
         //    yield return null;
         //}
 
+        Debug.Log("678");
         yield return null;
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            //EG2.BackToOriginalPosition();
+        }
+    }
+
+
 
 }

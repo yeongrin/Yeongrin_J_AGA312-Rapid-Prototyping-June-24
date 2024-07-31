@@ -515,17 +515,19 @@ MonoBehaviour:
     - 'Corn: Now..Stop being mean to me..'
     - 'White: All right, but..I think we forgot something...'
     - At that time, someone kicked in the lab door!!
-    - '???: Hey. Rabbit buddy, You broke my window and ran away while playing baseball
+    - '???: Hey, little bunny. You broke my window and ran away while playing baseball
       last time, right?'
-    - 'White: God dam*, bad temper deer guy who lives in the back house!!!!!!'
+    - 'White: God dam*, bad temper bambi guy. Last time, he followed me right in
+      front of our lab..!!!'
     - 'Con: I''m not involved right?'
-    - '???: Yes! But white rabbit.. Yes you will have to be scolded by me for 1 million
-      won.'
+    - '???: Yes! But bunny. I was sure when you were walking around under an acorn
+      tree yesterday!'
+    - '???: You will be scolded by me for 100 MILLION DOLLAR.'
     - 'White: .....Why life is so hard...?'
     - 'Corn: White....If you press the space twice, it''s a double jump. But press
       the onece, just jump.'
-    - 'Corn: Choose the right platform with this..'
-    - 'White: Morning jog time. It''s very nice....^^'
+    - 'Corn: Choose the right answer platform with this..'
+    - 'White: Morning jog time. It''s very nice....'
 --- !u!114 &284430119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,18 +575,6 @@ MonoBehaviour:
       - m_Target: {fileID: 284430118}
         m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: DLTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 284430117}
-        m_TargetAssemblyTypeName: TEXT, Assembly-CSharp
-        m_MethodName: Test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1821,8 +1811,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1980,7 +1970,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Prototype 2
+          m_StringArgument: Prototype 4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1591493957
@@ -2236,7 +2226,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

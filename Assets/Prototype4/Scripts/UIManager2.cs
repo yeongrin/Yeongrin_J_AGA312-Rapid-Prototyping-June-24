@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager2 : MonoBehaviour
 {
     EquationGenerator2 EG2;
+    CorrectAnswerPlatform CAP;
 
     [Header("Text")]
     public TMP_Text[] answerText;
@@ -20,6 +21,8 @@ public class UIManager2 : MonoBehaviour
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
+        CAP = GameObject.Find("EquationGenerator").GetComponent<CorrectAnswerPlatform>();
+
         ReduceHeart();
     }
 
@@ -31,9 +34,9 @@ public class UIManager2 : MonoBehaviour
 
     void SetText()
     {
-        answerText[0].text = EG2.arrays[0].ToString();
-        answerText[1].text = EG2.arrays[1].ToString();
-        answerText[2].text = EG2.arrays[2].ToString();
+        answerText[0].text = CAP.inCorrect.ToString();
+        answerText[1].text = CAP.inCorrect2.ToString();
+        answerText[2].text = CAP.correct.ToString();
         questionText.text = EG2.numberOne.ToString();
         questionText2.text = EG2.numberTwo.ToString();
         operatorSignText.text = EG2.operatorSign.ToString();

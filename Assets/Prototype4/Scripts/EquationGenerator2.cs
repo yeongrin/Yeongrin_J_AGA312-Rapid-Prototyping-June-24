@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EquationGenerator2 : MonoBehaviour
 {
-
+    //This script is question and answer script. The answer is randomly located on the platform.
+    //Correct Answer must be located on a platform with the correct answer tag.
+    //
     public enum Difficulty { EASY, MEDIUM, HARD }
     public Difficulty difficulty;
 
@@ -17,15 +19,17 @@ public class EquationGenerator2 : MonoBehaviour
 
     [Header("SuffleAnswer")]
     public bool isCorrectAnswer; //If you collide with the right platform, this bool becomes true.
-    public int[] arrays = new int[3];
-    public GameObject[] platform; //This is the platform having the answers. An object with the right answer has the "CorrectAnswer" tag.
+    public int[] answers = new int[3];
+    public GameObject[] platform; //This is the platform having the answers which have script "CorrectAnswerPlatform".
+    GameObject[] correctAnswerObjects;
 
     void Start()
     {
         GenerateRandomEquation();
         GameObject player = GameObject.FindWithTag("Player");
+        correctAnswerObjects = GameObject.FindGameObjectsWithTag("CorrectAnswer");
 
-        SuffleAnswer();
+        //SuffleAnswer();
         //AnswerPlatform._AP();
     }
 
@@ -41,14 +45,22 @@ public class EquationGenerator2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             GenerateRandomEquation();
-            SuffleAnswer();
+            //SuffleAnswer();
         }
 
-
+        //Go to next question
         if (isCorrectAnswer == true)
         {
             StartCoroutine(GenerateRandomQuestionSuffle());
             isCorrectAnswer = false;
+
+            Debug.Log("123");
+        }
+
+        if(isCorrectAnswer == false)
+        {
+            GenerateRandomQuestionSuffle();
+            Debug.Log("456");
         }
 
     }
@@ -60,46 +72,51 @@ public class EquationGenerator2 : MonoBehaviour
         {
             AnswerPlatform._AP();
             GenerateRandomEquation();
-            SuffleAnswer();
+            SuffleAnswerPlatform();
+            //SuffleAnswer();
             loop++;
         }
         yield return null;
     }
 
-    void SuffleAnswer()
+    void SuffleAnswerPlatform()
     {
-        //Makes the correct and incorrect answers randomly output.
 
-        arrays[0] = dummyAnswers[0];
-        arrays[1] = dummyAnswers[1];
-        arrays[2] = correctAnswer;
-        arrays = SuffleArray(arrays);
-
-        for (int i = 0; i < arrays.Length; i++)
-        {
-            Debug.Log(arrays[i]);
-        }
     }
 
-    public T[] SuffleArray<T>(T[] array)
-    {
-        //Makes the correct and incorrect answers randomly output.
+    //void SuffleAnswer()
+    //{
+    //    //Makes the correct and incorrect answers randomly output.
 
-        int random1, random2;
-        T temp;
+    //    answers[0] = dummyAnswers[0];
+    //    answers[1] = dummyAnswers[1];
+    //    answers[2] = correctAnswer;
+    //    answers = SuffleArray(answers);
 
-        for (int i = 0; i < array.Length; ++i)
-        {
-            random1 = Random.Range(0, array.Length);
-            random2 = Random.Range(0, array.Length);
+    //    for (int i = 0; i < answers.Length; i++)
+    //    {
+    //        Debug.Log(answers[i]);
+    //    }
+    //}
 
-            temp = array[random1];
-            array[random1] = array[random2];
-            array[random2] = temp;
-        }
+    //public T[] SuffleArray<T>(T[] array)
+    //{
+    //    //Makes the correct and incorrect answers randomly output.
 
-        return array;
-    }
+    //    int random1, random2;
+    //    T temp;
+
+    //    for (int i = 0; i < array.Length; ++i)
+    //    {
+    //        random1 = Random.Range(0, array.Length);
+    //        random2 = Random.Range(0, array.Length);
+
+    //        temp = array[random1];
+    //        array[random1] = array[random2];
+    //        array[random2] = temp;
+    //    }
+    //    return array;
+    //}
 
     private void GenerateRandomEquation()
     {
@@ -112,6 +129,22 @@ public class EquationGenerator2 : MonoBehaviour
             GenerateMultiplication();
         else
             GenerateDivision();
+    }
+
+    void ChangePlatform()
+    {
+        //platform[0] = ;
+        //platform[1] = ;
+        //platform[2] = ;
+
+        foreach (GameObject _answer in correctAnswerObjects)
+        {
+            CorrectAnswerPlatform manager = _answer.GetComponent<CorrectAnswerPlatform>();
+            if (manager != null)
+            {
+                Debug.Log("this is correct answer");
+            }
+        }
     }
 
     private void GenerateMultiplication()
@@ -193,5 +226,11 @@ public class EquationGenerator2 : MonoBehaviour
     }
 
     //https://coderzero.tistory.com/entry/%EC%9C%A0%EB%8B%88%ED%8B%B0-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%86%8C%EC%8A%A4-%EB%B0%B0%EC%97%B4-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%84%9E%EA%B8%B0Shuffle
+
+   //public void BackToOriginalPosition()
+   // {
+   // private Vector3 startPosition;
+    
+   // }
 
 }
