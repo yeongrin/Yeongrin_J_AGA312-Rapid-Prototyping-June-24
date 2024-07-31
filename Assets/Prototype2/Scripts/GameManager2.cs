@@ -46,38 +46,35 @@ public class GameManager2 : MonoBehaviour
     void Update()
     {
         SetText();
-        StartCoroutine(TimerAndLives());
+        ReduceHeart();
+    
 
-        if (score <= 0)
+            if (score <= 0)
         {
             gameEndingPanel.SetActive(true);
-                StopCoroutine(TimerAndLives());
+              
         }
        
         if(timer <= 0)
         {
             gameOverPanel.SetActive(true);
-            StopCoroutine(TimerAndLives());
+          
            
         }
       
         if(_PC2.health <= 0)
         {
             gameOverPanel.SetActive(true);
-            StopCoroutine(TimerAndLives());
-         
+          
         }
       
     }
 
-    IEnumerator TimerAndLives()
+    void ReduceHeart()
     {
-        timer -= Time.deltaTime;
-        //heartUI.sprite = heartSpirites[_PC2.health];
-
-        for (int i = 0; i < _PC2.health; i++)
+        for (int i = 0; i < heartUI.Length; i++)
         {
-            if( i < _PC2.health)
+            if (i < _PC2.health)
             {
                 heartUI[i].enabled = true;
             }
@@ -86,8 +83,6 @@ public class GameManager2 : MonoBehaviour
                 heartUI[i].enabled = false;
             }
         }
-        SetText();
-        yield break;
     }
 
     public void SetText()

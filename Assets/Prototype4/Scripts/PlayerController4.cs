@@ -21,6 +21,9 @@ public class PlayerController4 : MonoBehaviour
 
     public Vector2 originalTransform;
     public Vector2 movingTransform; // if player crash the wrong answer, they move back a little
+    public AnswerPlatform platform1;
+    public AnswerPlatform platform2;
+    public AnswerPlatform platform3;
 
     void Awake()
     {
@@ -108,6 +111,9 @@ public class PlayerController4 : MonoBehaviour
             //originalTransform = this.transform.position;
 
         }
+        platform1.ResetPlatform();
+        platform2.ResetPlatform();
+        platform3.ResetPlatform();
     }
 
     IEnumerator NuckBack()

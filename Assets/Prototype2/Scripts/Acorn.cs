@@ -71,9 +71,9 @@ public class Acorn : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.X) && isPlayerEnter)
                     {
-                        //transform.SetParent(playerEquipPoint.transform);
-                        //transform.localPosition = Vector3.zero;
-                        //transform.rotation = new Quaternion(0, 0, 0, 0);
+                        transform.SetParent(playerEquipPoint.transform);
+                        transform.localPosition = Vector3.zero;
+                        transform.rotation = new Quaternion(0, 0, 0, 0);
 
                         if (playerLogic.health < 5)
                         {
@@ -84,7 +84,7 @@ public class Acorn : MonoBehaviour
                         {
                             Destroy(this.gameObject);
                         }
-                        //isPlayerEnter = false;
+                        isPlayerEnter = false;
                     }
                     
                 }

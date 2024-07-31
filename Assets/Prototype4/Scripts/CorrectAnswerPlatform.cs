@@ -44,12 +44,12 @@ public class CorrectAnswerPlatform : MonoBehaviour
         if (platform.CompareTag("WrongAnswer"))
         {
             inCorrect = EG2.dummyAnswers[0];
-            Debug.Log("this is not the answer");
+           
         }
         if (platform2.CompareTag("WrongAnswer2"))
         {
             inCorrect2 = EG2.dummyAnswers[1];
-            Debug.Log("this is not the answer");
+           
         }
         if (platform3.gameObject.CompareTag("CorrectAnswer"))
         {

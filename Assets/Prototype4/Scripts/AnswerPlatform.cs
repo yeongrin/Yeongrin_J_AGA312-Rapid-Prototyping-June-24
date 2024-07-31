@@ -15,7 +15,7 @@ public class AnswerPlatform : MonoBehaviour
 
     void Awake()
     {
-        _AP = () => { PlatformMove(); };
+       // _AP = () => { PlatformMove(); };
     }
 
     void Start()
@@ -27,7 +27,7 @@ public class AnswerPlatform : MonoBehaviour
 
     void PlatformMove()
     {
-        StartCoroutine(MoveBackAndForth());
+        StartCoroutine("MoveBackAndForth");
     }
 
     IEnumerator MoveBackAndForth()
@@ -39,32 +39,15 @@ public class AnswerPlatform : MonoBehaviour
             elapedTime += Time.deltaTime;
             yield return null;
         }
-        transform.position = endPosition;
 
-        //yield return new WaitForSeconds(moveDuration);
-        elapedTime = 0f;
-
-       transform.position = startPosition;
-
-        //while (elapedTime < moveDuration)
-        //{
-        //    transform.position = Vector3.Lerp(endPosition, startPosition, elapedTime / moveDuration);
-        //    elapedTime += Time.deltaTime;
-        //    yield return null;
-        //}
-
-        Debug.Log("678");
         yield return null;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void ResetPlatform()
     {
-        if (col.tag == "Player")
-        {
-            //EG2.BackToOriginalPosition();
-        }
+        StopCoroutine("MoveBackAndForth");
+        transform.position = startPosition;
+        StartCoroutine("MoveBackAndForth");
     }
-
-
 
 }

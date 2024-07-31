@@ -4,9 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayGround : GameBehaviour
 {
+    private float bloom = 0.5f;
     public enum Direction { North, South, West, East }
     public GameObject player;
     public float moveDistance = 2f;
@@ -125,11 +127,15 @@ public class PlayGround : GameBehaviour
         }
         _SAVE.SetLastPosition(player.transform.position);
         ChangeColor();
+        bloom += 0.5f;
+        _EFFECT.SetBloom(bloom);
+        _EFFECT.TweenVignetteInOut(0.5f, 0.5f);
     }
 
     void ShakeCamera()
     {
         Camera.main.DOShakePosition(moveTweenTime/2, shakeStrength);
+        _EFFECT.TweenChromaticInOut(0.5f, 0.5f);
     }
 
     void ChangeColor()

@@ -35,17 +35,9 @@ public class EquationGenerator2 : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.M))
-        //    GenerateMultiplication();
-        //if (Input.GetKeyDown(KeyCode.A))
-        //    GenerateAddition();
-        //if (Input.GetKeyDown(KeyCode.D))
-        //    GenerateDivision();
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             GenerateRandomEquation();
-            //SuffleAnswer();
         }
 
         //Go to next question
@@ -70,10 +62,8 @@ public class EquationGenerator2 : MonoBehaviour
         int loop = 0;
         while (loop < 1)
         {
-            AnswerPlatform._AP();
             GenerateRandomEquation();
             SuffleAnswerPlatform();
-            //SuffleAnswer();
             loop++;
         }
         yield return null;
