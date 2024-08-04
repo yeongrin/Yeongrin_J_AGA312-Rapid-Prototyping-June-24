@@ -31,6 +31,7 @@ public class CorrectAnswerPlatform : MonoBehaviour
         {
             correct = EG2.correctAnswer;
         }
+
     }
 
    

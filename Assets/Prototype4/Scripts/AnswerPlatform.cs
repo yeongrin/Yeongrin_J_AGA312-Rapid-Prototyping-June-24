@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.UI;
 
 public class AnswerPlatform : MonoBehaviour
 {
-    public static Action _AP;
     EquationGenerator2 EG2;
     
     public float speed; //speed of platform
@@ -13,13 +14,10 @@ public class AnswerPlatform : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 endPosition;
 
-    void Awake()
-    {
-       // _AP = () => { PlatformMove(); };
-    }
-
     void Start()
     {
+        EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
+
         startPosition = transform.position; //Original position
         endPosition = startPosition + Vector3.left * moveDuration; //this platform move left as much as 5 does.
         PlatformMove();
@@ -32,6 +30,7 @@ public class AnswerPlatform : MonoBehaviour
 
     IEnumerator MoveBackAndForth()
     {
+
         float elapedTime = 0f;
         while (elapedTime < moveDuration)
         {
@@ -48,6 +47,8 @@ public class AnswerPlatform : MonoBehaviour
         StopCoroutine("MoveBackAndForth");
         transform.position = startPosition;
         StartCoroutine("MoveBackAndForth");
+        EG2.GenerateRandomQuestionSuffle1();
+
     }
 
 }

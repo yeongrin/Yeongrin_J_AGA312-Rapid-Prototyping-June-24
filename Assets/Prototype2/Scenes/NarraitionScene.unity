@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,6 +171,10 @@ MonoBehaviour:
   dialogueText: {fileID: 1848232077}
   dialPanel: {fileID: 1844910790}
   anim: {fileID: 989108104}
+  spawn: {fileID: 0}
+  forces: {fileID: 0}
+  timer: {fileID: 0}
+  firing: {fileID: 0}
 --- !u!1 &306018907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,15 +1580,16 @@ MonoBehaviour:
   info:
     name: In Laboratory
     sentences:
-    - 'White: So, ate all the acorns we collected for experimentation and dinner?'
-    - 'Corn: I thought ....Umm...we..didn''t need it anymore..'
-    - 'White: No more excuses. We don''t have time. NEED TO gather acorns again by
-      this evening.'
+    - 'White: You mean. Ate all the acorns we collected for experimentation and dinner?'
+    - 'Con: I thought ....Umm...we..didn''t need it anymore..!!'
+    - 'White: No more excuses. We don''t have time. We MUST to gather acorns again
+      by this evening.'
     - 'White: You go up the tree and pick up acorns and throw them at me.'
     - "White:  This is very easy!! \nMove to the left and right keys."
     - 'White: Jump and Down to the Up and down keys.'
-    - "Corn: Space is picking up acorns. \nAnd press space again, you drop the acorns."
-    - 'Corn: But...There are a lot of bugs in the tree..!!'
+    - "Con: Space is picking up acorns. \nAnd press space again, you drop the acorns."
+    - 'Con: But...There are a lot of bugs in the tree. Every bugs breed in early
+      Summer.'
     - 'White: SO?'
     - 'Corn: sorry.....'
 --- !u!114 &1844388777
