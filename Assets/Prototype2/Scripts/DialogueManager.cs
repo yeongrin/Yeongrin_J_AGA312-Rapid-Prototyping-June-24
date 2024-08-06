@@ -17,10 +17,38 @@ public class DialogueManager: MonoBehaviour
     public GameObject timer;
     public GameObject firing;
 
+    [Header("Image")]
+    public Sprite[] sprites;
+    public Image image;
+
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+
+        image.sprite = sprites[0];
+        //if (sprites.Length > 0 && image != null)
+        //{
+
+        //}
+    }
+
+    void Update()
+    {
+        if (sentences.Count == 10)
+        {
+            image.sprite = sprites[1];
+
+        }
+        else if (sentences.Count == 8)
+        {
+            image.sprite = sprites[2];
+        }
+        else if (sentences.Count == 1)
+        {
+            image.sprite = sprites[3];
+        }
+        
     }
 
     public void StartDialogue(Dialogue dialogue)

@@ -18,18 +18,41 @@ public class UIManager2 : MonoBehaviour
     [Header("Health")]
     public Image[] heartImages;
 
+    [Header("Slider")]
+    public Slider slider;
+    public float maxTime;
+    public float elapsedTime = 0f;
+    public GameObject endingPanel;
+
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         CAP = GameObject.Find("EquationGenerator").GetComponent<CorrectAnswerPlatform>();
 
         ReduceHeart();
+
+        if (slider != null)
+        {
+            slider.value = 0f;
+        }
     }
 
     void Update()
     {
         SetText();
         ReduceHeart();
+
+        if(slider != null)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float normalizedTime = Mathf.Clamp(elapsedTime / maxTime, 0f, 1f);
+            slider.value = normalizedTime;
+        }
+        if(elapsedTime >= maxTime)
+        {
+            endingPanel.SetActive(true);
+        }
     }
 
     void SetText()

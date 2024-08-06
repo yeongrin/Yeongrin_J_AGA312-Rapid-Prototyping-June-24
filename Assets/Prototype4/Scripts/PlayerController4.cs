@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 
-public class PlayerController4 : MonoBehaviour
+public class PlayerController4 : GameBehaviour
 {
     public float p_jumpForce = 0f;
     private bool doubleJump;
@@ -45,6 +46,11 @@ public class PlayerController4 : MonoBehaviour
     {
         Jump();
        
+        if(playerHealth == 4)
+        {
+
+        }
+
     }
 
     void Jump()
@@ -92,6 +98,7 @@ public class PlayerController4 : MonoBehaviour
 
         if (other.gameObject.tag == "WrongAnswer")
         {
+            _EFFECT.TweenVignetteInOut(0.5f, 0.5f);
             EG2.isCorrectAnswer = false;
             StartCoroutine(NuckBack());
 
@@ -102,6 +109,7 @@ public class PlayerController4 : MonoBehaviour
 
         if (other.gameObject.tag == "WrongAnswer2")
         {
+            _EFFECT.TweenVignetteInOut(0.5f, 0.5f);
             EG2.isCorrectAnswer = false;
             StartCoroutine(NuckBack());
            
