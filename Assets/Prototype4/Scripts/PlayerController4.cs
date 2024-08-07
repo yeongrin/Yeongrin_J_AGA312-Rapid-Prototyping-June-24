@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController4 : GameBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerController4 : GameBehaviour
     public PlatformMoving platform1;
     public PlatformMoving platform2;
     public PlatformMoving platform3;
+    public Vector3[] platformStartPositions;
 
     void Awake()
     {
@@ -33,6 +35,10 @@ public class PlayerController4 : GameBehaviour
 
     void Start()
     {
+        platformStartPositions[0] = platform1.transform.position;
+        platformStartPositions[1] = platform2.transform.position;
+        platformStartPositions[2] = platform3.transform.position;
+
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         p_rigid = GetComponent<Rigidbody2D>();
      
@@ -40,6 +46,7 @@ public class PlayerController4 : GameBehaviour
 
         originalTransform = this.transform.position;
         movingTransform = this.transform.position;
+        
     }
 
     void Update()
@@ -102,9 +109,8 @@ public class PlayerController4 : GameBehaviour
             EG2.isCorrectAnswer = false;
             StartCoroutine(NuckBack());
 
-           // movingTransform = new Vector2(originalTransform.x - 1f, originalTransform.y);
             this.transform.position = movingTransform;
-           // originalTransform = this.transform.position;
+
         }
 
         if (other.gameObject.tag == "WrongAnswer2")
@@ -119,15 +125,26 @@ public class PlayerController4 : GameBehaviour
             //originalTransform = this.transform.position;
 
         }
-        //platform1.ResetPlatform();
-        //platform2.ResetPlatform();
-        //platform3.ResetPlatform();
-        //EG2.GenerateRandomQuestionSuffle1();
+        Shuffle(platformStartPositions);
+        platform1.ResetPlatform(platformStartPositions[0]);
+        platform2.ResetPlatform(platformStartPositions[1]);
+        platform3.ResetPlatform(platformStartPositions[2]);
+        EG2.GenerateRandomQuestionSuffle1();
+    }
+
+    private void Shuffle(Vector3[] array)
+    {
+        for (int i = array.Length - 1; i > 0; i--)
+        {
+            int r = Random.Range(0, i + 1);
+            Vector3 temp = array[i];
+            array[i] = array[r];
+            array[r] = temp;
+        }
     }
 
     IEnumerator NuckBack()
     {
-        //CancelInvoke("Damage");
         playerHealth -= 1;
 
         for (int i = 1; i < 4; i++)

@@ -26,7 +26,7 @@ public class CorrectAnswerPlatform : MonoBehaviour
         for (int i = 0; i < platforms.Length; i++)
         {
             objectToPlace[i] = platforms[i].position;
-            //This is working.
+           
         }
 
         if (platform.CompareTag("WrongAnswer"))
@@ -75,7 +75,6 @@ public class CorrectAnswerPlatform : MonoBehaviour
     public Vector3[] GetObjectPositions()
     {
         return objectToPlace;
-        Debug.Log("8474389778946789467845897348794387943879");
-        //This is not working.
+       
     }
 }

@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 using System;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class PlatformMoving : MonoBehaviour
 {
@@ -14,16 +15,22 @@ public class PlatformMoving : MonoBehaviour
     public float speed; //speed of platform
     public float moveDuration; //How many time do platform move
 
+    Vector3 startPosition;
+    Vector3 endPosition;
+
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         CAP = FindObjectOfType<CorrectAnswerPlatform>();
         objectToPlace = CAP.GetObjectPositions();
-   
-
-        //startPosition = transform.position; //Original position
-        //endPosition = startPosition + Vector3.left * moveDuration; //this platform move left as much as 5 does.
+        startPosition = transform.position; //Original position
+        SetPositions();
         PlatformMove(); //Swap and moving platform
+    }
+
+    void SetPositions()
+    {
+        endPosition = startPosition + Vector3.left * moveDuration; //this platform move left as much as 5 does.
     }
 
     void PlatformMove()
@@ -33,13 +40,10 @@ public class PlatformMoving : MonoBehaviour
 
     IEnumerator MoveBackAndForth()
     {
-        SwapPositions(); //Swap position
-
         float elapedTime = 0f;
         while (elapedTime < moveDuration)
         {
-            //transform.position = Vector3.Lerp(startPosition, endPosition, elapedTime / moveDuration);
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(startPosition, endPosition, elapedTime / moveDuration);
             elapedTime += Time.deltaTime;
             yield return null;
         }
@@ -47,54 +51,14 @@ public class PlatformMoving : MonoBehaviour
         yield return null;
     }
 
-    public void ResetPlatform()
+    public void ResetPlatform(Vector3 _startPos)
     {
         StopCoroutine("MoveBackAndForth");
-        //transform.position = startPosition;
+        startPosition = _startPos;
+        transform.position = startPosition;
+        SetPositions();
         StartCoroutine("MoveBackAndForth");
         
-    }
-
-    public void SwapPositions()
-    {
-       //this is working
-
-        // Get all platforms that are colliding
-        Transform[] platforms = CAP.platforms;
-        Vector3[] positions = new Vector3[platforms.Length];
-
-        for (int i = 0; i < platforms.Length; i++)
-        {
-            positions[i] = platforms[i].position;
-        }
-
-        // Shuffle positions and apply them
-        Shuffle(positions);
-
-        for (int i = 0; i < platforms.Length; i++)
-        {
-            platforms[i].position = positions[i];
-        }
-    }
-
-    private void Shuffle(Vector3[] array)
-    {
-        for (int i = array.Length - 1; i > 0; i--)
-        {
-            int r = Random.Range(0, i + 1);
-            Vector3 temp = array[i];
-            array[i] = array[r];
-            array[r] = temp;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            ResetPlatform();
-            EG2.GenerateRandomQuestionSuffle1();
-        }
     }
 
 }

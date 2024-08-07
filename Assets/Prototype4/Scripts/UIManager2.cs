@@ -93,14 +93,15 @@ public class UIManager2 : MonoBehaviour
 
     public void GameEnding()
     {
-        
-            paused = !paused;
-            gameEndingPanel.SetActive(paused);
-            if (paused)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = 1;
-            Time.timeScale = paused ? 0 : 1;
+
+        //paused = !paused;
+        //gameEndingPanel.SetActive(paused);
+        //if (paused)
+        //    Time.timeScale = 0;
+        //else
+        //    Time.timeScale = 1;
+        //Time.timeScale = paused ? 0 : 1;
+        gameEndingPanel.SetActive(true);
         
 
     }
