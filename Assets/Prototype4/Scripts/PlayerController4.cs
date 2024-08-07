@@ -22,9 +22,9 @@ public class PlayerController4 : GameBehaviour
 
     public Vector2 originalTransform;
     public Vector2 movingTransform; // if player crash the wrong answer, they move back a little
-    public AnswerPlatform platform1;
-    public AnswerPlatform platform2;
-    public AnswerPlatform platform3;
+    public PlatformMoving platform1;
+    public PlatformMoving platform2;
+    public PlatformMoving platform3;
 
     void Awake()
     {
@@ -91,7 +91,7 @@ public class PlayerController4 : GameBehaviour
             EG2.isCorrectAnswer = true;
             if (EG2.isCorrectAnswer == true)
             {
-                Debug.Log("correct!!");
+                
             }
 
         }
@@ -119,9 +119,10 @@ public class PlayerController4 : GameBehaviour
             //originalTransform = this.transform.position;
 
         }
-        platform1.ResetPlatform();
-        platform2.ResetPlatform();
-        platform3.ResetPlatform();
+        //platform1.ResetPlatform();
+        //platform2.ResetPlatform();
+        //platform3.ResetPlatform();
+        //EG2.GenerateRandomQuestionSuffle1();
     }
 
     IEnumerator NuckBack()

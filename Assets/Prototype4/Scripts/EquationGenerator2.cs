@@ -17,32 +17,26 @@ public class EquationGenerator2 : MonoBehaviour
     public int correctAnswer;  //If you choose the correct answer, move on to the next question.
     public List<int> dummyAnswers;
     public string operatorSign = "";
-
-    [Header("SuffleAnswer")]
     public bool isCorrectAnswer; //If you collide with the right platform, this bool becomes true.
-    public int[] answers = new int[3];
-    public GameObject[] platform; //This is the platform having the answers which have script "CorrectAnswerPlatform".
-    //GameObject[] correctAnswerObjects;
 
-    [Header ("SufflePlatform")]
-    public Transform[] platformLocation;
-    public GameObject[] objectToPlace;
+    [Header("SufflePlatform")]
+    //public Transform[] platformLocation;
+    //public Transform[] platforms;
+    //public GameObject[] objectToPlace;
+
+    CorrectAnswerPlatform CAP;
 
     void Start()
     {
         GenerateRandomQuestionSuffle1();
 
         GameObject player = GameObject.FindWithTag("Player");
-   
+        CAP = gameObject.GetComponent<CorrectAnswerPlatform>();
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            GenerateRandomEquation();
-        }
-
         //Go to next question
         if (isCorrectAnswer == true)
         {
@@ -50,7 +44,7 @@ public class EquationGenerator2 : MonoBehaviour
             isCorrectAnswer = false;
         }
 
-        if(isCorrectAnswer == false)
+        if (isCorrectAnswer == false)
         {
             return;
         }
@@ -68,50 +62,39 @@ public class EquationGenerator2 : MonoBehaviour
         while (loop < 1)
         {
             GenerateRandomEquation();
-            SuffleAnswerPlatform(platformLocation);
+            //SuffleAnswerPlatform(platformLocation);
             loop++;
         }
         yield return null;
     }
 
-    void SuffleAnswerPlatform(Transform[] transformArray)
-    {
-        foreach (GameObject obj in objectToPlace)
-        {
-            int randomIndex = Random.Range(0, transformArray.Length);
-
-            obj.transform.transform.position = transformArray[randomIndex].position;
-            obj.transform.transform.rotation = transformArray[randomIndex].rotation;
-            obj.transform.transform.localScale = transformArray[randomIndex].localScale;
-            Debug.Log("looping");
-        }
-
-        //currentTransform = SuffleArray(currentTransform);
-
-        //for (int i = 0; i < currentTransform.Length; i++)
-        //{
-        //    Debug.Log(currentTransform[i]);
-        //}
-    }
-
-    //public T[] SuffleArray<T>(T[] currentTransform)
+    //void SuffleAnswerPlatform(Transform[] transformArray)
     //{
-    //    //Makes the correct and incorrect answers randomly output.
 
-    //    int random1, random2;
-    //    T temp;
-
-    //    for (int i = 0; i < currentTransform.Length; ++i)
+    //    for (int i = transformArray.Length - 1; i > 0; i--)
     //    {
-    //        random1 = Random.Range(0, currentTransform.Length);
-    //        random2 = Random.Range(0, currentTransform.Length);
+    //        int j = Random.Range(0, i + 1);
 
-    //        temp = currentTransform[random1];
-    //        currentTransform[random1] = currentTransform[random2];
-    //        currentTransform[random2] = temp;
+    //        Transform temp = transformArray[i];
+    //        transformArray[i] = transformArray[j];
+    //        transformArray[j] = temp;
     //    }
-    //    return currentTransform;
-    //}
+
+    //    for (int i = 0; i < transformArray.Length; i++)
+    //    {
+    //        platforms[i].position = transformArray[i].position;
+    //    }
+
+    //    foreach (GameObject obj in objectToPlace)
+    //    {
+    //        int randomIndex = Random.Range(0, transformArray.Length);
+
+    //        obj.transform.transform.position = transformArray[randomIndex].position;
+    //        obj.transform.transform.rotation = transformArray[randomIndex].rotation;
+    //        obj.transform.transform.localScale = transformArray[randomIndex].localScale;
+    //        Debug.Log("looping");
+    //    }
+//}
 
     #region Math
     private void GenerateRandomEquation()
@@ -125,6 +108,7 @@ public class EquationGenerator2 : MonoBehaviour
             GenerateMultiplication();
         else
             GenerateDivision();
+
     }
 
     private void GenerateMultiplication()

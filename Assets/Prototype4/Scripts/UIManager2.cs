@@ -8,6 +8,7 @@ public class UIManager2 : MonoBehaviour
 {
     EquationGenerator2 EG2;
     CorrectAnswerPlatform CAP;
+    private bool paused;
 
     [Header("Text")]
     public TMP_Text[] answerText;
@@ -22,12 +23,17 @@ public class UIManager2 : MonoBehaviour
     public Slider slider;
     public float maxTime;
     public float elapsedTime = 0f;
-    public GameObject endingPanel;
+    public GameObject gameOverPanel;
+    public GameObject gameEndingPanel;
 
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
         CAP = GameObject.Find("EquationGenerator").GetComponent<CorrectAnswerPlatform>();
+
+        paused = false;
+        gameEndingPanel.SetActive(paused);
+        Time.timeScale = 1;
 
         ReduceHeart();
 
@@ -49,9 +55,14 @@ public class UIManager2 : MonoBehaviour
             float normalizedTime = Mathf.Clamp(elapsedTime / maxTime, 0f, 1f);
             slider.value = normalizedTime;
         }
-        if(elapsedTime >= maxTime)
+        if (PlayerController4.playerHealth <= 0)
         {
-            endingPanel.SetActive(true);
+            gameOverPanel.SetActive(true);
+
+        }
+        if (elapsedTime >= maxTime)
+        {
+            GameEnding();
         }
     }
 
@@ -78,5 +89,19 @@ public class UIManager2 : MonoBehaviour
                 heartImages[i].enabled = false;
             }
         }
+    }
+
+    public void GameEnding()
+    {
+        
+            paused = !paused;
+            gameEndingPanel.SetActive(paused);
+            if (paused)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
+            Time.timeScale = paused ? 0 : 1;
+        
+
     }
 }

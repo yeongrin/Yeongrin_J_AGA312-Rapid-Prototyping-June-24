@@ -13,19 +13,31 @@ public class CorrectAnswerPlatform : MonoBehaviour
     public GameObject platform2;
     public GameObject platform3;
 
+    [Header("SufflePlatform")]
+    public Transform[] platforms; // Assign these in the inspector
+    public Vector3[] objectToPlace;
+
     void Start()
     {
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
 
+        objectToPlace = new Vector3[platforms.Length];
+
+        for (int i = 0; i < platforms.Length; i++)
+        {
+            objectToPlace[i] = platforms[i].position;
+            //This is working.
+        }
+
         if (platform.CompareTag("WrongAnswer"))
         {
             inCorrect = EG2.dummyAnswers[0];
-            Debug.Log("this is not the answer");
+         
         }
         if (platform2.CompareTag("WrongAnswer2"))
         {
             inCorrect2 = EG2.dummyAnswers[1];
-            Debug.Log("this is not the answer");
+         
         }
         if(platform3.gameObject.CompareTag("CorrectAnswer"))
         {
@@ -34,7 +46,6 @@ public class CorrectAnswerPlatform : MonoBehaviour
 
     }
 
-   
     void Update()
     {
         ShowTheAnswer();
@@ -42,6 +53,8 @@ public class CorrectAnswerPlatform : MonoBehaviour
 
     void ShowTheAnswer()
     {
+        //Only objects with the correct answer tag have "int = correct answer".
+
         if (platform.CompareTag("WrongAnswer"))
         {
             inCorrect = EG2.dummyAnswers[0];
@@ -57,5 +70,12 @@ public class CorrectAnswerPlatform : MonoBehaviour
             correct = EG2.correctAnswer;
         }
 
+    }
+
+    public Vector3[] GetObjectPositions()
+    {
+        return objectToPlace;
+        Debug.Log("8474389778946789467845897348794387943879");
+        //This is not working.
     }
 }

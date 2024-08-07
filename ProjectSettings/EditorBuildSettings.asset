@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Prototype4/Scenes/NarrativeScene2.unity
     guid: 2836febd350a82049ba48c92ae010715
   - enabled: 1
+    path: Assets/Prototype4/Scenes/NarrativeScene3.unity
+    guid: e60031a4e372cdf4a8d5093624801140
+  - enabled: 1
     path: Assets/Prototype4/Scenes/Prototype 4.unity
     guid: 7fdc3a9a2ae4ed542b652f37c9765889
   m_configObjects: {}
