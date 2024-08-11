@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2380,7 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splashImage: {fileID: 248087342}
-  image: {fileID: 21300000, guid: 2af1f277cc67f694c90fa0fbd9a1d6fa, type: 3}
+  image: {fileID: 21300000, guid: 852623c7d14b1014e93f25b2aecf132f, type: 3}
 --- !u!114 &1783316795
 MonoBehaviour:
   m_ObjectHideFlags: 0

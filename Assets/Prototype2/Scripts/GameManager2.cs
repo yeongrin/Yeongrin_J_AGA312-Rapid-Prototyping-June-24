@@ -47,6 +47,7 @@ public class GameManager2 : MonoBehaviour
     {
         SetText();
         ReduceHeart();
+        timer -= Time.deltaTime;
     
 
             if (score <= 0)

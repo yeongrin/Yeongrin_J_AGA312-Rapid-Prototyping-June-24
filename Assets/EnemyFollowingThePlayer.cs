@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class EnemyFollowingThePlayer : MonoBehaviour
 {
-    public Vector3 originalTransform;
-    public Vector3 currentTransform;
-    public float distanceToPlayer;
 
-    public Transform playerTransform;
-    public int playerHealth = 5;
+    public Vector3 currentTransform;
+
+    public Transform player;
+    public Transform enemy;
+    public int speed;
     public bool isMoving = true;
 
     void Start()
     {
-        originalTransform = this.transform.position;
-        currentTransform = originalTransform;
+        currentTransform = enemy.position;
     }
 
     void Update()
     {
-        if(isMoving && playerHealth > 0)
+        if (PlayerController4.playerHealth <= 0)
         {
+            // Make sure player and enemy are at the same position
+            if (Vector3.Distance(player.position, enemy.position) > 0.1f)
+            {
+                enemy.position = player.position;
+            }
+        }
+        else
+        {
+            // Move enemy towards the player based on strength
             MoveTowardsPlayers();
         }
     }
@@ -30,14 +38,18 @@ public class EnemyFollowingThePlayer : MonoBehaviour
     public void MoveTowardsPlayers()
     {
 
-        if(playerHealth < 0)
+        // Calculate the direction from enemy to player
+        Vector3 direction = (player.position - enemy.position).normalized;
+
+        // Move the enemy towards the player
+        enemy.position += direction * speed * Time.deltaTime;
+
+        // Check if the enemy has reached the player
+        if (Vector3.Distance(enemy.position, player.position) < 0.1f)
         {
-            playerHealth = 0;
+            // Ensure the enemy's position is exactly at the player's position
+            enemy.position = player.position;
         }
 
-           Vector3 newPosition = transform.position;
-            newPosition.x = (playerTransform.position.x - 1) ;
-            transform.position = newPosition;
-      
     }
 }
