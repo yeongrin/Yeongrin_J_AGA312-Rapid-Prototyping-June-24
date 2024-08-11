@@ -78,10 +78,12 @@ public class Acorn : MonoBehaviour
                         if (playerLogic.health < 5)
                         {
                             playerLogic.health += 1;
+                            Destroy(this.gameObject);
 
                         }
                         else
                         {
+                            if(playerLogic.health >= 5)
                             Destroy(this.gameObject);
                         }
                         isPlayerEnter = false;
