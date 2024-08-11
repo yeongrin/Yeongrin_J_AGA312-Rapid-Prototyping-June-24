@@ -6300,10 +6300,6 @@ MonoBehaviour:
     enemy: {fileID: 2581774206489994332, guid: 1bfca743730b09c47816e08c1eb12a14, type: 3}
     count: 3
     rate: 1
-  - name: Cherry
-    enemy: {fileID: 2581774206489994332, guid: 57e87986ec96b3348b6e10cc9a4aae6f, type: 3}
-    count: 1
-    rate: 1
   spawnPoints:
   - {fileID: 494115960}
   - {fileID: 1698479885}
