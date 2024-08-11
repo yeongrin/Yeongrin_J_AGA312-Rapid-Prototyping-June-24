@@ -21,16 +21,12 @@ public class DialogueManager: MonoBehaviour
     public Sprite[] sprites;
     public Image image;
 
-    // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
 
         image.sprite = sprites[0];
-        //if (sprites.Length > 0 && image != null)
-        //{
-
-        //}
+  
     }
 
     void Update()

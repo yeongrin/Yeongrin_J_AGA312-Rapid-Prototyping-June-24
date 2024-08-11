@@ -20,6 +20,7 @@ public class PlayerController4 : GameBehaviour
 
     SpriteRenderer spriteRenderer;
     EquationGenerator2 EG2;
+    EnemyFollowingThePlayer _enemy;
 
     public Vector2 originalTransform;
     public Vector2 movingTransform; // if player crash the wrong answer, they move back a little
@@ -40,6 +41,7 @@ public class PlayerController4 : GameBehaviour
         platformStartPositions[2] = platform3.transform.position;
 
         EG2 = GameObject.Find("EquationGenerator").GetComponent<EquationGenerator2>();
+        _enemy = GameObject.Find("Atoma").GetComponent<EnemyFollowingThePlayer>();
         p_rigid = GetComponent<Rigidbody2D>();
      
         playerHealth = MaxHealth;
@@ -107,6 +109,7 @@ public class PlayerController4 : GameBehaviour
         {
             _EFFECT.TweenVignetteInOut(0.5f, 0.5f);
             EG2.isCorrectAnswer = false;
+            _enemy.MoveTowardsPlayers();
             StartCoroutine(NuckBack());
 
             this.transform.position = movingTransform;
@@ -117,6 +120,7 @@ public class PlayerController4 : GameBehaviour
         {
             _EFFECT.TweenVignetteInOut(0.5f, 0.5f);
             EG2.isCorrectAnswer = false;
+            _enemy.MoveTowardsPlayers();
             StartCoroutine(NuckBack());
            
 

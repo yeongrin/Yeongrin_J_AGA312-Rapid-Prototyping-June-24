@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -545,8 +545,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1884666934}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 1884666936}
+        m_TargetAssemblyTypeName: DialogueManager2, Assembly-CSharp
         m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
@@ -799,8 +799,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 961826678}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadTitle
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1165,7 +1165,7 @@ GameObject:
   - component: {fileID: 1445215697}
   - component: {fileID: 1445215696}
   - component: {fileID: 1445215695}
-  - component: {fileID: 1445215694}
+  - component: {fileID: 1445215698}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -1193,36 +1193,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -140}
   m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1445215694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445215692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e15a7cd6fd75ed4b91b40fc7c5496a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  info:
-    name: Ending....
-    sentences:
-    - So White ran away for 24 hours...
-    - 'White: What the... That bastard is a wolf, a wolf, talking like a deer..!!!!!'
-    - It wasn't until dawn the next day that he could barely get back to the lab..
-    - 'White: I''m...back...Con....Good....Morning...'
-    - 'Con: I thought you were dead because you didn''t come back.'
-    - White:...Don't ask anymore.. I'm too tired and sad. I didn't know that beast
-      could be so mean...
-    - 'Con: I did all the works. Come and eat.'
-    - 'White: Just looking at black makes me vomit...I''m never playing baseball
-      in the backyard again.'
-    - After two days of hard work, the two are able to enjoy a simple morning.
-    - Lesson learned this time..
-    - First, don't throw away things even if you think you don't need them.
-    - Second, don't go near a house with a bad owner.
-    - Lastly.. making games is hard.
 --- !u!114 &1445215695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,8 +1237,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1445215694}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+      - m_Target: {fileID: 1445215698}
+        m_TargetAssemblyTypeName: DialogueTrigger2, Assembly-CSharp
         m_MethodName: DLTrigger
         m_Mode: 1
         m_Arguments:
@@ -1317,6 +1287,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445215692}
   m_CullTransparentMesh: 1
+--- !u!114 &1445215698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445215692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235e028d4e1d0254e8c04264a75c9773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info:
+    name: Ending....
+    sentences:
+    - So White ran away for 24 hours...
+    - 'White: What the... That bastard is a wolf, a wolf, talking like a deer..!!!!!'
+    - 'Atoma: If I catch you, I''ll display you on my fireplace!!!HAHAHA!!!!'
+    - It wasn't until dawn the next day that he could barely get back to the lab..
+    - 'White: I''m...back...Con....Good....Morning...'
+    - 'Con: I thought you were dead because you didn''t come back.'
+    - White:...Don't ask anymore.. I'm too tired and sad. I didn't know that beast
+      could be so mean...
+    - 'Con: I did all the works. Come and eat.'
+    - 'White: Just looking at black makes me vomit...I''m never playing baseball
+      in the backyard again.'
+    - After two days of hard work, the two are able to enjoy a simple morning.
+    - After two days of hard work, the two are able to enjoy a simple morning.
+    - First, don't throw away things even if you think you don't need them.
+    - Second, don't go near a house with a bad owner.
+    - Lastly.. making games is hard.
+    - Good? Ending.
 --- !u!1 &1468001072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1582,7 @@ GameObject:
   - component: {fileID: 1664200331}
   - component: {fileID: 1664200330}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1596,7 +1598,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 73118637f681fbc40a5d704ea896c83b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 286d3feaa33e6f64aa75b104da5b2485, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1797,7 +1799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1852,7 +1854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884666935}
-  - component: {fileID: 1884666934}
+  - component: {fileID: 1884666936}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -1860,32 +1862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1884666934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884666933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c50496f6bc2cd64589a9e71fed6e2e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 329962776}
-  dialogueText: {fileID: 1517303534}
-  dialPanel: {fileID: 1102058613}
-  anim: {fileID: 1751730528}
-  spawn: {fileID: 0}
-  forces: {fileID: 0}
-  timer: {fileID: 0}
-  firing: {fileID: 0}
-  sprites:
-  - {fileID: 21300000, guid: f5b07901729b9394986f5dc9c7be3e89, type: 3}
-  - {fileID: 21300000, guid: a5125d2e38a1eb24ab4736285b7aeb03, type: 3}
-  - {fileID: 21300000, guid: ad0142b5cdbb1d6479875effbe03dbb3, type: 3}
-  - {fileID: 21300000, guid: db43d2b65b1491a4f9248e17fcc2cb89, type: 3}
-  image: {fileID: 791167762}
 --- !u!4 &1884666935
 Transform:
   m_ObjectHideFlags: 0
@@ -1901,6 +1877,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1884666936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884666933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3886f88bbef96a44791e14835a75ffab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 329962776}
+  dialogueText: {fileID: 1517303534}
+  dialPanel: {fileID: 1102058613}
+  anim: {fileID: 1751730528}
+  spawn: {fileID: 0}
+  forces: {fileID: 0}
+  timer: {fileID: 0}
+  firing: {fileID: 0}
+  sprites:
+  - {fileID: 21300000, guid: f5b07901729b9394986f5dc9c7be3e89, type: 3}
+  - {fileID: 21300000, guid: 9586637be8cd0404ca36e686d27851ed, type: 3}
+  - {fileID: 21300000, guid: 039a0fcab608c4b45bd7e8b9fbdaad1e, type: 3}
+  - {fileID: 21300000, guid: b5f1e957454496b418d73b811ab47fc6, type: 3}
+  image: {fileID: 791167762}
 --- !u!1 &2021800101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,7 +1960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Go to Game
+  m_text: Go to Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}

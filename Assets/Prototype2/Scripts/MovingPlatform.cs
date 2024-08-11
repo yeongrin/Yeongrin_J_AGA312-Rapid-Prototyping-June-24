@@ -4,38 +4,41 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
-    public Transform currentPoint;
+    public Transform pointA;
+    public Transform pointB;
+    public float speed;
     private Rigidbody2D body;
 
-    public float speed;
+    public float currentTime;
+    public float time;
+    public bool movingToB = true;
+
     void Start()
     {
-        currentPoint = pointA.transform;
-        body = GetComponent<Rigidbody2D>();
+       
     }
    
     void Update()
     {
-        Vector2 point = currentPoint.position - transform.position;
-        if (currentPoint == pointB.transform)
+        if (movingToB)
         {
-            body.velocity = new Vector2(speed, 0);
+            currentTime += Time.deltaTime * speed;
+            if (currentTime >= 1.0f)
+            {
+                currentTime = 1.0f;
+                movingToB = false;
+            }
         }
         else
         {
-            body.velocity = new Vector2(speed, 0);
+            currentTime -= Time.deltaTime * speed;
+            if (currentTime <= 0.0f)
+            {
+                currentTime = 0.0f;
+                movingToB = true;
+            }
+
         }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
-        {
-          
-            currentPoint = pointA.transform;
-        }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
-        {
-         
-            currentPoint = pointB.transform;
-        }
+        transform.position = Vector3.Lerp(pointA.position, pointB.position, currentTime);
     }
 }
