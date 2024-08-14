@@ -12,13 +12,23 @@ public class PlayerController5 : MonoBehaviour
 
     [Header("Moving account")]
     private bool isMoving = false;
+    Rigidbody2D rigid;
     public int movingLimit ;
     public int actionLimit ;
+
+    private Tile currentTile;
+
+    float X;
+    float Y;
 
     void Start()
     {
         ani = gameObject.GetComponent<Animator>();
         isMoving = false;
+        rigid = GetComponent<Rigidbody2D>();
+
+        rigid.velocity = new Vector2(X, Y);
+
     }
 
     
@@ -43,27 +53,44 @@ public class PlayerController5 : MonoBehaviour
 
             if (inputFuction(KeyCode.UpArrow))
             {
-                movingLimit -= 1;
-                ani.SetTrigger("Up");
-                StartCoroutine(Move(Vector2.up));
+                if (currentTile.canMoveUp)
+                {
+
+                    movingLimit -= 1;
+                    ani.SetTrigger("Up");
+                    StartCoroutine(Move(Vector2.up));
+                }
+                
             }
             else if (inputFuction(KeyCode.DownArrow))
             {
-                movingLimit -= 1;
-                ani.SetTrigger("Down");
-                StartCoroutine(Move(Vector2.down));
+                if (currentTile.canMoveDown)
+                {
+
+                    movingLimit -= 1;
+                    ani.SetTrigger("Down");
+                    StartCoroutine(Move(Vector2.down));
+                }
             }
             if (inputFuction(KeyCode.LeftArrow))
             {
-                movingLimit -= 1;
-                ani.SetTrigger("Left");
-                StartCoroutine(Move(Vector2.left));
+                if (currentTile.canMoveLeft)
+                {
+
+                    movingLimit -= 1;
+                    ani.SetTrigger("Left");
+                    StartCoroutine(Move(Vector2.left));
+                }
             }
             if (inputFuction(KeyCode.RightArrow))
             {
-                movingLimit -= 1;
-                ani.SetTrigger("Right");
-                StartCoroutine(Move(Vector2.right));
+                if (currentTile.canMoveRight)
+                {
+
+                    movingLimit -= 1;
+                    ani.SetTrigger("Right");
+                    StartCoroutine(Move(Vector2.right));
+                }
             }
         }
     }
@@ -74,6 +101,9 @@ public class PlayerController5 : MonoBehaviour
 
         Vector2 startPosition = transform.position;
         Vector2 endPosition = startPosition + (direction * gridSize);
+
+        X = endPosition.x;
+        Y = endPosition.y;
 
         float elapsedTime = 0;
         while(elapsedTime < moveDuration)
@@ -91,10 +121,23 @@ public class PlayerController5 : MonoBehaviour
     {
         if(col.gameObject.CompareTag ("Enemy"))
         {
-            if(Input.GetKeyDown("Z"))
+            if(Input.GetKeyDown(KeyCode.Z))
             {
                 actionLimit -= 1;
             }
+        }
+
+        if(col.gameObject.CompareTag("Platform"))
+        {
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag ("Tile"))
+        {
+            currentTile = other.GetComponent<Tile>();
         }
     }
 }

@@ -20,6 +20,7 @@ TagManager:
   - WrongAnswer
   - WrongAnswer2
   - CorrectAnswer
+  - Tile
   layers:
   - Default
   - TransparentFX

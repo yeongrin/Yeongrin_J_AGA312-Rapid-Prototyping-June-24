@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2013864366139909092}
   - component: {fileID: 1599992821591870203}
   - component: {fileID: 8080423827898825291}
-  - component: {fileID: 7783893637863096876}
+  - component: {fileID: 7091693149306201680}
   m_Layer: 0
   m_Name: Paperwarm
   m_TagString: Enemy
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &7783893637863096876
+--- !u!61 &7091693149306201680
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,16 +139,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0022448301, y: 0.0022448301}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.976, y: 0.84}
+    oldSize: {x: 0.9037037, y: 0.7777778}
     newSize: {x: 1.22, y: 1.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.204973, y: 1.1946838}
+  m_Size: {x: 0.9037037, y: 0.7777778}
   m_EdgeRadius: 0
