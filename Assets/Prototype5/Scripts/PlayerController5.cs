@@ -92,6 +92,24 @@ public class PlayerController5 : MonoBehaviour
                     StartCoroutine(Move(Vector2.right));
                 }
             }
+
+            if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
+            {
+                Debug.Log("attack");
+                ani.SetTrigger("Attack1");
+            }
+            if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
+            {
+                ani.SetTrigger("Attack2");
+            }
+            if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
+            {
+                ani.SetTrigger("Attack3");
+            }
+            if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
+            {
+                ani.SetTrigger("Attack4");
+            }
         }
     }
 
