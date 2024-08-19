@@ -21,6 +21,8 @@ TagManager:
   - WrongAnswer2
   - CorrectAnswer
   - Tile
+  - AttackPoint
+  - Target
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,6 @@ public class Tile : MonoBehaviour
     public bool canMoveLeft;
     public bool canMoveRight;
 
-
-
     void Start()
     {
         

@@ -21,6 +21,16 @@ public class PlayerController5 : MonoBehaviour
     float X;
     float Y;
 
+    [Header("Attack")]
+    private float curTime;
+    public float coolTime = 0.5f;
+    public Transform posLeft;
+    public Transform posRight;
+    public Transform posUp;
+    public Transform posDown;
+    public Vector2 boxSize;
+    public int damage;
+
     void Start()
     {
         ani = gameObject.GetComponent<Animator>();
@@ -35,6 +45,7 @@ public class PlayerController5 : MonoBehaviour
     void Update()
     {
         Move();
+        Attack();
     }
 
     void Move()
@@ -55,7 +66,6 @@ public class PlayerController5 : MonoBehaviour
             {
                 if (currentTile.canMoveUp)
                 {
-
                     movingLimit -= 1;
                     ani.SetTrigger("Up");
                     StartCoroutine(Move(Vector2.up));
@@ -66,7 +76,6 @@ public class PlayerController5 : MonoBehaviour
             {
                 if (currentTile.canMoveDown)
                 {
-
                     movingLimit -= 1;
                     ani.SetTrigger("Down");
                     StartCoroutine(Move(Vector2.down));
@@ -93,23 +102,7 @@ public class PlayerController5 : MonoBehaviour
                 }
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
-            {
-                Debug.Log("attack");
-                ani.SetTrigger("Attack1");
-            }
-            if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
-            {
-                ani.SetTrigger("Attack2");
-            }
-            if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
-            {
-                ani.SetTrigger("Attack3");
-            }
-            if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
-            {
-                ani.SetTrigger("Attack4");
-            }
+           
         }
     }
 
@@ -135,6 +128,67 @@ public class PlayerController5 : MonoBehaviour
         isMoving = false;
     }
 
+    void Attack()
+    {
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
+        {
+            Collider2D[] leftCollider2D = Physics2D.OverlapBoxAll(posLeft.position, boxSize, 0);
+            foreach (Collider2D item in leftCollider2D)
+            {
+                if (item.tag == "Target")
+                {
+                    Debug.Log("left");
+                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                }
+
+            }
+
+            ani.SetTrigger("Attack1");
+        }
+        if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
+        {
+            Collider2D[] upCollider2D = Physics2D.OverlapBoxAll(posUp.position, boxSize, 0);
+            foreach (Collider2D item in upCollider2D)
+            {
+                if (item.tag == "Target")
+                {
+                    Debug.Log("up");
+                    item.GetComponent<ThisIsBox>().TakeDamage(1);
+                }
+
+            }
+            ani.SetTrigger("Attack2");
+        }
+        if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
+        {
+            Collider2D[] rightCollider2D = Physics2D.OverlapBoxAll(posRight.position, boxSize, 0);
+            foreach (Collider2D item in rightCollider2D)
+            {
+                if (item.tag == "Target")
+                {
+                    Debug.Log("right");
+                    item.GetComponent<ThisIsBox>().TakeDamage(1);
+                }
+
+            }
+            ani.SetTrigger("Attack3");
+        }
+        if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
+        {
+            Collider2D[] downCollider2D = Physics2D.OverlapBoxAll(posDown.position, boxSize, 0);
+            foreach (Collider2D item in downCollider2D)
+            {
+                if (item.tag == "Target")
+                {
+                    Debug.Log("down");
+                    item.GetComponent<ThisIsBox>().TakeDamage(1);
+                }
+
+            }
+            ani.SetTrigger("Attack4");
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.CompareTag ("Enemy"))
@@ -145,10 +199,6 @@ public class PlayerController5 : MonoBehaviour
             }
         }
 
-        if(col.gameObject.CompareTag("Platform"))
-        {
-
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -157,5 +207,15 @@ public class PlayerController5 : MonoBehaviour
         {
             currentTile = other.GetComponent<Tile>();
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireCube(posLeft.position, boxSize);
+        Gizmos.DrawWireCube(posRight.position, boxSize);
+        Gizmos.DrawWireCube(posUp.position, boxSize);
+        Gizmos.DrawWireCube(posDown.position, boxSize);
     }
 }
