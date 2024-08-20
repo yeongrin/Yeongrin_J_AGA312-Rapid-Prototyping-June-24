@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using TMPro;
 
-public class DialogueManager2 : MonoBehaviour
+public class DialogueManager4 : MonoBehaviour
 {
+    public Camera camera;
+
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     public GameObject dialPanel;
     private Queue<string> sentences;
 
     public Animator anim;
+
+    public float shakeStrength;
+    public float moveTweenTime = 0f;
 
     [Header("Image")]
     public Sprite[] sprites;
@@ -20,27 +26,26 @@ public class DialogueManager2 : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-
         image.sprite = sprites[0];
-
     }
 
     void Update()
     {
-        if (sentences.Count == 11)
+        if (sentences.Count == 15)
         {
             image.sprite = sprites[1];
 
         }
-        else if (sentences.Count == 9)
+        else if (sentences.Count == 13)
         {
             image.sprite = sprites[2];
         }
-        else if (sentences.Count == 7)
+        else if (sentences.Count == 12)
         {
             image.sprite = sprites[3];
+            StartCoroutine("ShakeCamera");
+            StopCoroutine("ShakeCamera");
         }
-
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -85,6 +90,12 @@ public class DialogueManager2 : MonoBehaviour
         }
     }
 
+    IEnumerator ShakeCamera()
+    {
+        camera.DOShakePosition(moveTweenTime/2, shakeStrength);
+        yield return new WaitForSeconds(0.5f);
+    }
+
     void EndDialogue()
     {
         Debug.Log("End");
@@ -97,3 +108,4 @@ public class DialogueManager2 : MonoBehaviour
     }
 
 }
+

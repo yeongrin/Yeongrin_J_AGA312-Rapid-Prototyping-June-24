@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1599992821591870203}
   - component: {fileID: 8080423827898825291}
   - component: {fileID: 7091693149306201680}
+  - component: {fileID: 4989427453165006471}
   m_Layer: 0
   m_Name: Paperwarm
   m_TagString: Enemy
@@ -152,3 +153,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9037037, y: 0.7777778}
   m_EdgeRadius: 0
+--- !u!114 &4989427453165006471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766226777586517247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803fe9ce7a09a454b9a3b3d953280aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newEnemyType: 0
+  enemyHealth: 2
+  ani: {fileID: 8080423827898825291}
