@@ -23,10 +23,14 @@ public class DialogueManager4 : MonoBehaviour
     public Sprite[] sprites;
     public Image image;
 
+    IEnumerator coroutine;
+
     void Start()
     {
         sentences = new Queue<string>();
         image.sprite = sprites[0];
+
+        coroutine = ShakeCamera();
     }
 
     void Update()
@@ -43,9 +47,31 @@ public class DialogueManager4 : MonoBehaviour
         else if (sentences.Count == 12)
         {
             image.sprite = sprites[3];
-            StartCoroutine("ShakeCamera");
-            StopCoroutine("ShakeCamera");
+            StartCoroutine(coroutine);
+            
         }
+        else if (sentences.Count == 10)
+        {
+            image.sprite = sprites[4];
+        }
+        else if (sentences.Count == 7)
+        {
+            image.sprite = sprites[5];
+        }
+
+        else if (sentences.Count == 3)
+        {
+            image.sprite = sprites[6];
+        }
+    }
+
+    IEnumerator ShakeCamera()
+    {
+        camera.DOShakePosition(moveTweenTime / 2, shakeStrength);
+        yield return new WaitForSeconds(0.5f);
+        StopCoroutine(coroutine);
+        yield return null; 
+        Debug.Log("485737");
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -88,12 +114,6 @@ public class DialogueManager4 : MonoBehaviour
             dialogueText.text += letter;
             yield return null;
         }
-    }
-
-    IEnumerator ShakeCamera()
-    {
-        camera.DOShakePosition(moveTweenTime/2, shakeStrength);
-        yield return new WaitForSeconds(0.5f);
     }
 
     void EndDialogue()
