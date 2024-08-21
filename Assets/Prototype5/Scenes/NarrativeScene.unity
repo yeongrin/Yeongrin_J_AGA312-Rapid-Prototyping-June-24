@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -606,8 +606,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285493103
-  m_fontColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -870,8 +870,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1692,7 +1692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -140}
+  m_AnchoredPosition: {x: 0, y: 480}
   m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915880078
@@ -1727,11 +1727,15 @@ MonoBehaviour:
     - 'Con: Yeah, that was terrible.'
     - 'White: So all day today... we have to clean out the warehouse and get rid
       of the trash.'
-    - 'White: I''ll go to the warehouse, look around (Direction key) and clear out
-      the monsters (Z+Direction Key).'
+    - 'Con: But they wll be angry if they know you are trying to destroy their habitat...'
+    - 'White: I know. I will clear out the warehouse with as little movement as possible
+      before they notice me.'
+    - 'White: I''ll go to the warehouse, look around (*Direction key) and clear out(*Pass
+      over the paper) and fight the monsters (!!Press Direction Key and stay!! +
+      Z key).'
     - 'White: You go down to the basement and look at the food storage where we stored
       it. Throw away all the worm-eaten stuff.'
-    - 'Con: Can I eat something that has expired?'
+    - 'Con: Can I eat something that has just expired? '
     - 'White: Do whatever you want. I''ll see you later.'
 --- !u!114 &1915880079
 MonoBehaviour:
@@ -2230,7 +2234,7 @@ SceneRoots:
   - {fileID: 917227986}
   - {fileID: 1416595376}
   - {fileID: 1682363266}
-  - {fileID: 994269232}
   - {fileID: 1628960341}
+  - {fileID: 994269232}
   - {fileID: 1175115684}
   - {fileID: 1921937532}

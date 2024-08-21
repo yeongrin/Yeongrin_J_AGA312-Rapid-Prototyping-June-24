@@ -5,10 +5,13 @@ using UnityEngine;
 public class PickUpTrashes : MonoBehaviour
 {
     public int score;
-   
+    public int maxScore;
+    GameManager5 GM5;
+    
     void Start()
     {
-       
+        score = maxScore;
+        GM5 = FindAnyObjectByType<GameManager5>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,7 @@ public class PickUpTrashes : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            GM5.GetScore1(score);
             Destroy(this.gameObject);
         }
     }

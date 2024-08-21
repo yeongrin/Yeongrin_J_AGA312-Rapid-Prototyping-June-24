@@ -21,9 +21,9 @@ public class ThisIsBox : MonoBehaviour
     public void TakeDamage(int damage)
     {
         ani.SetTrigger("turnRed");
-        boxDefense = boxDefense - damage;
+        boxDefense -= damage;
 
-        if (boxDefense >= 0)
+        if (boxDefense <= 0)
         {
             Destroy(this.gameObject);
         }

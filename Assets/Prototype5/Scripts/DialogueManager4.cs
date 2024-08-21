@@ -35,26 +35,26 @@ public class DialogueManager4 : MonoBehaviour
 
     void Update()
     {
-        if (sentences.Count == 15)
+        if (sentences.Count == 17)
         {
             image.sprite = sprites[1];
 
         }
-        else if (sentences.Count == 13)
+        else if (sentences.Count == 15)
         {
             image.sprite = sprites[2];
         }
-        else if (sentences.Count == 12)
+        else if (sentences.Count == 14)
         {
             image.sprite = sprites[3];
             StartCoroutine(coroutine);
             
         }
-        else if (sentences.Count == 10)
+        else if (sentences.Count == 12)
         {
             image.sprite = sprites[4];
         }
-        else if (sentences.Count == 7)
+        else if (sentences.Count == 9)
         {
             image.sprite = sprites[5];
         }

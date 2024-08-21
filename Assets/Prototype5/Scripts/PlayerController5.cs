@@ -15,6 +15,7 @@ public class PlayerController5 : MonoBehaviour
     public Animator aniRight;
     public Animator aniUp;
     public Animator aniDown;
+    SpriteRenderer spriteRenderer;
 
     [Header("Moving account")]
     public bool isMoving = false;
@@ -41,11 +42,6 @@ public class PlayerController5 : MonoBehaviour
     public float checkDistance;
     public bool canMoving = true;
 
-    IEnumerator enumerator1;
-    IEnumerator enumerator2;
-    IEnumerator enumerator3;
-    IEnumerator enumerator4;
-
     void Start()
     {
         ani = gameObject.GetComponent<Animator>();
@@ -53,13 +49,9 @@ public class PlayerController5 : MonoBehaviour
         canMoving = true;
         rigid = GetComponent<Rigidbody2D>();
         audiosource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         rigid.velocity = new Vector2(X, Y);
-
-        //enumerator1 = Move(Vector2.up);
-        //enumerator2 = Move(Vector2.down);
-        //enumerator3 = Move(Vector2.left);
-        //enumerator4 = Move(Vector2.right);
     }
 
     void Update()
@@ -87,7 +79,7 @@ public class PlayerController5 : MonoBehaviour
             if (inputFuction(KeyCode.UpArrow))
             {
                 float moveInput = transform.up.y;
-                Vector2 direction = Vector2.up * moveInput;
+                Vector2 direction = Vector2.up;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
                 Debug.DrawRay(rigid.position, Vector2.up, new Color(checkDistance, 0, 0));
                 //Debug.Log(hit.collider.name);
@@ -120,7 +112,7 @@ public class PlayerController5 : MonoBehaviour
             {
 
                 float moveInput = -transform.up.y;
-                Vector2 direction = Vector2.down * moveInput;
+                Vector2 direction = Vector2.down;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
                 Debug.DrawRay(rigid.position, Vector2.down, new Color(checkDistance, 0, 0));
 
@@ -149,7 +141,7 @@ public class PlayerController5 : MonoBehaviour
             if (inputFuction(KeyCode.LeftArrow))
             {
                 float moveInput = -transform.right.x;
-                Vector2 direction = Vector2.left * moveInput;
+                Vector2 direction = Vector2.left;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
                 Debug.DrawRay(rigid.position, Vector2.left, new Color(checkDistance, 0, 0));
 
@@ -188,7 +180,7 @@ public class PlayerController5 : MonoBehaviour
             if (inputFuction(KeyCode.RightArrow))
             {
                 float moveInput = transform.right.x;
-                Vector2 direction = Vector2.right * moveInput;
+                Vector2 direction = Vector2.right;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
                 Debug.DrawRay(rigid.position, Vector2.right, new Color(checkDistance, 0, 0));
 
@@ -256,6 +248,7 @@ public class PlayerController5 : MonoBehaviour
                 {
                     Debug.Log("left");
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
 
                 if (item.tag == "Enemy")
@@ -280,7 +273,7 @@ public class PlayerController5 : MonoBehaviour
                 if (item.tag == "Target")
                 {
                     Debug.Log("up");
-                    item.GetComponent<ThisIsBox>().TakeDamage(1);
+                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
 
                 if (item.tag == "Enemy")
@@ -304,7 +297,7 @@ public class PlayerController5 : MonoBehaviour
                 if (item.tag == "Target")
                 {
                     Debug.Log("right");
-                    item.GetComponent<ThisIsBox>().TakeDamage(1);
+                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
 
                 if (item.tag == "Enemy")
@@ -352,6 +345,29 @@ public class PlayerController5 : MonoBehaviour
         {
             currentTile = other.GetComponent<Tile>();
         }
+        
+        if(other.gameObject.CompareTag("Platform"))
+        {
+            movingLimit -= 1;
+            StartCoroutine("NuckBack");
+        }
+    }
+    IEnumerator NuckBack()
+    {
+        for (int i = 1; i < 2; i++)
+        {
+
+            spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
+        //for (int i = 1; i < 4; i++)
+        //{
+        //    yield return new WaitForSeconds(0.4f);
+
+        //}
+
     }
 
     void OnDrawGizmos()
