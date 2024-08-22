@@ -124,8 +124,25 @@ MonoBehaviour:
   isRepeatedMovement: 0
   moveDuration: 0.1
   gridSize: 1
+  aniLeft: {fileID: 0}
+  aniRight: {fileID: 0}
+  aniUp: {fileID: 0}
+  aniDown: {fileID: 0}
+  isMoving: 0
   movingLimit: 20
   actionLimit: 20
+  coolTime: 0.5
+  posLeft: {fileID: 0}
+  posRight: {fileID: 0}
+  posUp: {fileID: 0}
+  posDown: {fileID: 0}
+  boxSize: {x: 0, y: 0}
+  damage: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  checkDistance: 0
+  canMoving: 1
 --- !u!50 &4685677453718188706
 Rigidbody2D:
   serializedVersion: 4

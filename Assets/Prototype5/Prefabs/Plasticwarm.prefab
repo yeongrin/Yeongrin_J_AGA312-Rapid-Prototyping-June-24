@@ -122,7 +122,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newEnemyType: 0
   enemyHealth: 3
+  score: 0
   ani: {fileID: 6815069098559547937}
+  rightCheck: {fileID: 0}
+  roofCheck: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dirX: 1
+  dirY: 0.25
+  speed: 0
+  circleRadius: 0
 --- !u!61 &6434222070324525256
 BoxCollider2D:
   m_ObjectHideFlags: 0

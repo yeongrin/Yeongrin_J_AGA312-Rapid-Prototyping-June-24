@@ -167,4 +167,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newEnemyType: 0
   enemyHealth: 2
+  score: 0
   ani: {fileID: 8080423827898825291}
+  rightCheck: {fileID: 0}
+  roofCheck: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dirX: 1
+  dirY: 0.25
+  speed: 0
+  circleRadius: 0
