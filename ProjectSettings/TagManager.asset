@@ -32,7 +32,7 @@ TagManager:
   - UI
   - Obstacle
   - Enemy
-  - 
+  - Wall
   - 
   - 
   - 
@@ -80,4 +80,7 @@ TagManager:
     locked: 0
   - name: Puzzle
     uniqueID: 2037906525
+    locked: 0
+  - name: Particle
+    uniqueID: 1880161337
     locked: 0

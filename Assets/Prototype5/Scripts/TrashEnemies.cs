@@ -45,7 +45,7 @@ public class TrashEnemies : MonoBehaviour
             case newEnemyType.plasticWarm:
                 {
                     score = 20;
-                    
+
                 }
                 break;
 
@@ -65,15 +65,41 @@ public class TrashEnemies : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        switch (newEnemyType)
+        {
+            case newEnemyType.paperWarm:
+                {
+                  
+                }
+                break;
+
+            case newEnemyType.plasticWarm:
+                {
+                   
+                }
+                break;
+
+            case newEnemyType.canWarm:
+                {
+                    Moving();
+                }
+                break;
+
+            case newEnemyType.dustWarm:
+                {
+                   
+                }
+                break;
+
+        }
+    }
+
     void Moving()
     {
         rb.velocity = new Vector2(dirX, dirY) * speed * Time.deltaTime;
         HitDirection();
-    }
-
-    void Update()
-    {
-       
     }
 
     void HitDirection()
@@ -106,7 +132,9 @@ public class TrashEnemies : MonoBehaviour
 
     void Flip()
     {
-
+        facingRight = !facingRight;
+        transform.Rotate(new Vector3(0, 180, 0));
+        dirX = -dirX;
     }
 
     public void TakeDamage(int damage)
@@ -126,5 +154,13 @@ public class TrashEnemies : MonoBehaviour
         GM5.GetScore1(score);
         Destroy(this.gameObject);
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(rightCheck.transform.position, circleRadius);
+        Gizmos.DrawWireSphere(roofCheck.transform.position, circleRadius);
+        Gizmos.DrawWireSphere(groundCheck.transform.position, circleRadius);
     }
 }
