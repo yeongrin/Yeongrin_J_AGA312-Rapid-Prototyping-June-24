@@ -19,19 +19,10 @@ public class TrashEnemies : MonoBehaviour
     public int score;
     public Animator ani;
 
-    [Header("OnlyForCanWarm")]
-    private Rigidbody2D rb;
-    public GameObject rightCheck, roofCheck, groundCheck;
-    public LayerMask groundlayer;
-    private bool facingRight = true, groundTouch, roofTouch, rightTouch;
-    public float dirX = 1, dirY = 0.25f;
-    public float speed, circleRadius;
-
     GameManager5 GM5;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         GM5 = FindAnyObjectByType<GameManager5>();
 
         switch (newEnemyType)
@@ -52,7 +43,8 @@ public class TrashEnemies : MonoBehaviour
             case newEnemyType.canWarm:
                 {
                     score = 30;
-                    Moving();
+                   
+
                 }
                 break;
 
@@ -83,7 +75,6 @@ public class TrashEnemies : MonoBehaviour
 
             case newEnemyType.canWarm:
                 {
-                    Moving();
                 }
                 break;
 
@@ -94,47 +85,6 @@ public class TrashEnemies : MonoBehaviour
                 break;
 
         }
-    }
-
-    void Moving()
-    {
-        rb.velocity = new Vector2(dirX, dirY) * speed * Time.deltaTime;
-        HitDirection();
-    }
-
-    void HitDirection()
-    {
-        rightTouch = Physics2D.OverlapCircle(rightCheck.transform.position, circleRadius, groundlayer);
-        roofTouch = Physics2D.OverlapCircle(roofCheck.transform.position, circleRadius, groundlayer);
-        groundTouch = Physics2D.OverlapCircle(groundCheck.transform.position, circleRadius, groundlayer);
-        HitLogic();
-    }
-
-    void HitLogic()
-    {
-        if(rightTouch && facingRight)
-        {
-            Flip();
-        }
-        else if(rightTouch && !facingRight)
-        {
-            Flip();
-        }
-        if(roofTouch)
-        {
-            dirY = -0.25f;
-        }
-        else if(groundTouch)
-        {
-            dirY = 0.25f;
-        }
-    }
-
-    void Flip()
-    {
-        facingRight = !facingRight;
-        transform.Rotate(new Vector3(0, 180, 0));
-        dirX = -dirX;
     }
 
     public void TakeDamage(int damage)
@@ -156,11 +106,4 @@ public class TrashEnemies : MonoBehaviour
 
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(rightCheck.transform.position, circleRadius);
-        Gizmos.DrawWireSphere(roofCheck.transform.position, circleRadius);
-        Gizmos.DrawWireSphere(groundCheck.transform.position, circleRadius);
-    }
 }

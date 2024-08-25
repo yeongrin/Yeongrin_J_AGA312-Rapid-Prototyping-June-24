@@ -497,7 +497,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5833333
-    functionName: Destroy
+    functionName: Death
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 803fe9ce7a09a454b9a3b3d953280aa6,
       type: 3}
