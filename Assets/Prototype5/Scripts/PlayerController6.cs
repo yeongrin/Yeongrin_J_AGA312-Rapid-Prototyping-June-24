@@ -19,7 +19,7 @@ public class PlayerController6 : MonoBehaviour
 
     [Header("Moving account")]
     public bool isMoving = false;
-    Rigidbody2D rigid;
+    Rigidbody rigid;
     public int movingLimit;
     public int actionLimit;
 
@@ -48,7 +48,7 @@ public class PlayerController6 : MonoBehaviour
         ani = gameObject.GetComponent<Animator>();
         isMoving = false;
         canMoving = true;
-        rigid = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody>();
         audiosource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -80,12 +80,12 @@ public class PlayerController6 : MonoBehaviour
             if (inputFuction(KeyCode.UpArrow))
             {
                 float moveInput = transform.up.y;
-                Vector2 direction = Vector2.up;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
+                Vector3 direction = Vector3.up;
+                RaycastHit hit;
                 Debug.DrawRay(rigid.position, Vector2.up, new Color(checkDistance, 0, 0));
                 //Debug.Log(hit.collider.name);
 
-                if (hit.collider != null)
+                if (Physics.Raycast(transform.position, direction, out hit, checkDistance, obstacleLayer))
                 {
                     //If raycast2d hits something the player can't move
                     canMoving = false;
@@ -113,11 +113,11 @@ public class PlayerController6 : MonoBehaviour
             {
 
                 float moveInput = -transform.up.y;
-                Vector2 direction = Vector2.down;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
+                Vector3 direction = Vector3.down;
+                RaycastHit hit;
                 Debug.DrawRay(rigid.position, Vector2.down, new Color(checkDistance, 0, 0));
 
-                if (hit.collider != null)
+                if (Physics.Raycast(transform.position, direction, out hit, checkDistance, obstacleLayer))
                 {
                     canMoving = false;
                     if (canMoving == false)
@@ -142,11 +142,11 @@ public class PlayerController6 : MonoBehaviour
             if (inputFuction(KeyCode.LeftArrow))
             {
                 float moveInput = -transform.right.x;
-                Vector2 direction = Vector2.left;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
+                Vector3 direction = Vector3.left;
+                RaycastHit hit;
                 Debug.DrawRay(rigid.position, Vector2.left, new Color(checkDistance, 0, 0));
 
-                if (hit.collider != null)
+                if (Physics.Raycast(transform.position, direction, out hit, checkDistance, obstacleLayer))
                 {
                     canMoving = false;
 
@@ -181,11 +181,11 @@ public class PlayerController6 : MonoBehaviour
             if (inputFuction(KeyCode.RightArrow))
             {
                 float moveInput = transform.right.x;
-                Vector2 direction = Vector2.right;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
+                Vector3 direction = Vector3.right;
+                RaycastHit hit;
                 Debug.DrawRay(rigid.position, Vector2.right, new Color(checkDistance, 0, 0));
 
-                if (hit.collider != null)
+                if (Physics.Raycast(transform.position, direction, out hit, checkDistance, obstacleLayer))
                 {
                     canMoving = false;
 
@@ -243,6 +243,7 @@ public class PlayerController6 : MonoBehaviour
 
             //Hit the enemy and box
             Collider[] leftCollider = Physics.OverlapBox(posLeft.position, boxSize, transform.rotation, 0);
+                Debug.Log($"Colliders found: {leftCollider.Length}");
             foreach (Collider item in leftCollider)
             {
                 Debug.Log("left");
@@ -251,16 +252,21 @@ public class PlayerController6 : MonoBehaviour
                     item.GetComponent<Canwarm>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
-            } 
 
-            Collider2D[] leftCollider2D = Physics2D.OverlapBoxAll(posLeft.position, boxSize2, 0);
-            foreach (Collider2D item in leftCollider2D)
-            {
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
-            }
+            } 
+
+            //Collider2D[] leftCollider2D = Physics2D.OverlapBoxAll(posLeft.position, boxSize2, 0);
+            //foreach (Collider2D item in leftCollider2D)
+            //{
+            //    if (item.tag == "Target")
+            //    {
+            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
+            //    }
+            //}
 
         }
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
@@ -279,16 +285,22 @@ public class PlayerController6 : MonoBehaviour
                     item.GetComponent<Canwarm>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
-            }
 
-            Collider2D[] upCollider2D = Physics2D.OverlapBoxAll(posUp.position, boxSize2, 0);
-            foreach (Collider2D item in upCollider2D)
-            {
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
             }
+
+            //Collider2D[] upCollider2D = Physics2D.OverlapBoxAll(posUp.position, boxSize2, 0);
+            //foreach (Collider2D item in upCollider2D)
+            //{
+            //    if (item.tag == "Target")
+            //    {
+            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
+            //    }
+
+            //}
 
         }
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
@@ -307,16 +319,23 @@ public class PlayerController6 : MonoBehaviour
                     item.GetComponent<Canwarm>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
-            }
 
-            Collider2D[] rightCollider2D = Physics2D.OverlapBoxAll(posRight.position, boxSize2, 0);
-            foreach (Collider2D item in rightCollider2D)
-            {
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
             }
+
+            //Collider2D[] rightCollider2D = Physics2D.OverlapBoxAll(posRight.position, boxSize2, 0);
+            //foreach (Collider2D item in rightCollider2D)
+            //{
+            //    if (item.tag == "Target")
+            //    {
+            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
+            //    }
+
+
+            //}
         }
         if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
         {
@@ -334,20 +353,25 @@ public class PlayerController6 : MonoBehaviour
                     item.GetComponent<Canwarm>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
-            }
 
-            Collider2D[] downCollider2D = Physics2D.OverlapBoxAll(posDown.position, boxSize2, 0);
-            foreach (Collider2D item in downCollider2D)
-            {
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
                 }
             }
+
+            //Collider2D[] downCollider2D = Physics2D.OverlapBoxAll(posDown.position, boxSize2, 0);
+            //foreach (Collider2D item in downCollider2D)
+            //{
+            //    if (item.tag == "Target")
+            //    {
+            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
+            //    }
+            //}
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Tile"))
         {
@@ -358,6 +382,12 @@ public class PlayerController6 : MonoBehaviour
         {
             movingLimit -= 1;
             StartCoroutine("NuckBack");
+        }
+        if(other.gameObject.CompareTag("Enemy2"))
+        {
+            actionLimit -= 1;
+            movingLimit -= 1;
+            Debug.Log("aw!");
         }
     }
     IEnumerator NuckBack()

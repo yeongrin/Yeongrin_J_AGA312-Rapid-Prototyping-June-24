@@ -17,12 +17,12 @@ public class Canwarm : MonoBehaviour
     public float dirX = 1, dirY = 0.5f;
     public float speed, circleRadius;
 
-    GameManager5 GM5;
+    GameManager6 GM6;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        GM5 = FindAnyObjectByType<GameManager5>();
+        GM6 = FindAnyObjectByType<GameManager6>();
     }
 
     void Update()
@@ -91,7 +91,7 @@ public class Canwarm : MonoBehaviour
 
     public void Death()
     {
-        GM5.GetScore1(score);
+        GM6.GetScore1(score);
         Destroy(this.gameObject);
 
     }

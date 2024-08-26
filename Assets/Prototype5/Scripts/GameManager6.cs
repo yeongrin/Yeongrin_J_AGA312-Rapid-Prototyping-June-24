@@ -15,8 +15,9 @@ public class GameManager6 : MonoBehaviour
     public GameObject gameEndPanel;
 
     public int cleanliness;
-    public int monsterCount;
-    public TMP_Text cleanliness_Text;
+    public int boxCount;
+    //public TMP_Text cleanliness_Text;
+    public TMP_Text boxCount_Text;
 
     PlayerController6 player6;
     TrashEnemies trashEnemies;
@@ -33,7 +34,7 @@ public class GameManager6 : MonoBehaviour
         gameOverPanel.SetActive(false);
         gameEndPanel.SetActive(false);
         player6 = GameObject.Find("Player").GetComponent<PlayerController6>();
-        monsterCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        boxCount = GameObject.FindGameObjectsWithTag("Target").Length;
         trashEnemies = gameObject.GetComponent<TrashEnemies>();
         pickUp = gameObject.GetComponent<PickUpTrashes>();
 
@@ -54,7 +55,8 @@ public class GameManager6 : MonoBehaviour
     {
         movingLimit_Text.text = player6.movingLimit.ToString();
         actionLimit_Text.text = player6.actionLimit.ToString();
-        cleanliness_Text.text = cleanliness.ToString();
+        boxCount_Text.text = boxCount.ToString();
+        //cleanliness_Text.text = cleanliness.ToString();
     }
 
     public void GetScore1(int _score)
@@ -82,7 +84,7 @@ public class GameManager6 : MonoBehaviour
 
     void GameEnding()
     {
-        if (cleanliness == 100)
+        if (boxCount <= 0)
         {
             gameEndPanel.SetActive(true);
         }
