@@ -19,14 +19,22 @@ public class TrashEnemies : MonoBehaviour
     public int score;
     public Animator ani;
 
+    GameManager6 GM6;
     GameManager5 GM5;
 
     void Start()
     {
         GM5 = FindAnyObjectByType<GameManager5>();
+        GM6 = FindAnyObjectByType<GameManager6>();
 
         switch (newEnemyType)
         {
+            case newEnemyType.dustWarm:
+                {
+                    score = 5;
+                }
+                break;
+
             case newEnemyType.paperWarm:
                 {
                     score = 10;
@@ -35,7 +43,7 @@ public class TrashEnemies : MonoBehaviour
 
             case newEnemyType.plasticWarm:
                 {
-                    score = 20;
+                    score = 15;
 
                 }
                 break;
@@ -43,16 +51,10 @@ public class TrashEnemies : MonoBehaviour
             case newEnemyType.canWarm:
                 {
                     score = 30;
-                   
 
                 }
                 break;
 
-            case newEnemyType.dustWarm:
-                {
-                    score = 40;
-                }
-                break;
 
         }
     }
@@ -75,6 +77,7 @@ public class TrashEnemies : MonoBehaviour
 
             case newEnemyType.canWarm:
                 {
+
                 }
                 break;
 
@@ -88,7 +91,7 @@ public class TrashEnemies : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {
+    { 
         ani.SetTrigger("turnRed");
         enemyHealth -= damage;
 
@@ -99,9 +102,27 @@ public class TrashEnemies : MonoBehaviour
 
     }
 
+    public void TakeDamage2(int damage)
+    {
+        //for dustwarm only
+        enemyHealth -= damage;
+
+        if (enemyHealth <= 0)
+        {
+            ani.SetTrigger("Death");
+        }
+    }
+
     public void Death()
     {
         GM5.GetScore1(score);
+        Destroy(this.gameObject);
+
+    }
+
+    public void Death2()
+    {
+        GM6.GetScore1(score);
         Destroy(this.gameObject);
 
     }

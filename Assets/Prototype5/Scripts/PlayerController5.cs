@@ -81,7 +81,7 @@ public class PlayerController5 : MonoBehaviour
                 float moveInput = transform.up.y;
                 Vector2 direction = Vector2.up;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
-                Debug.DrawRay(rigid.position, Vector2.up, new Color(checkDistance, 0, 0));
+                Debug.DrawRay(rigid.position, Vector2.up, new Color(0, checkDistance, 0));
                 //Debug.Log(hit.collider.name);
 
                 if (hit.collider != null)
@@ -114,7 +114,7 @@ public class PlayerController5 : MonoBehaviour
                 float moveInput = -transform.up.y;
                 Vector2 direction = Vector2.down;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, checkDistance, obstacleLayer);
-                Debug.DrawRay(rigid.position, Vector2.down, new Color(checkDistance, 0, 0));
+                Debug.DrawRay(rigid.position, Vector2.down, new Color(0, checkDistance, 0));
 
               if (hit.collider != null)
                 {
@@ -274,6 +274,7 @@ public class PlayerController5 : MonoBehaviour
                 {
                     Debug.Log("up");
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
 
                 if (item.tag == "Enemy")
@@ -298,6 +299,7 @@ public class PlayerController5 : MonoBehaviour
                 {
                     Debug.Log("right");
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
 
                 if (item.tag == "Enemy")
@@ -318,6 +320,8 @@ public class PlayerController5 : MonoBehaviour
 
             //Hit the enemy and box
             Collider2D[] downCollider2D = Physics2D.OverlapBoxAll(posDown.position, boxSize, 0);
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, checkDistance, 0));
+
             foreach (Collider2D item in downCollider2D)
             {
                 if (item.tag == "Target")
@@ -343,11 +347,14 @@ public class PlayerController5 : MonoBehaviour
     {
         if(other.gameObject.CompareTag ("Tile"))
         {
+            //Normal platform
             currentTile = other.GetComponent<Tile>();
+           
         }
         
         if(other.gameObject.CompareTag("Platform"))
         {
+            //Lava
             movingLimit -= 1;
             StartCoroutine("NuckBack");
         }

@@ -16,12 +16,12 @@ public class GameManager6 : MonoBehaviour
 
     public int cleanliness;
     public int boxCount;
-    //public TMP_Text cleanliness_Text;
-    public TMP_Text boxCount_Text;
+    public TMP_Text cleanliness_Text;
+    //public TMP_Text boxCount_Text;
 
     PlayerController6 player6;
-    TrashEnemies trashEnemies;
-    PickUpTrashes pickUp;
+    TrashEnemies trashEnemies; //DustWarm
+    PickUpTrashes pickUp; //Trash
 
     private void Awake()
     {
@@ -33,6 +33,7 @@ public class GameManager6 : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         gameEndPanel.SetActive(false);
+
         player6 = GameObject.Find("Player").GetComponent<PlayerController6>();
         boxCount = GameObject.FindGameObjectsWithTag("Target").Length;
         trashEnemies = gameObject.GetComponent<TrashEnemies>();
@@ -55,16 +56,11 @@ public class GameManager6 : MonoBehaviour
     {
         movingLimit_Text.text = player6.movingLimit.ToString();
         actionLimit_Text.text = player6.actionLimit.ToString();
-        boxCount_Text.text = boxCount.ToString();
-        //cleanliness_Text.text = cleanliness.ToString();
+        //boxCount_Text.text = boxCount.ToString();
+        cleanliness_Text.text = cleanliness.ToString();
     }
 
     public void GetScore1(int _score)
-    {
-        cleanliness += _score;
-    }
-
-    public void GetScore2(int _score)
     {
         cleanliness += _score;
     }

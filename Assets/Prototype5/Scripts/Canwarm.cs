@@ -9,6 +9,8 @@ public class Canwarm : MonoBehaviour
     public int score;
     public Animator ani;
 
+    Collider col;
+
     [Header("OnlyForCanWarm")]
     private Rigidbody rb;
     public GameObject rightCheck, roofCheck, groundCheck;
@@ -23,6 +25,7 @@ public class Canwarm : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         GM6 = FindAnyObjectByType<GameManager6>();
+        col = GetComponent<Collider>();
     }
 
     void Update()
@@ -47,6 +50,8 @@ public class Canwarm : MonoBehaviour
 
     void HitLogic()
     {
+        //work
+
         if (rightTouch && facingRight)
         {
             Flip();
@@ -74,16 +79,17 @@ public class Canwarm : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(new Vector3(0, 180, 0));
         dirX = -dirX;
-    
+
     }
 
     public void TakeDamage(int damage)
     {
-        ani.SetTrigger("turnRed");
+        //ani.SetTrigger("turnRed");
         enemyHealth -= damage;
 
         if (enemyHealth <= 0)
         {
+            col.enabled = false;
             ani.SetTrigger("Death");
         }
 
@@ -91,9 +97,7 @@ public class Canwarm : MonoBehaviour
 
     public void Death()
     {
-        GM6.GetScore1(score);
         Destroy(this.gameObject);
-
     }
 
     private void OnDrawGizmosSelected()

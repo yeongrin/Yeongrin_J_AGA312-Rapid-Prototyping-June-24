@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2576276503839049972}
   - component: {fileID: 3505019860820569782}
   - component: {fileID: 3242558789071357034}
-  - component: {fileID: 3294348987150381733}
   - component: {fileID: 3882321140362907646}
   m_Layer: 7
   m_Name: Canwarm
@@ -141,27 +140,6 @@ MonoBehaviour:
   dirY: 0.5
   speed: 0
   circleRadius: 0.25
---- !u!65 &3294348987150381733
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254683230834089983}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.962963, y: 0.9, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3882321140362907646
 Rigidbody:
   m_ObjectHideFlags: 0

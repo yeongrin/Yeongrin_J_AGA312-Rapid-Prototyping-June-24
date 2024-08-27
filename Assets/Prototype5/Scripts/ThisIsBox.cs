@@ -28,6 +28,5 @@ public class ThisIsBox : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-
     }
 }

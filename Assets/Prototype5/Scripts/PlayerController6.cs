@@ -40,6 +40,7 @@ public class PlayerController6 : MonoBehaviour
 
     [Header("Raycast")]
     public LayerMask obstacleLayer; //Raycast block layer
+    public LayerMask enemyLayer;
     public float checkDistance;
     public bool canMoving = true;
 
@@ -237,49 +238,54 @@ public class PlayerController6 : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
         {
+            canMoving = false;
             audiosource.Play();
             ani.SetTrigger("Attack1");
             aniLeft.SetTrigger("Left"); //Animation and Sound effect
 
             //Hit the enemy and box
-            Collider[] leftCollider = Physics.OverlapBox(posLeft.position, boxSize, transform.rotation, 0);
-                Debug.Log($"Colliders found: {leftCollider.Length}");
+            Collider[] leftCollider = Physics.OverlapBox(posLeft.position, boxSize, transform.rotation, enemyLayer);
+           
             foreach (Collider item in leftCollider)
             {
-                Debug.Log("left");
-                if (item.tag == "Enemy2")
+                if (item.tag == "Enemy") //DustWarm
+                {
+                    item.GetComponent<TrashEnemies>().TakeDamage2(damage);
+                    actionLimit -= 1;
+                }
+
+                if (item.CompareTag("Enemy2")) //CanWarm
                 {
                     item.GetComponent<Canwarm>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
 
-                if (item.tag == "Target")
+                if (item.CompareTag("Target"))
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
-            } 
+            }
 
-            //Collider2D[] leftCollider2D = Physics2D.OverlapBoxAll(posLeft.position, boxSize2, 0);
-            //foreach (Collider2D item in leftCollider2D)
-            //{
-            //    if (item.tag == "Target")
-            //    {
-            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
-            //    }
-            //}
-
+            canMoving = true;
         }
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
         {
+            canMoving = false;
             audiosource.Play();
             ani.SetTrigger("Attack2");
             aniUp.SetTrigger("Up"); //Animation and Sound effect
 
             //Hit the enemy and box
-            Collider[] upCollider = Physics.OverlapBox(posUp.position, boxSize, transform.rotation, 0);
+            Collider[] upCollider = Physics.OverlapBox(posUp.position, boxSize, transform.rotation, enemyLayer);
             foreach (Collider item in upCollider)
             {
-                Debug.Log("Up");
+                if (item.tag == "Enemy") //DustWarm
+                {
+                    item.GetComponent<TrashEnemies>().TakeDamage2(damage);
+                    actionLimit -= 1;
+                }
+
                 if (item.tag == "Enemy2")
                 {
                     item.GetComponent<Canwarm>().TakeDamage(damage);
@@ -289,31 +295,29 @@ public class PlayerController6 : MonoBehaviour
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
             }
 
-            //Collider2D[] upCollider2D = Physics2D.OverlapBoxAll(posUp.position, boxSize2, 0);
-            //foreach (Collider2D item in upCollider2D)
-            //{
-            //    if (item.tag == "Target")
-            //    {
-            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
-            //    }
-
-            //}
-
+            canMoving = true;
         }
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
         {
+            canMoving = false;
             audiosource.Play();
             ani.SetTrigger("Attack3");
             aniRight.SetTrigger("Right"); //Animation and Sound effect
 
             //Hit the enemy and box
-            Collider[] rightCollider = Physics.OverlapBox(posRight.position, boxSize, transform.rotation, 0);
+            Collider[] rightCollider = Physics.OverlapBox(posRight.position, boxSize, transform.rotation, enemyLayer);
             foreach (Collider item in rightCollider)
             {
-                Debug.Log("Right");
+                if (item.tag == "Enemy") //DustWarm
+                {
+                    item.GetComponent<TrashEnemies>().TakeDamage2(damage);
+                    actionLimit -= 1;
+                }
+
                 if (item.tag == "Enemy2")
                 {
                     item.GetComponent<Canwarm>().TakeDamage(damage);
@@ -323,31 +327,30 @@ public class PlayerController6 : MonoBehaviour
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
             }
 
-            //Collider2D[] rightCollider2D = Physics2D.OverlapBoxAll(posRight.position, boxSize2, 0);
-            //foreach (Collider2D item in rightCollider2D)
-            //{
-            //    if (item.tag == "Target")
-            //    {
-            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
-            //    }
-
-
-            //}
+            canMoving = true;
         }
         if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
         {
+            canMoving = false;
             audiosource.Play();
             ani.SetTrigger("Attack4");
             aniDown.SetTrigger("Down"); //Animation and Sound effect
 
             //Hit the enemy and box
-            Collider[] downCollider = Physics.OverlapBox(posDown.position, boxSize, transform.rotation, 0);
+            Collider[] downCollider = Physics.OverlapBox(posDown.position, boxSize, transform.rotation, enemyLayer);
+            Debug.DrawRay(rigid.position, Vector2.down, Color.red);
             foreach (Collider item in downCollider)
             {
-                Debug.Log("Down");
+                if (item.tag == "Enemy") //DustWarm
+                {
+                    item.GetComponent<TrashEnemies>().TakeDamage2(damage);
+                    actionLimit -= 1;
+                }
+
                 if (item.tag == "Enemy2")
                 {
                     item.GetComponent<Canwarm>().TakeDamage(damage);
@@ -357,17 +360,11 @@ public class PlayerController6 : MonoBehaviour
                 if (item.tag == "Target")
                 {
                     item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    actionLimit -= 1;
                 }
             }
 
-            //Collider2D[] downCollider2D = Physics2D.OverlapBoxAll(posDown.position, boxSize2, 0);
-            //foreach (Collider2D item in downCollider2D)
-            //{
-            //    if (item.tag == "Target")
-            //    {
-            //        item.GetComponent<ThisIsBox>().TakeDamage(damage);
-            //    }
-            //}
+            canMoving = true;
         }
     }
 
@@ -387,7 +384,6 @@ public class PlayerController6 : MonoBehaviour
         {
             actionLimit -= 1;
             movingLimit -= 1;
-            Debug.Log("aw!");
         }
     }
     IEnumerator NuckBack()
@@ -412,10 +408,10 @@ public class PlayerController6 : MonoBehaviour
         Gizmos.DrawWireCube(posUp.position, boxSize);
         Gizmos.DrawWireCube(posDown.position, boxSize);
 
-        Gizmos.DrawWireCube(posLeft.position, boxSize2);
-        Gizmos.DrawWireCube(posRight.position, boxSize2);
-        Gizmos.DrawWireCube(posUp.position, boxSize2);
-        Gizmos.DrawWireCube(posDown.position, boxSize2);
+        //Gizmos.DrawWireCube(posLeft.position, boxSize2);
+        //Gizmos.DrawWireCube(posRight.position, boxSize2);
+        //Gizmos.DrawWireCube(posUp.position, boxSize2);
+        //Gizmos.DrawWireCube(posDown.position, boxSize2);
     }
 
 }
