@@ -1,11 +1,10 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class DialogueManager5 : MonoBehaviour
+public class Level2Dialogue : MonoBehaviour
 {
     public TMP_Text nameText;
     public TMP_Text dialogueText;
@@ -14,41 +13,18 @@ public class DialogueManager5 : MonoBehaviour
 
     public Animator anim;
 
-    public float shakeStrength;
-    public float moveTweenTime = 0f;
-
-    [Header("Image")]
-    public Sprite[] sprites;
-    public Image image;
-
+    public PlayerController5 player;
     IEnumerator coroutine;
 
     void Start()
     {
         sentences = new Queue<string>();
-        image.sprite = sprites[0];
 
     }
 
     void Update()
     {
-        if (sentences.Count == 11)
-        {
-            image.sprite = sprites[1];
-        }
-        else if (sentences.Count == 8)
-        {
-            image.sprite = sprites[2];
-        }
-        else if(sentences.Count == 4)
-        {
-            image.sprite = sprites[3];
-        }
-        else if(sentences.Count == 2)
-        {
-            image.sprite = sprites[4];
-        }
-       
+
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -102,6 +78,8 @@ public class DialogueManager5 : MonoBehaviour
     {
         anim.SetBool("isOpen", false);
         dialPanel.SetActive(false);
-    }
 
+        player.enabled = true;
+       
+    }
 }

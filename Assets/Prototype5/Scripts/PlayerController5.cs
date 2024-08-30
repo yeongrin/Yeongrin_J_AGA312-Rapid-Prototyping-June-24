@@ -10,7 +10,8 @@ public class PlayerController5 : MonoBehaviour
 
     [Header("Animation")]
     Animator ani;
-    AudioSource audiosource;
+    public AudioSource slashSound;
+    public AudioSource walking;
     public Animator aniLeft;
     public Animator aniRight;
     public Animator aniUp;
@@ -48,7 +49,7 @@ public class PlayerController5 : MonoBehaviour
         isMoving = false;
         canMoving = true;
         rigid = GetComponent<Rigidbody2D>();
-        audiosource = GetComponent<AudioSource>();
+        slashSound = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         rigid.velocity = new Vector2(X, Y);
@@ -211,6 +212,7 @@ public class PlayerController5 : MonoBehaviour
     private IEnumerator Move(Vector2 direction)
     {
         isMoving = true;
+        walking.Play();
 
         movingLimit -= 1;
 
@@ -236,7 +238,7 @@ public class PlayerController5 : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.Z))
         {
-            audiosource.Play();
+            slashSound.Play();
             ani.SetTrigger("Attack1");
             aniLeft.SetTrigger("Left"); //Animation and Sound effect
 
@@ -262,7 +264,7 @@ public class PlayerController5 : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKeyUp(KeyCode.Z))
         {
-            audiosource.Play();
+            slashSound.Play();
             ani.SetTrigger("Attack2");
             aniUp.SetTrigger("Up"); //Animation and Sound effect
 
@@ -287,7 +289,7 @@ public class PlayerController5 : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.RightArrow) && Input.GetKeyUp(KeyCode.Z))
         {
-            audiosource.Play();
+            slashSound.Play();
             ani.SetTrigger("Attack3");
             aniRight.SetTrigger("Right"); //Animation and Sound effect
 
@@ -314,7 +316,7 @@ public class PlayerController5 : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyUp(KeyCode.Z))
         {
-            audiosource.Play();
+            slashSound.Play();
             ani.SetTrigger("Attack4");
             aniDown.SetTrigger("Down"); //Animation and Sound effect
 

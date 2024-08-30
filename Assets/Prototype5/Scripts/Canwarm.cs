@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Canwarm : MonoBehaviour
 {
-    public newEnemyType newEnemyType;
     public int enemyHealth;
     public int score;
     public Animator ani;
@@ -35,7 +34,7 @@ public class Canwarm : MonoBehaviour
 
     void Moving()
     {
-        rb.velocity = new Vector2(dirX, dirY) * speed * Time.deltaTime;
+        rb.velocity = new Vector3(dirX, dirY, 0) * speed * Time.deltaTime;
         HitDirection();
     }
 
@@ -77,9 +76,8 @@ public class Canwarm : MonoBehaviour
     void Flip()
     {
         facingRight = !facingRight;
-        transform.Rotate(new Vector3(0, 180, 0));
+        this.transform.eulerAngles = new Vector3(0, 180, 0);
         dirX = -dirX;
-
     }
 
     public void TakeDamage(int damage)

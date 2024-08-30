@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1564,12 +1564,13 @@ MonoBehaviour:
     name: In warehouse
     sentences:
     - Finally Con and White cleaned their all warehouse.
+    - Con exterminated all the monsters and nests in the food warehouse. The task
+      of sorting out the rotten food from the normal food was very difficult.
     - 'Con: Almost nothing is past its expiration date! Um...Because I ate a lot..'
     - 'Con: Except for the acorns here!!'
     - 'Con: The expiration date is today! The amount is huge! '
     - 'Con: It will be useless tommorow! So... '
-    - 'Con: I have to eat it all. '
-    - 'Con: White said I could eat it!!'
+    - 'Con: I have to eat it all. White said I could eat it!!'
     - He thought he had missed something.
     - But he forgot everything in front of the delicious food.
     - That was the starting point of two days of Hell....
