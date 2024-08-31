@@ -15,6 +15,7 @@ public class DialogueManager4 : MonoBehaviour
     private Queue<string> sentences;
 
     public Animator anim;
+    public AudioSource audioSource;
 
     public float shakeStrength;
     public float moveTweenTime = 0f;
@@ -46,6 +47,7 @@ public class DialogueManager4 : MonoBehaviour
         }
         else if (sentences.Count == 14)
         {
+            audioSource.Play();
             image.sprite = sprites[3];
             StartCoroutine(coroutine);
             
@@ -71,7 +73,7 @@ public class DialogueManager4 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         StopCoroutine(coroutine);
         yield return null; 
-        Debug.Log("485737");
+        
     }
 
     public void StartDialogue(Dialogue dialogue)

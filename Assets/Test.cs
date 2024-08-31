@@ -47,7 +47,7 @@ public class Test : MonoBehaviour
 
         if (touchedRight)
         {
-            Debug.Log("right");
+            //Debug.Log("right");
             Flip();
            
         }
@@ -80,7 +80,7 @@ public class Test : MonoBehaviour
     {
         //transform.Rotate(new Vector3(0, 180, 0));
         moveDirection.x = -moveDirection.x;
-        Debug.Log("Hit");
+        //Debug.Log("Hit");
     }
 
         public void TakeDamage(int damage)

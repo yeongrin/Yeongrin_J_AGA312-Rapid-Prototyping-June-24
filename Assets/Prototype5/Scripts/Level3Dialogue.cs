@@ -13,10 +13,10 @@ public class Level3Dialogue : MonoBehaviour
 
     public Animator anim;
 
-    public PlayerController5 player;
-    public TrashEnemies trash1;
-    public TrashEnemies trash2;
-    public TrashEnemies trash3;
+    public PlayerController6 player;
+    public Test trash1;
+    public Test trash2;
+    public Test trash3;
 
     [Header("Image")]
     public Sprite[] sprites;

@@ -257,7 +257,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.CompareTag("Enemy2")) //CanWarm
                 {
-                    item.GetComponent<Canwarm>().TakeDamage(damage);
+                    item.GetComponent<Test>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
 
@@ -289,7 +289,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Enemy2")
                 {
-                    item.GetComponent<Canwarm>().TakeDamage(damage);
+                    item.GetComponent<Test>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
 
@@ -321,7 +321,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Enemy2")
                 {
-                    item.GetComponent<Canwarm>().TakeDamage(damage);
+                    item.GetComponent<Test>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
 
@@ -354,7 +354,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Enemy2")
                 {
-                    item.GetComponent<Canwarm>().TakeDamage(damage);
+                    item.GetComponent<Test>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
 
