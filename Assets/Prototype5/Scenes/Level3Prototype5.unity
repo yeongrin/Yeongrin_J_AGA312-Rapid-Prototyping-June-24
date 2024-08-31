@@ -34018,7 +34018,7 @@ MonoBehaviour:
   aniDown: {fileID: 1263667314}
   isMoving: 0
   movingLimit: 50
-  actionLimit: 24
+  actionLimit: 25
   coolTime: 0.5
   posLeft: {fileID: 853438561}
   posRight: {fileID: 305376129}

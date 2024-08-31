@@ -22,10 +22,12 @@ public class TrashEnemies : MonoBehaviour
     GameManager6 GM6;
     GameManager5 GM5;
 
+    Collider2D col;
     void Start()
     {
         GM5 = FindAnyObjectByType<GameManager5>();
         GM6 = FindAnyObjectByType<GameManager6>();
+        col = GetComponent<Collider2D>();
 
         switch (newEnemyType)
         {
@@ -109,6 +111,7 @@ public class TrashEnemies : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
+            col.enabled = false;
             ani.SetTrigger("Death");
         }
     }
