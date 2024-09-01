@@ -263,7 +263,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.CompareTag("Target"))
                 {
-                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    item.GetComponent<ThisisBox2>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
             }
@@ -295,7 +295,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Target")
                 {
-                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    item.GetComponent<ThisisBox2>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
             }
@@ -327,7 +327,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Target")
                 {
-                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    item.GetComponent<ThisisBox2>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
             }
@@ -360,7 +360,7 @@ public class PlayerController6 : MonoBehaviour
 
                 if (item.tag == "Target")
                 {
-                    item.GetComponent<ThisIsBox>().TakeDamage(damage);
+                    item.GetComponent<ThisisBox2>().TakeDamage(damage);
                     actionLimit -= 1;
                 }
             }

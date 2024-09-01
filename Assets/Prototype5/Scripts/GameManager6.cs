@@ -22,6 +22,7 @@ public class GameManager6 : MonoBehaviour
     PlayerController6 player6;
     TrashEnemies trashEnemies; //DustWarm
     PickUpTrashes pickUp; //Trash
+    ThisisBox2 box;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class GameManager6 : MonoBehaviour
         boxCount = GameObject.FindGameObjectsWithTag("Target").Length;
         trashEnemies = gameObject.GetComponent<TrashEnemies>();
         pickUp = gameObject.GetComponent<PickUpTrashes>();
+        box = gameObject.GetComponent<ThisisBox2>();
 
         cleanliness = 0;
 
@@ -80,7 +82,7 @@ public class GameManager6 : MonoBehaviour
 
     void GameEnding()
     {
-        if (boxCount <= 0)
+        if (cleanliness >= 100)
         {
             gameEndPanel.SetActive(true);
         }
